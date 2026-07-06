@@ -1,0 +1,84 @@
+/**
+ *
+ * You can write your CSS code here, DO NOT touch the default JavaScript file
+ * because it will make it harder for you to update.
+ * 
+ */
+
+/*# sourceMappingURL=custom.css.map */
+
+@import url('https://fonts.googleapis.com/css2?family=Inter+Tight:ital,wght@0,100..900;1,100..900&display=swap');
+
+body{
+    font-family: "Inter Tight", sans-serif;
+}
+
+.w-100{
+    width: 100%;
+}
+
+.w-100-flex{
+    width: 100%;
+    display: flex;
+}
+
+.custom-btn-card-header{
+    border-radius: 0.25rem !important;
+    padding:.3rem .8rem !important
+}
+
+label{
+    font-size: 14px !important;
+}
+
+tr td:first-child{
+    text-align: center;
+}
+
+#list-data_filter .form-control-sm{
+    padding: 1.25rem .5rem !important;
+}
+
+.custom-pagination {
+    display: flex;
+    justify-content: center;
+    /* margin-top: 20px; */
+}
+ 
+.custom-pagination button {
+    color: black;
+    padding: 7px 14px;
+    text-decoration: none;
+    transition: background-color .3s;
+    background-color: white;
+    border-radius: 10px;
+    border:none;
+    box-shadow: rgba(14, 30, 37, 0.12) 0px 2px 4px 0px, rgba(14, 30, 37, 0.32) 0px 2px 16px 0px;
+    margin:0 2.5px
+}
+ 
+.custom-pagination button.active {
+    background-color: #007bff;
+    color: white;
+}
+ 
+.custom-pagination button:hover:not(.active) {
+    background-color: #ddd;
+}
+
+.table.table-bordered th{
+    background-color: #fdfdff !important;
+    border-bottom: 1px solid #dee2e6 !important;
+}
+.table.table-bordered td, .table.table-bordered th{
+    border-color: #dee2e6 !important;
+}
+
+.tab-content > .tab-pane{
+    padding-top: 0;
+}
+
+.datepicker{
+    margin-top: 0;
+    z-index: 1600 !important;
+}

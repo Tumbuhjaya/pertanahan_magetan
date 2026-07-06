@@ -1,0 +1,3205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sistem Informasi Pengendalian Pemanfaatan Ruang Provinsi Jawa Tengah">
+    <meta name="author" content="Dinas Pekerjaan Umum Sumber Daya Air Dan Penataan Ruang Provinsi Jawa Tengah">
+    <link rel="shortcut icon" href="/images/template/shortcut_icon.ico">
+    <title></title>
+
+    <link href="/stylesheets/template/css/bootstrap.css" rel="stylesheet">
+    <link href="/stylesheets/template/css/style.css" rel="stylesheet">
+
+    <!-- Plugin This Page --> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+
+    <link href="/resources-maps/stylesheets/leaflet-routing-machine.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/L.Control.Locate.min.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet-routing-machine.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet.extra-markers.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet.label.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/groupedlayercontrol.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet.draw.css" rel="stylesheet" />
+    <link href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" rel="stylesheet">
+    <link href="/resources-maps/stylesheets/Control.FullScreen.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/MarkerCluster.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/MarkerCluster.Default.css" rel="stylesheet" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet-src.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js"
+        integrity="sha512-ECQqaYZke9cSdqlFG08zSkudgrdF6I1d8ViSa7I3VIszJyVqw4ng1G8sehEXlumdMnFYfzY0tMgdQa4WCs9IUw=="
+        crossorigin=""></script>
+    <script src="/javascripts/template/jquery.min.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-routing-machine.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.label.js"></script>
+    <script src="/resources-maps/panah-asmara.js"></script>
+    <script src="https://maps.google.com/maps/api/js?v=3.2&key=AIzaSyBy8irzccEOp7ezf5nQ2UPaLGcte_AEsOQ"></script>
+    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js'></script>
+    <script src="/resources-maps/javascripts/L.Control.Locate.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-routing-machine.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.extra-markers.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-image.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="/resources-maps/javascripts/Control.FullScreen.js"></script>
+    <script src="/resources-maps/javascripts/groupedlayercontrol.js"></script>
+    <script src="/resources-maps/javascripts/wicket.js"></script>
+    <script src="/resources-maps/javascripts/wicket-leaflet.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-omnivore.min.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.markercluster-src.js"></script>
+    <script src="/resources-maps/draw/Leaflet.draw.js"></script>
+    <script src="/resources-maps/draw/Leaflet.Draw.Event.js"></script>
+    <script src="/resources-maps/draw/Toolbar.js"></script>
+    <script src="/resources-maps/draw/Tooltip.js"></script>
+    <script src="/resources-maps/draw/ext/GeometryUtil.js"></script>
+    <script src="/resources-maps/draw/ext/LatLngUtil.js"></script>
+    <script src="/resources-maps/draw/ext/LineUtil.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/Polygon.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/Polyline.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/TouchEvents.js"></script>
+    <script src="/resources-maps/draw/draw/DrawToolbar.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Feature.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Polyline.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Marker.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Polygon.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Rectangle.js"></script>
+    <script src="/resources-maps/draw/edit/EditToolbar.js"></script>
+    <script src="/resources-maps/draw/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="/resources-maps/draw/edit/handler/EditToolbar.Delete.js"></script>
+    <script src="/resources-maps/draw/Control.Draw.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Poly.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Rectangle.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Marker.js"></script>
+    <script src="/resources-maps/main.js"></script>
+    <!-- End Plugins This Page -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+    .select2-container .select2-selection--single{
+        height: 40px;
+    }
+
+    .select2-container--classic .select2-selection--single .select2-selection__arrow{
+        height: 38px;
+    }
+
+    .select2-container--classic .select2-selection--single .select2-selection__rendered{
+        line-height: 38px;
+    }
+
+    .leaflet-container {
+        font: 1rem "Inter Tight", sans-serif;
+    }
+
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-lg-12 col-xl-12 p-0">
+                    <div class="w-100-flex" style="height: 100vh;background: linear-gradient(180deg, #0575E6 0%, #02298A 84.79%, #021B79 100%);justify-content: center;align-items: center;flex-direction: column;">
+                      <h1 style="color: #fff;font-size: 200px;"><strong>404</strong></h1>                        
+                      <h2 style="color: #fff;font-size: 80px;"><strong>PAGE NOT FOUND</strong></h2>        
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+    
+    <script src="/javascripts/template/bootstrap.bundle.js"></script>
+    <!-- Plugins This Page -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script defer src="https://use.fontawesome.com/releases/v5.15.4/js/all.js" integrity="sha384-rOA1PnstxnOBLzCLMcre8ybwbTmemjzdNlILg8O7z1lUkLXozs4DHonlDtnE7fpc" crossorigin="anonymous"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <!-- End Plugins This Page -->
+    <script type="text/javascript">
+        $('.autocomplete').select2({
+          theme: "bootstrap4"
+        });
+        
+        // sidebar bottom
+        $("#sidebar-bottom").hide();
+        $("#btn-sidebar-bottom").click(function(){
+            $("#sidebar-bottom").toggle();
+        });
+
+        $("#sidebar-filter").hide();
+        $("#sidebar-legenda").hide();
+
+        // filter
+        $("#filter").click(function(){
+            $("#sidebar-filter").show();
+            $("#sidebar-legenda").hide();
+        });
+        $("#close-filter").click(function(){
+            $("#sidebar-filter").hide();
+            $("#sidebar-legenda").hide();
+
+        });
+
+        // legenda
+        $("#legenda").click(function(){
+            $("#sidebar-filter").hide();
+            $("#sidebar-legenda").show();
+        });
+        $("#close-legenda").click(function(){
+            $("#sidebar-legenda").hide();
+            $("#sidebar-filter").hide();
+        });
+
+        $('#data-indikasi-pelanggaran').DataTable({    
+            "language": {    
+                "sProcessing":   "Sedang memproses...",    
+                "sLengthMenu":   "_MENU_",    
+                "sZeroRecords":  "Tidak ditemukan data yang sesuai",    
+                "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",    
+                "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",    
+                "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",    
+                "sInfoPostFix":  "",    
+                "sUrl":          "",    
+                "oPaginate": {    
+                    "sFirst":    "Pertama",    
+                    "sPrevious": "Sebelumnya",    
+                    "sNext":     "Selanjutnya",    
+                    "sLast":     "Terakhir"    
+                }    
+            },    
+            // "columnDefs": [    
+            // { "width": "80px", "targets": 2}    
+            // ],    
+        });
+
+        $('#data-tindaklanjut-pelanggaran').DataTable({    
+            "language": {    
+                "sProcessing":   "Sedang memproses...",    
+                "sLengthMenu":   "_MENU_",    
+                "sZeroRecords":  "Tidak ditemukan data yang sesuai",    
+                "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",    
+                "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",    
+                "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",    
+                "sInfoPostFix":  "",    
+                "sUrl":          "",    
+                "oPaginate": {    
+                    "sFirst":    "Pertama",    
+                    "sPrevious": "Sebelumnya",    
+                    "sNext":     "Selanjutnya",    
+                    "sLast":     "Terakhir"    
+                }    
+            },    
+            // "columnDefs": [    
+            // { "width": "80px", "targets": 2}    
+            // ],    
+        });
+
+
+        function toWKT (layer) { 
+                          var lng, lat, coords = []; 
+                         if (layer instanceof L.Polygon || layer instanceof L.Polyline) { 
+                           var latlngs = layer.getLatLngs(); 
+                         for (var i = 0; i < latlngs.length; i++) { 
+                             var latlngs1 = latlngs[i]; 
+                             if (latlngs1.length){ 
+                             for (var j = 0; j < latlngs1.length; j++) { 
+                               coords.push(latlngs1[j].lng + " " + latlngs1[j].lat); 
+                               if (j === 0) { 
+                                 lng = latlngs1[j].lng; 
+                                 lat = latlngs1[j].lat; 
+                               } 
+                             }} 
+                             else 
+                             { 
+                               coords.push(latlngs[i].lng + " " + latlngs[i].lat); 
+                               if (i === 0) { 
+                                 lng = latlngs[i].lng; 
+                                 lat = latlngs[i].lat; 
+                               }} 
+                         }; 
+                           if (layer instanceof L.Polygon) { 
+                             return "POLYGON((" + coords.join(",") + "," + lng + " " + lat + "))"; 
+                           } else if (layer instanceof L.Polyline) { 
+                             return "LINESTRING(" + coords.join(",") + ")"; 
+                           } 
+                         } else if (layer instanceof L.Marker) { 
+                           return "POINT(" + layer.getLatLng().lng + " " + layer.getLatLng().lat + ")"; 
+                         } 
+                       }; 
+                    $(document).ready(function() { 
+                     
+                        // $.ajax({ 
+                        //   type : "GET", 
+                        //   async : false, 
+                        //   global : false, 
+                        //   url : root + "peta/json_kec", 
+                        //   dataType : 'json', 
+                        //   success: function (data) { 
+                        //    $("#kabupaten").empty(); 
+                        //     $("#kabupaten").append('<option value="">Pilih Kecamatan / Kota</option>') 
+                        //  $.each(data, function(){ 
+                        //       $("#kabupaten").append('<option value="'+ this.kecamatan +'">'+ this.kecamatan +'</option>') 
+                        //   }) 
+                             
+                        //   } 
+                        // }); 
+                         
+                           $("#parsepeta").on("click", function () { 
+                            drawnItems.clearLayers(); 
+                            inputan_koordinat =""; 
+                            end_koordinat = ""; 
+                          var tableHtml=$('table.order-list')  // tableHtml is a jQuery of the table 
+         
+                          tableHtml.find('tbody > tr').each(function(){  
+                                
+                                               if(inputan_koordinat==""){ 
+                                 end_koordinat= ''+$(this).find('input[name^="x"]').val() +' '+$(this).find('input[name^="y"]').val() 
+                                } 
+                                              inputan_koordinat = inputan_koordinat+''+$(this).find('input[name^="x"]').val() +' '+$(this).find('input[name^="y"]').val()+','; 
+                          }); 
+                        inputan_koordinat = inputan_koordinat + end_koordinat; 
+                          console.log(inputan_koordinat); 
+                         layer_parse=   omnivore.wkt.parse('POLYGON(('+inputan_koordinat+'))'); 
+         
+                         $('#SHAPE').val('POLYGON(('+inputan_koordinat+'))'); 
+                               layer_parse.eachLayer(function (layer) { 
+         
+                                                  var bounds = layer.getBounds(); 
+                                    //         // Get center of bounds 
+                                             var center = bounds.getCenter(); 
+                                     
+         
+                                   drawnItems.addLayer(layer); 
+                                  }) 
+                          }); 
+                                 $("#reset_peta").on("click", function () { 
+                                 drawnItems.clearLayers(); 
+                                   
+                                       
+                                                       $('#myTable tbody').html('<tr><td><input type="text" name="x[]" style="width:100%"/></td><td><input type="text" name="y[]" style="width:100%"/></td><td><a class="deleteRow" style="width:100%"></a></td> </tr>'); 
+                                                        $('#wkt_inputan').empty(); 
+                                  
+                                }); 
+                                   $("#addrow").on("click", function () { 
+         
+                               counter = $('#myTable tr').length - 2; 
+         
+                               var newRow = $("<tr>"); 
+                               var cols = ""; 
+         
+                               cols += '<td><input type="text" name="x[]" style="width:100%"/></td>'; 
+                               cols += '<td><input type="text" name="y[]" style="width:100%"/></td>'; 
+         
+                               cols += '<td><input type="button" class="ibtnDel"  value="Hapus" style="width:100%"></td>'; 
+                               newRow.append(cols); 
+                             //  if (counter == 4) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit"); 
+                               $("table.order-list").append(newRow); 
+                               counter++; 
+                               $("table.order-list").on("click", ".ibtnDel", function (event) { 
+                                   $(this).closest("tr").remove(); 
+                                
+                                    
+                                   counter -= 1 
+                                   $('#addrow').attr('disabled', false).prop('value', "Tambah Koordinat"); 
+                               }); 
+                               //  var price = +row.find('input[name^="price"]').val(); 
+                           }); 
+                         
+                    }); 
+                  
+         
+                     var warna_total = ['#ffffff','#ffffff']; 
+                          var labels = ['','']; 
+                           var wkt = new Wkt.Wkt(); 
+                      function onLocationFound(e) { 
+                          var radius = e.accuracy / 2; 
+                           
+                          if(center == 0 ){ 
+                            map.setView(e.latlng, 13); 
+                            center++; 
+                          } 
+                         //   var koordinat = {latlng:{lat: ye, lng: xe}}; 
+                          
+                             
+                         //console.log(koordinat) 
+                          clickHandler(e) 
+                          // iht_layer.eachLayer(function (layer) { 
+                          //   layer_lat_long = layer.getLatLng(); 
+                          //   layer_lat = layer.getLatLng().lat; 
+                          //   layer_lng = layer.getLatLng().lng; 
+         
+                          //   // jarak ke point saat ini dalam meter 
+                          //   var posisi_kita_lat = e.latlng.lat; 
+                          //   var posisi_kita_lng = e.latlng.lng; 
+         
+                          //   jarak = layer_lat_long.distanceTo(e.latlng); 
+         
+                          //   var popupContent = getPopup( layer, posisi_kita_lat, posisi_kita_lng, layer_lat, layer_lng ); 
+                          //   layer.bindPopup(popupContent, popupOptions); 
+                          //   if(jarak > 30000){ 
+                          //      // layer.setOpacity(0); 
+                          //      // layer.unbindPopup(); 
+                          //   } 
+                          // }); 
+                        } 
+                       
+         
+                         
+                        function ke_lokasi(x_awal, y_awal, x_akhir, y_akhir){ 
+                          map.closePopup(); 
+                          console.log(x_awal+ ' , ' +y_awal+ ' ; ' +x_akhir + ' , ' + y_akhir) 
+         
+                          if(navigasi!=null){ 
+                            navigasi.spliceWaypoints(navigasi.getWaypoints().length - 1, 1, L.latLng(x_akhir, y_akhir));    
+                          } 
+                          else{ 
+                            navigasi =  L.Routing.control({ 
+                              // waypointIcon : 
+                              // waypoints : [L.latLng(x_awal, y_awal), L.latLng(x_akhir, y_akhir)] 
+                              plan: L.Routing.plan([ 
+                                  L.latLng(x_awal, y_awal), 
+                                  L.latLng(x_akhir, y_akhir) 
+                              ],  
+                              { 
+                                createMarker: function(i, wp) { 
+                                  return L.marker(wp.latLng, { 
+                                    draggable: false, 
+                                    icon: routeIcon 
+                                  }); 
+                                } 
+                                // geocoder: L.Control.Geocoder.nominatim(), 
+                                // routeWhileDragging: true 
+                              }) 
+                            }); 
+                            navigasi.addTo(map); 
+                            console.log(navigasi.getPlan()); 
+                            $('.leaflet-routing-container').append('<a href="#" id="tutup_navigasi" onclick="tutup_navigasi()">BATAL</a>'); 
+                          } 
+                        } 
+                         
+                        function tutup_navigasi() { 
+                          if(navigasi!=null){ 
+                            navigasi.spliceWaypoints(0, 2); 
+                            $('.leaflet-routing-container').hide(); 
+                            navigasi = null; 
+                          } 
+                        } 
+         
+                        function tambah_titik(x, y, id_jalan){ 
+         
+                          map.panTo(new L.LatLng(x, y)); 
+                          map.setZoom(16); 
+         
+                          jalan_layer.eachLayer(function (layer) { 
+                            if ( layer.feature.properties.id_jalan == id_jalan ) { 
+                              console.log(layer.feature.properties) 
+                              layer.openPopup(); 
+                            }; 
+                          }); 
+                        } 
+         
+                        $('#cari').click(function(){ 
+                          var xe =  $('#xe').val(); 
+                          var ye = $('#ye').val(); 
+                            map.panTo(new L.LatLng(ye, xe)); 
+                          map.setZoom(16); 
+                          var koordinat = {latlng:{lat: ye, lng: xe}}; 
+                          
+                             
+                         //console.log(koordinat) 
+                          clickHandler(koordinat) 
+                        }) 
+         
+         
+                        /** 
+                         *  
+                         *  Variables Initialization 
+                         *  
+                         */ 
+                        var kabupaten_layer; 
+                        var iht_layer = null; 
+                        var source = null; 
+                        var marker; 
+                        var lingkaran; 
+                        var center = 0; 
+                        var navigasi=null; 
+                        var kabupaten_layer; 
+                        var marker_search=''; 
+         
+                        /** 
+                         *  
+                         *  Layer Styling 
+                         *  
+                         */ 
+                        var sembunyi = { 
+                          color : "transparent", 
+                          weight : 1, 
+                          opacity : 0, 
+                          fillOpacity : 0 
+                        }; 
+                         
+                         var style_kabupaten = { 
+                              color : "yellow",  
+                              weight : 3,  
+                              opacity : 1,  
+                              fillOpacity  : 0, 
+                              dashArray : 3 
+                            }; 
+                         var style_gambar = { 
+                              color : "blue",  
+                              weight : 2,  
+                              opacity : 1,  
+                              fillOpacity  : 0 
+                               
+                            }; 
+                             var style_desa = { 
+                              color : "white",  
+                              weight : 1,  
+                              opacity : 1,  
+                              fillOpacity  : 0, 
+                              dashArray : 3 
+                            }; 
+                
+                      
+                       
+         
+                        var style_kabupaten_gelap = { 
+                          color : "#000",  
+                          weight : 1,  
+                          opacity : 1,  
+                          fillOpacity  : 0, 
+                          dashArray : 3 
+                        }; 
+                         
+                        var popupOptions = { 
+                          maxWidth : '450', 
+                          minWidth : '250', 
+                          className : 'custom', 
+                          closeOnClick : true 
+                        }; 
+         
+                        /** 
+                         *  
+                         *  Map initialization 
+                         *  
+                        . The Longitude of Kota Pati is  
+                         */ 
+                        var southWest = L.latLng(-8.629903118263488, 108.0780029296875), 
+                          northEast = L.latLng(-6.124169589851178, 112.52746582031249), 
+                          bounds = L.latLngBounds(southWest, northEast); 
+                        var map = L.map('map', { 
+                            center: [ -6.966667, 110.416664], 
+                            // maxBounds: bounds, 
+                            zoom: 8, 
+                            minZoom:2, 
+                            maxZoom:19, 
+                            fullscreenControl: true, 
+                            fullscreenControlOptions: { 
+                              position: 'topleft' 
+                            } 
+                        }); 
+         
+         
+                        //ngilangi garis putih 
+                 
+         
+         
+         
+                          function clickHandler(e) { 
+                          
+               //  var clickBounds = L.latLngBounds(e.latlng, e.latlng); 
+         
+               //  var intersectingFeatures = []; 
+               //    for (var l in map._layers) { 
+               //    var overlay = map._layers[l]; 
+               //    if (overlay._layers) { 
+               //      for (var f in overlay._layers) { 
+               //        var feature = overlay._layers[f]; 
+               //        var bounds; 
+               //        if (feature.getBounds) bounds = feature.getBounds(); 
+               //        else if (feature._latlng) { 
+               //          bounds = L.latLngBounds(feature._latlng, feature._latlng); 
+               //        } 
+               //        if (bounds && clickBounds.intersects(bounds)) { 
+               //          intersectingFeatures.push(feature); 
+               //        } 
+               //      } 
+               //    } 
+               //  } 
+               // intersectingFeatures.map(function(o) { 
+               //    console.log(o) 
+               //  }) 
+               //  var html = "Found features: " + intersectingFeatures.length + "<br/>" + intersectingFeatures.map(function(o) { 
+               //    return o.feature 
+               //  }).join('<br/>'); 
+               $('#xe').val(e.latlng.lng)  
+               $('#ye').val(e.latlng.lat)  
+              var html =""; 
+                
+                html = html + "</br></br>Pola Ruang RTRW : </br>" 
+               $.ajax({ 
+                        type : "GET", 
+                        async : false, 
+                        global : false, 
+                        url : root + "peta/list_polaruang?x="+e.latlng.lng+"&y="+e.latlng.lat, 
+                        dataType : 'json', 
+                        success: function (data) { 
+                       // console.log(data) 
+                       $.each(data, function(){ 
+                            html = html + this.rencana_tg+"</br>"; 
+                        }) 
+                           
+                        } 
+                      }); 
+         
+               html = html + "</br>Koordinat : </br>" 
+                html = html + "</br>"+e.latlng.lng+" "+e.latlng.lat+"</br>" 
+         
+                 
+                    
+                map.openPopup(html, e.latlng); 
+              } 
+         
+         
+         
+         
+         
+                        // map.fitBounds(bounds); 
+         
+                        var google_roadmap    = L.gridLayer.googleMutant({ 
+                                                                        type: 'roadmap', 
+                                                                        styles: [ 
+                                                                                    {elementType: 'geometry', stylers: [{color: '#242f3e'}]}, 
+                                                                                    {elementType: 'labels.text.stroke', stylers: [{color: '#242f3e'}]}, 
+                                                                                    {elementType: 'labels.text.fill', stylers: [{color: '#746855'}]}, 
+                                                                                    { 
+                                                                                      featureType: 'administrative.locality', 
+                                                                                      elementType: 'labels.text.fill', 
+                                                                                      stylers: [{color: '#d59563'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'poi', 
+                                                                                      elementType: 'labels.text.fill', 
+                                                                                      stylers: [{color: '#d59563'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'poi.park', 
+                                                                                      elementType: 'geometry', 
+                                                                                      stylers: [{color: '#263c3f'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'poi.park', 
+                                                                                      elementType: 'labels.text.fill', 
+                                                                                      stylers: [{color: '#6b9a76'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'road', 
+                                                                                      elementType: 'geometry', 
+                                                                                      stylers: [{color: '#38414e'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'road', 
+                                                                                      elementType: 'geometry.stroke', 
+                                                                                      stylers: [{color: '#212a37'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'road', 
+                                                                                      elementType: 'labels.text.fill', 
+                                                                                      stylers: [{color: '#9ca5b3'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'road.highway', 
+                                                                                      elementType: 'geometry', 
+                                                                                      stylers: [{color: '#746855'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'road.highway', 
+                                                                                      elementType: 'geometry.stroke', 
+                                                                                      stylers: [{color: '#1f2835'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'road.highway', 
+                                                                                      elementType: 'labels.text.fill', 
+                                                                                      stylers: [{color: '#f3d19c'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'transit', 
+                                                                                      elementType: 'geometry', 
+                                                                                      stylers: [{color: '#2f3948'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'transit.station', 
+                                                                                      elementType: 'labels.text.fill', 
+                                                                                      stylers: [{color: '#d59563'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'water', 
+                                                                                      elementType: 'geometry', 
+                                                                                      stylers: [{color: '#17263c'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'water', 
+                                                                                      elementType: 'labels.text.fill', 
+                                                                                      stylers: [{color: '#515c6d'}] 
+                                                                                    }, 
+                                                                                    { 
+                                                                                      featureType: 'water', 
+                                                                                      elementType: 'labels.text.stroke', 
+                                                                                      stylers: [{color: '#17263c'}] 
+                                                                                    } 
+                                                                                  ] 
+                                                                   // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid' 
+                                                                    }) 
+         
+                        var google_hybrid     = L.gridLayer.googleMutant({ 
+                                                                        type: 'hybrid' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid' 
+                                                                    }) 
+                        var google_satelit    = L.gridLayer.googleMutant({ 
+                                                                        type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid' 
+                                                                    }) 
+                        var osm               = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {}); 
+                        var Esri_WorldImagery = L.tileLayer('https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}'); 
+                       // var RBI            = L.tileLayer('http://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer'); 
+         
+                        var RBI =  L.esri.tiledMapLayer({ 
+                          url: "https://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer" 
+                        }); 
+                                       (function(){ 
+                            var originalInitTile = L.GridLayer.prototype._initTile 
+                            L.GridLayer.include({ 
+                                _initTile: function (tile) { 
+                                    originalInitTile.call(this, tile); 
+         
+                                    var tileSize = this.getTileSize(); 
+         
+                                    tile.style.width = tileSize.x + 1 + 'px'; 
+                                    tile.style.height = tileSize.y + 1 + 'px'; 
+                                } 
+                            }); 
+                        })() 
+                        map.addLayer(google_hybrid); 
+         
+                        var legend = L.control({position: 'bottomleft'}); 
+                        var streetview = L.control({position: 'bottomright'}); 
+                         
+                        //gambar 
+                        var drawnItems = L.featureGroup().addTo(map); 
+                        var options = { 
+                              position: 'topleft', 
+                              draw: { 
+                                  polyline: false, 
+                                //   polygon: { 
+                                //    showArea: true, 
+                                //       allowIntersection: false, // Restricts shapes to simple polygons 
+                                //       drawError: { 
+                                //           color: '#e1e100', // Color the shape will turn when intersects 
+                                //           message: '<strong>Digitasi Salah!' // Message that will show when intersect 
+                                //       }, 
+                                //       shapeOptions: { 
+                                //           color: '#bada55' 
+                                //       } 
+                                //   }, 
+                                polygon:false,
+                                  circle: false, // Turns off this drawing tool 
+                                  rectangle: false, 
+                                  marker: true 
+                              }, 
+                              edit: { 
+                                  featureGroup: drawnItems, //REQUIRED!! 
+                                  remove: true 
+                              } 
+                          }; 
+                           
+                          var drawControl = new L.Control.Draw(options); 
+                        //  map.addControl(drawControl); 
+                           
+                           map.on(L.Draw.Event.CREATED, function(event) { 
+                             drawnItems.clearLayers(); 
+                              var layer = event.layer; 
+                                    var latlngss = layer.getLatLng(); 
+                            console.log(latlngss) 
+                            $('#xe').val(latlngss.lng)
+                            
+                            $('#ye').val(latlngss.lat)
+                                //  var seeArea =  L.GeometryUtil.geodesicArea(latlngss[0]); 
+                                                //  seeArea = L.GeometryUtil.readableArea(seeArea, true, {}) 
+                                               // console.log(seeArea); 
+                                 // console.log(toWKT(layer)); 
+                                 // console.log(layer); 
+                             
+                                      
+                                               
+         
+                               //    html = html+"</br>"+"<a href='/peta/print?p="+toWKT(layer)+"' style='color:blue' target='_blank'>[DOWNLOAD]</a>"; 
+                                        //  var bounds = layer.getBounds(); 
+                                //         // Get center of bounds 
+                                        //  var center = bounds.getCenter(); 
+                                  // map.openPopup(html, center, { 
+                                  //     offset: L.point(0, -24) 
+                                  //   }); 
+                                  //  $('#konten_polaruang').empty() 
+                                  // $('#konten_polaruang').append(html) 
+         
+                                  // // $("#konten-detail").toggle("slide", {direction:"right"}, 500); 
+                                  // $('.modal').modal('show'); 
+                            //  drawnItems.addLayer(layer); 
+                                peta_pemohon(toWKT(layer)) 
+                              
+                            
+                            }); 
+
+
+                            map.on(L.Draw.Event.EDITED, function(event) { 
+                                event.layers.eachLayer(function (layer) { 
+                             
+                                    var latlngss = layer.getLatLng(); 
+                            console.log(latlngss) 
+                            $('#xe').val(latlngss.lng)
+                            
+                            $('#ye').val(latlngss.lat)
+                                
+                                // peta_pemohon(toWKT(layer)) 
+                              
+                                })
+                            }); 
+         
+         
+                        //gambar end  
+         
+         
+         
+                        var locateIcon = L.ExtraMarkers.icon({ 
+                            icon: 'fa-map-marker',  
+                            markerColor: 'blue-dark',  
+                            prefix: 'fa', 
+                            iconColor: 'white', 
+                            shape: 'square' 
+                        }); 
+         
+                        var ihtIconAktif = L.ExtraMarkers.icon({ 
+                            prefix: 'fa',  
+                            markerColor: 'green-light',  
+                            icon: 'fa-building',  
+                            iconColor: 'white', 
+                            shape: 'square' 
+                        }); 
+         
+                        var ihtIconTidakAktif = L.ExtraMarkers.icon({ 
+                            prefix: 'fa',  
+                            markerColor: 'red',  
+                            icon: 'fa-ban',  
+                            iconColor: 'white', 
+                            shape: 'square' 
+                        }); 
+         
+                        var ihtIconTidakDiketahui = L.ExtraMarkers.icon({ 
+                            prefix: 'fa',  
+                            markerColor: 'orange',  
+                            icon: 'fa-question',  
+                            iconColor: 'white', 
+                            shape: 'square' 
+                        }); 
+         
+                        var routeIcon = L.ExtraMarkers.icon({ 
+                            prefix: 'fa',  
+                            markerColor: 'red',  
+                            icon: 'fa-location-arrow',  
+                            iconColor: 'white', 
+                            shape: 'square' 
+                        }); 
+         
+                        // $.getJSON( root + "index.php/kabupaten", function( json ) { 
+                        //   $.each(json, function( i, item ) { 
+                        //     $('#kabupaten').append('<option value="'+item.id_kabupaten+'">'+item.nama_kabupaten+'</option>'); 
+                        //   }) 
+                        // }); 
+                      //ambil ksp   
+                      var label_kec = []; 
+                      var label_desa = []; 
+                  var popup = new L.popup(); 
+                      
+                              //topojson 
+                              L.TopoJSON = L.GeoJSON.extend({   
+                                addData: function(jsonData) {   
+                                  console.log(jsonData);  
+                                  if (jsonData.type === "Topology") { 
+                                    for (key in jsonData.objects) { 
+                                      geojson = topojson.feature(jsonData, jsonData.objects[key]); 
+                                      L.GeoJSON.prototype.addData.call(this, geojson); 
+                                    } 
+                                  }     
+                                  else { 
+                                    L.GeoJSON.prototype.addData.call(this, jsonData); 
+                                  } 
+                                }   
+                              }); 
+                              //topojson 
+                        var wellmaxzoom = 13;        
+                      var polaruang_layer = new L.GeoJSON(); 
+                      var kabupaten_layer = new L.TopoJSON(); 
+                      var desa_layer = new L.TopoJSON(); 
+               
+                   
+                 
+                      var pdam = new L.TopoJSON(); 
+                      var bendungan = new L.TopoJSON(); 
+                      var waduk = new L.TopoJSON(); 
+                      var danau = new L.TopoJSON();
+                      var mata_air = new L.TopoJSON(); 
+                      var sumur = new L.TopoJSON(); 
+                      var embung = new L.TopoJSON(); 
+                      var kekeringan = new L.TopoJSON(); 
+                      var stunting = new L.TopoJSON(); 
+                      var kemiskinan = new L.TopoJSON(); 
+                      var belum_terlayani = new L.TopoJSON(); 
+                      var pams = new L.TopoJSON(); 
+                      var dak = new L.TopoJSON(); 
+                      var pelayanan_pdam = new L.TopoJSON(); 
+                      var pelayanan_pamsimas = new L.TopoJSON(); 
+                      var pelayanan_dak = new L.TopoJSON();
+                      var pelayanan_lainnya = new L.TopoJSON(); 
+                      var pelayanan_spam = new L.TopoJSON();  
+              
+                    var cakupan_pelayanan = new L.TopoJSON(); 
+                    var rawan_kekeringan = new L.TopoJSON(); 
+                    var kebutuhan_air = new L.TopoJSON(); 
+                    var penduduk_belum_terlayani = new L.TopoJSON(); 
+                    var kategori_pengembangan_spam = new L.TopoJSON(); 
+                    var nilai_pengembangan_spam = new L.TopoJSON(); 
+              
+                      // var inovasi_markers = L.markerClusterGroup(); 
+                       
+                      //hapus labeh 
+                      function hapus_label_kec(){ 
+                         var ii = 0; 
+                              kabupaten_layer.eachLayer(function (layer) { 
+                            map.removeLayer(label_kec[ii]); 
+                            // label[ii].clearLayers(); 
+                             ii++; 
+                          }) 
+                              label_kec = []; 
+                      } 
+                      function tampil_label_kec(){ 
+                         var ii = 0; 
+                                  kabupaten_layer.eachLayer(function (layer) { 
+                                    label_kec[ii].setOpacity(1); 
+                                // label[ii].clearLayers(); 
+                                 ii++; 
+                              }) 
+                      } 
+                      function hide_label_kec(){ 
+                         var ii = 0; 
+                                  kabupaten_layer.eachLayer(function (layer) { 
+                                    label_kec[ii].setOpacity(0); 
+                                // label[ii].clearLayers(); 
+                                 ii++; 
+                              }) 
+                      } 
+         
+                      function hapus_label_desa(){ 
+                         var ii = 0; 
+                              desa_layer.eachLayer(function (layer) { 
+                               if(label_desa[ii]){ 
+                                 map.removeLayer(label_desa[ii]); 
+                               } 
+                             
+                            // label[ii].clearLayers(); 
+                             ii++; 
+                          }) 
+                              label_desa = []; 
+                      } 
+                      function tampil_label_desa(){ 
+                         var ii = 0; 
+                                  desa_layer.eachLayer(function (layer) { 
+                                    label_desa[ii].setOpacity(1); 
+                                // label[ii].clearLayers(); 
+                                 ii++; 
+                              }) 
+                      } 
+                      function hide_label_desa(){ 
+                         var ii = 0; 
+                                  desa_layer.eachLayer(function (layer) { 
+                                    label_desa[ii].setOpacity(0); 
+                                // label[ii].clearLayers(); 
+                                 ii++; 
+                              }) 
+                      } 
+                      function loadGeoJsonkec(data) { 
+                        //hapus_label_kec(); 
+                        kabupaten_layer.clearLayers(); 
+                        kabupaten_layer.addData(data); 
+         
+                        kabupaten_layer.addTo(map); 
+                        var i = 0; 
+                        var labelnya = ""; 
+                         kabupaten_layer.eachLayer(function (layer) { 
+         
+                               
+                                layer.setStyle(style_kabupaten); 
+                                // layer.bindPopup(feature.properties.kabupaten); 
+                                // Get bounds of polygon 
+                                var bounds = layer.getBounds(); 
+                                // Get center of bounds 
+                                var center = bounds.getCenter(); 
+                                //center.on('click', alert('asu')); 
+                                // Use center to put marker on map 
+                                //var marker = L.marker(center).addTo(map); 
+                                //labelnya 
+                                 label_kec[i] = new L.Tooltip({ 
+                                noHide: false, 
+                                direction: 'auto', 
+                                permanent : true 
+                                }); 
+                                  labelnya = layer.feature.properties.kab; 
+                                  
+                              label_kec[i].setContent(labelnya); 
+                              label_kec[i].setLatLng(center); 
+                             // label_kec[i].setOpacity(0); 
+                              map.showLabel(label_kec[i]); 
+                               layer.on('click', function (e) { 
+                                               //  panorama(e.latlng.lat, e.latlng.lng); 
+                                                 // clickHandler(e) 
+                                                  }); 
+                              i++; 
+                                // layer.on("click", function (e) { 
+                                //       // var bounds = layer.getBounds(); 
+                                //       // var popupContent = "popup content here"; 
+                                //       // popup.setLatLng(bounds.getCenter()); 
+                                //       // popup.setContent(popupContent); 
+                                //       // map.openPopup(popup); 
+                                //    //  $('#bs-example-modal-lg').modal('show'); 
+                                //   }); 
+                         }); 
+                         hide_label_kec()
+                      } 
+                      function loadGeoJsondesa(data) { 
+         
+                        hapus_label_desa(); 
+                        desa_layer.clearLayers(); 
+                        desa_layer.addData(data); 
+                        desa_layer.addTo(map); 
+                        var i = 0; 
+                        var labelnya = ""; 
+                         desa_layer.eachLayer(function (layer) { 
+         
+                               
+                                   layer.setStyle(style_desa); 
+         
+                                // layer.bindPopup(feature.properties.kabupaten); 
+                                // Get bounds of polygon 
+                                var bounds = layer.getBounds(); 
+                                // Get center of bounds 
+                                var center = bounds.getCenter(); 
+                                //center.on('click', alert('asu')); 
+                                // Use center to put marker on map 
+                                //var marker = L.marker(center).addTo(map); 
+                                //labelnya 
+                                 label_desa[i] = new L.Tooltip({ 
+                                noHide: false, 
+                                direction: 'auto', 
+                                permanent : true 
+                                }); 
+                                  labelnya = layer.feature.properties.desa; 
+                                  
+                              label_desa[i].setContent(labelnya); 
+                              label_desa[i].setLatLng(center); 
+                              label_desa[i].setOpacity(0); 
+                              map.showLabel(label_desa[i]); 
+                               layer.on('click', function (e) { 
+                     
+                                                  }); 
+                              i++; 
+                            
+                         }); 
+                         tampil_label_desa(); 
+                         map.removeLayer(drawnItems); 
+                        drawnItems.addTo(map); 
+         
+                       // map.removeLayer(rtlh); 
+                      //  rtlh.addTo(map); 
+                      } 
+                      function loadGeoJsonPDAM(data) { 
+                       
+                        pdam.clearLayers(); 
+                        pdam.addData(data); 
+                        pdam.addTo(map); 
+                    
+                        var i = 0; 
+                        var labelnya = ""; 
+                       //  console.log(data.objects.output.geometries.length) 
+                       pdam.eachLayer(function (layer) { 
+                        let warna = "blue";
+
+                        if(layer.feature.properties.pdam_eks){
+                          warna = "#41E1FA"
+                        }else if(layer.feature.properties.pdam_pngmb){
+                          warna = "#0428FA"
+                        }else if(layer.feature.properties.pdam_reg){
+                          warna = "#4512AC"
+                        }else if(layer.feature.properties.pdam_eks && layer.feature.properties.pdam_pngmb){
+                          warna = "#418AFA"
+                        }else if(layer.feature.properties.pdam_pngmb && layer.feature.properties.pdam_reg){
+                          warna = "#5141FA"
+                        }else if(layer.feature.properties.pdam_eks && layer.feature.properties.pdam_pngmb && layer.feature.properties.pdam_reg){
+                          warna = "#0C004E"
+                        }else if(layer.feature.properties.blm_trlyni){
+                          warna = "#FFFFFF"
+                        }else if(layer.feature.properties.kekeringan){
+                          warna = "#FA0630"
+                        }else if(layer.feature.properties.stunting){
+                          warna = "#FA01DA"
+                        }else if(layer.feature.properties.kemiskinan){
+                          warna = "#FA9715"
+                        }
+                        // blm_trlyni #FFFFFF
+                        // kekeringan #FA0630
+                        // stunting #FA01DA
+                        // kemiskinan #FA9715
+                        let x = { 
+                              color : warna,  
+                              weight : 3,  
+                              opacity : 1,  
+                              fillOpacity  : 0.4,
+                            }; 
+                            layer.setStyle(x)
+                        //  var icon = new L.Icon.Default(); 
+                        //   icon.options.shadowSize = [0,0]; 
+                        //   layer.setIcon(icon); 
+                        //   inovasi_markers.addLayer(layer); 
+                            console.log(layer.feature.properties);
+                        //  var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    
+                        //       popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //       popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //       popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                    
+                              // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                              // var foto = layer.feature.properties.foto1; 
+                              // if(n > -1){ 
+                              //     foto = foto.split("-"); 
+                              //     foto = foto[0]; 
+                              // } 
+                              // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                        
+         
+                              i++; 
+                              // if(data.objects.output.geometries.length == 1){ 
+                              //      var bounds = layer.getBounds(); 
+                              //      map.fitBounds(bounds) 
+                              //        popup.setLatLng(bounds.getCenter()); 
+                              //        popup.setContent(popupContent); 
+                              //         map.openPopup(popup); 
+                              // } 
+                                layer.on("click", function (e) { 
+                                  // console.log(e.latlng);
+                                    // var bounds = layer.getBounds(); 
+                                    popup.setLatLng(e.latlng)
+                                    popup.setContent(popupContent); 
+                                      map.openPopup(popup); 
+                                   //  $('#bs-example-modal-lg').modal('show'); 
+                                  }); 
+                         }); 
+                         
+                      } 
+                   
+                  
+                      function loadGeoJsonKEKERINGAN(data) { 
+                       
+                       kekeringan.clearLayers(); 
+                       kekeringan.addData(data); 
+                       kekeringan.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      kekeringan.eachLayer(function (layer) { 
+                       let warna = "#FA0630";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                  
+                   
+                  
+                     function loadGeoJsonSTUNTING(data) { 
+                       
+                       stunting.clearLayers(); 
+                       stunting.addData(data); 
+                       stunting.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      stunting.eachLayer(function (layer) { 
+                       let warna = "#FA01DA";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                  
+                   
+                      
+                     function loadGeoJsonKEMISKINAN(data) { 
+                       
+                       kemiskinan.clearLayers(); 
+                       kemiskinan.addData(data); 
+                       kemiskinan.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      kemiskinan.eachLayer(function (layer) { 
+                       let warna = "#FA9715";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                  
+                 
+                     function loadGeoJsonBELUM_TERLAYANI(data) { 
+                       
+                       belum_terlayani.clearLayers(); 
+                       belum_terlayani.addData(data); 
+                       belum_terlayani.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      belum_terlayani.eachLayer(function (layer) { 
+                       let warna = "#FFFFFF";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                  
+                      
+                     function loadGeoJsonPAMS(data) { 
+                       
+                       pams.clearLayers(); 
+                       pams.addData(data); 
+                       pams.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      pams.eachLayer(function (layer) { 
+                       let warna = "blue";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                  
+                     function loadGeoJsonDAK(data) { 
+                       
+                       dak.clearLayers(); 
+                       dak.addData(data); 
+                       dak.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      dak.eachLayer(function (layer) { 
+                       let warna = "green";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                  
+              // do stuff after marker has been added 
+              function loadGeoJsonPelayananPDAM(data) { 
+                       
+                       pelayanan_pdam.clearLayers(); 
+                       pelayanan_pdam.addData(data); 
+                       pelayanan_pdam.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      pelayanan_pdam.eachLayer(function (layer) { 
+                       let warna = "white";
+                       let DAK_jiwa = layer.feature.properties.DAK_jiwa?layer.feature.properties.DAK_jiwa:0;
+                       let APBD_jiwa = layer.feature.properties.APBD_jiwa?layer.feature.properties.APBD_jiwa:0;
+                       let APBD_provinsi_jiwa = layer.feature.properties.APBD_provinsi_jiwa?layer.feature.properties.APBD_provinsi_jiwa:0;
+                       let SPAM_lainnya_jiwa = layer.feature.properties.SPAM_lainnya_jiwa?layer.feature.properties.SPAM_lainnya_jiwa:0;
+                      
+                        let jml = parseInt(DAK_jiwa)+parseInt(APBD_jiwa)+parseInt(APBD_provinsi_jiwa)+parseInt(SPAM_lainnya_jiwa);
+       
+                       if(jml){
+                         warna = "blue"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                  
+                     function loadGeoJsonPelayananPAMSIMAS(data) { 
+                       
+                       pelayanan_pamsimas.clearLayers(); 
+                       pelayanan_pamsimas.addData(data); 
+                       pelayanan_pamsimas.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      pelayanan_pamsimas.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.pelayanan_pamsimas){
+                         warna = "blue"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayananDAK(data) { 
+                       
+                       pelayanan_dak.clearLayers(); 
+                       pelayanan_dak.addData(data); 
+                       pelayanan_dak.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      pelayanan_dak.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.pelayanan_DAK){
+                         warna = "blue"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayananLAINNYA(data) { 
+                       
+                       pelayanan_lainnya.clearLayers(); 
+                       pelayanan_lainnya.addData(data); 
+                       pelayanan_lainnya.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      pelayanan_lainnya.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.pelayanan_lainnya){
+                         warna = "blue"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayananSPAM(data) { 
+                       
+                       pelayanan_spam.clearLayers(); 
+                       pelayanan_spam.addData(data); 
+                       pelayanan_spam.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      pelayanan_spam.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.total_JP_jiwa>0){
+                         warna = "blue"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayanancakupan_pelayanan(data) { 
+                       
+                       cakupan_pelayanan.clearLayers(); 
+                       cakupan_pelayanan.addData(data); 
+                       cakupan_pelayanan.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      cakupan_pelayanan.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.cakupan_pelayanan_akhir=='Daerah Telayani SPAM >=50%'){
+                         warna = "green"
+                       }else if(layer.feature.properties.cakupan_pelayanan_akhir=='Daerah Belum Telayani SPAM'){
+                         warna = "red"
+                       }else if(layer.feature.properties.cakupan_pelayanan_akhir=='Daerah Telayani SPAM <50%'){
+                         warna = "yellow"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+
+                             var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayananrawan_kekeringan(data) { 
+                       
+                       rawan_kekeringan.clearLayers(); 
+                       rawan_kekeringan.addData(data); 
+                       rawan_kekeringan.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      rawan_kekeringan.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.scoring_kekeringan==1){
+                         warna = "red"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayanankebutuhan_air(data) { 
+                       
+                       kebutuhan_air.clearLayers(); 
+                       kebutuhan_air.addData(data); 
+                       kebutuhan_air.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      kebutuhan_air.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.kebutuhan_air_belum_terlayani_5>=0.0 && layer.feature.properties.kebutuhan_air_belum_terlayani_5<=1.618519){
+                         warna = "green"
+                       }else  if(layer.feature.properties.kebutuhan_air_belum_terlayani_5>=1.618520 && layer.feature.properties.kebutuhan_air_belum_terlayani_5<=3.664815){
+                         warna = "#9beb34"
+                       }else  if(layer.feature.properties.kebutuhan_air_belum_terlayani_5>=3.664817 && layer.feature.properties.kebutuhan_air_belum_terlayani_5<=6.470370){
+                         warna = "yellow"
+                       }else  if(layer.feature.properties.kebutuhan_air_belum_terlayani_5>=6.470371 && layer.feature.properties.kebutuhan_air_belum_terlayani_5<=10.995370){
+                         warna = "orange"
+                       }else  if(layer.feature.properties.kebutuhan_air_belum_terlayani_5>=10.995371 && layer.feature.properties.kebutuhan_air_belum_terlayani_5<=22.757470){
+                         warna = "red"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayananpenduduk_belum_terlayani(data) { 
+                       
+                       penduduk_belum_terlayani.clearLayers(); 
+                       penduduk_belum_terlayani.addData(data); 
+                       penduduk_belum_terlayani.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      penduduk_belum_terlayani.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.proyeksi_penduduk_belum_terlayani_5>=0 && layer.feature.properties.proyeksi_penduduk_belum_terlayani_5<=1748){
+                         warna = "green"
+                       }else  if(layer.feature.properties.proyeksi_penduduk_belum_terlayani_5>=1749 && layer.feature.properties.proyeksi_penduduk_belum_terlayani_5<=3958){
+                         warna = "#9beb34"
+                       }else  if(layer.feature.properties.proyeksi_penduduk_belum_terlayani_5>=3959 && layer.feature.properties.proyeksi_penduduk_belum_terlayani_5<=6988){
+                         warna = "yellow"
+                       }else  if(layer.feature.properties.proyeksi_penduduk_belum_terlayani_5>=6989 && layer.feature.properties.proyeksi_penduduk_belum_terlayani_5<=11875){
+                         warna = "orange"
+                       }else  if(layer.feature.properties.proyeksi_penduduk_belum_terlayani_5>=11876 && layer.feature.properties.proyeksi_penduduk_belum_terlayani_5<=24575){
+                         warna = "red"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayanankategori_pengembangan_spam(data) { 
+                       
+                       kategori_pengembangan_spam.clearLayers(); 
+                       kategori_pengembangan_spam.addData(data); 
+                       kategori_pengembangan_spam.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      kategori_pengembangan_spam.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.prioritas=='Rendah'){
+                         warna = "green"
+                       }else  if(layer.feature.properties.prioritas=='Tinggi'){
+                         warna = "yellow"
+                       }else  if(layer.feature.properties.prioritas=='Sedang'){
+                         warna = "red"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonPelayanannilai_pengembangan_spam(data) { 
+                       
+                       nilai_pengembangan_spam.clearLayers(); 
+                       nilai_pengembangan_spam.addData(data); 
+                       nilai_pengembangan_spam.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      nilai_pengembangan_spam.eachLayer(function (layer) { 
+                       let warna = "white";
+
+                       if(layer.feature.properties.nilai_prioritas>=0.0 && layer.feature.properties.nilai_prioritas<=8.330000){
+                         warna = "green"
+                       }else  if(layer.feature.properties.nilai_prioritas>=8.330001 && layer.feature.properties.nilai_prioritas<=33.330000){
+                         warna = "#9beb34"
+                       }else  if(layer.feature.properties.nilai_prioritas>=33.330001 && layer.feature.properties.nilai_prioritas<=55.000000){
+                         warna = "yellow"
+                       }else  if(layer.feature.properties.nilai_prioritas>=55.000001 && layer.feature.properties.nilai_prioritas<=75.000000){
+                         warna = "orange"
+                       }else  if(layer.feature.properties.nilai_prioritas>=75.000001 && layer.feature.properties.nilai_prioritas<=100.330000){
+                         warna = "red"
+                       }
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                       let x = { 
+                             color : warna,  
+                             weight : 3,  
+                             opacity : 1,  
+                             fillOpacity  : 0.4,
+                           }; 
+                           layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                    popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kab_kot; 
+                    popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                    popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa_kel; 
+                    popupContent = popupContent+"</br>CAKUPAN  : "+layer.feature.properties.cakupan_pelayanan_akhir; 
+
+                    
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+               
+                 
+                     function loadGeoJsonBendungan(data) { 
+                       
+                       bendungan.clearLayers(); 
+                       bendungan.addData(data); 
+                       bendungan.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      bendungan.eachLayer(function (layer) { 
+                      //  let warna = "#FA01DA";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                      //  let x = { 
+                      //        color : warna,  
+                      //        weight : 3,  
+                      //        opacity : 1,  
+                      //        fillOpacity  : 0.4,
+                      //      }; 
+                      //      layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = layer.feature.properties.nama; 
+                 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonWaduk(data) { 
+                       
+                       waduk.clearLayers(); 
+                       waduk.addData(data); 
+                       waduk.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      waduk.eachLayer(function (layer) { 
+                      //  let warna = "#FA01DA";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                      //  let x = { 
+                      //        color : warna,  
+                      //        weight : 3,  
+                      //        opacity : 1,  
+                      //        fillOpacity  : 0.4,
+                      //      }; 
+                      //      layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = layer.feature.properties.nama; 
+                 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonDanau(data) { 
+                       
+                       danau.clearLayers(); 
+                       danau.addData(data); 
+                       danau.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      danau.eachLayer(function (layer) { 
+                      //  let warna = "#FA01DA";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                      //  let x = { 
+                      //        color : warna,  
+                      //        weight : 3,  
+                      //        opacity : 1,  
+                      //        fillOpacity  : 0.4,
+                      //      }; 
+                      //      layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = layer.feature.properties.nama; 
+                 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonMataAir(data) { 
+                       
+                       mata_air.clearLayers(); 
+                       mata_air.addData(data); 
+                       mata_air.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      mata_air.eachLayer(function (layer) { 
+                      //  let warna = "#FA01DA";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                      //  let x = { 
+                      //        color : warna,  
+                      //        weight : 3,  
+                      //        opacity : 1,  
+                      //        fillOpacity  : 0.4,
+                      //      }; 
+                      //      layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = layer.feature.properties.nama; 
+                 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonSumur(data) { 
+                       
+                       sumur.clearLayers(); 
+                       sumur.addData(data); 
+                       sumur.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      sumur.eachLayer(function (layer) { 
+                      //  let warna = "#FA01DA";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                      //  let x = { 
+                      //        color : warna,  
+                      //        weight : 3,  
+                      //        opacity : 1,  
+                      //        fillOpacity  : 0.4,
+                      //      }; 
+                      //      layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = layer.feature.properties.nama; 
+                 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+                     function loadGeoJsonEmbung(data) { 
+                       
+                       embung.clearLayers(); 
+                       embung.addData(data); 
+                       embung.addTo(map); 
+                   
+                       var i = 0; 
+                       var labelnya = ""; 
+                      //  console.log(data.objects.output.geometries.length) 
+                      embung.eachLayer(function (layer) { 
+                      //  let warna = "#FA01DA";
+
+                     
+                       // blm_trlyni #FFFFFF
+                       // kekeringan #FA0630
+                       // stunting #FA01DA
+                       // kemiskinan #FA9715
+                      //  let x = { 
+                      //        color : warna,  
+                      //        weight : 3,  
+                      //        opacity : 1,  
+                      //        fillOpacity  : 0.4,
+                      //      }; 
+                      //      layer.setStyle(x)
+                       //  var icon = new L.Icon.Default(); 
+                       //   icon.options.shadowSize = [0,0]; 
+                       //   layer.setIcon(icon); 
+                       //   inovasi_markers.addLayer(layer); 
+        
+                        // var popupContent = "PROVINSI : "+layer.feature.properties.provinsi; 
+                   
+                        //      popupContent = popupContent+"</br>KAB/KOT : "+layer.feature.properties.kabupaten; 
+                        //      popupContent = popupContent+"</br>KECAMATAN  : "+layer.feature.properties.kecamatan; 
+                        //      popupContent = popupContent+"</br>DESA  : "+layer.feature.properties.desa; 
+                        var popupContent = layer.feature.properties.nama; 
+                 
+
+                             // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                             // var foto = layer.feature.properties.foto1; 
+                             // if(n > -1){ 
+                             //     foto = foto.split("-"); 
+                             //     foto = foto[0]; 
+                             // } 
+                             // popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+                       
+        
+                             i++; 
+                             // if(data.objects.output.geometries.length == 1){ 
+                             //      var bounds = layer.getBounds(); 
+                             //      map.fitBounds(bounds) 
+                             //        popup.setLatLng(bounds.getCenter()); 
+                             //        popup.setContent(popupContent); 
+                             //         map.openPopup(popup); 
+                             // } 
+                               layer.on("click", function (e) { 
+                                 // console.log(e.latlng);
+                                   // var bounds = layer.getBounds(); 
+                                   popup.setLatLng(e.latlng)
+                                   popup.setContent(popupContent); 
+                                     map.openPopup(popup); 
+                                  //  $('#bs-example-modal-lg').modal('show'); 
+                                 }); 
+                        }); 
+                        
+                     } 
+             
+              function doAnimations(){ 
+                 var myIcon = document.querySelector('.gps_ring') 
+                //sesudah 
+                 myIcon.style.width = '1000px' 
+                  
+              } 
+                      
+                      //ambil kec 
+                        var geoJsonUrl =root+"peta/topojson_kec";  
+                          $.getJSON(geoJsonUrl) 
+                            .done(loadGeoJsonkec); 
+                            //ambil polaruang 
+                          //   var geoJsonUrl =root+"peta/jelajah_air?jenis=PDAM";  
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsonPDAM); 
+                          //   var geoJsonUrl =root+"peta/jelajah_air?jenis=KEKERINGAN";  
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsonKEKERINGAN); 
+                          //   var geoJsonUrl =root+"peta/jelajah_air?jenis=STUNTING";  
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsonSTUNTING); 
+                          //   var geoJsonUrl =root+"peta/jelajah_air?jenis=KEMISKINAN";  
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsonKEMISKINAN); 
+                          //   var geoJsonUrl =root+"peta/jelajah_air?jenis=BELUM TERLAYANI";  
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsonBELUM_TERLAYANI); 
+                          //   var geoJsonUrl =root+"peta/jelajah_air?jenis=PAMS";  
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsonPAMS); 
+                          //   var geoJsonUrl =root+"peta/jelajah_air?jenis=DAK";  
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsonDAK); 
+                             
+                          $("#pdam").change(function() {
+                            if($(this).prop('checked')) {
+                              let geoJsonUrl =root+"peta/pdam?kabupaten_id="+ $('#kabkot').val();  
+                                      $.getJSON(geoJsonUrl) 
+                                        .done(loadGeoJsonPDAM); 
+                            } else {
+                                map.removeLayer(pdam)
+                            }
+                          });
+                          $("#bendungan").change(function() {
+                            if($(this).prop('checked')) {
+                              let geoJsonUrl =root+"peta/sumber_air?jenis=Bendungan&id_kab="+ $('#kabkot').val();  
+                                      $.getJSON(geoJsonUrl) 
+                                        .done(loadGeoJsonBendungan); 
+                            } else {
+                                map.removeLayer(bendungan)
+                            }
+                          });
+                          $("#waduk").change(function() {
+                            if($(this).prop('checked')) {
+                              let geoJsonUrl =root+"peta/sumber_air?jenis=Waduk&id_kab="+ $('#kabkot').val();  
+                                      $.getJSON(geoJsonUrl) 
+                                        .done(loadGeoJsonWaduk); 
+                            } else {
+                                map.removeLayer(waduk)
+                            }
+                          });
+                          $("#mata_air").change(function() {
+                            if($(this).prop('checked')) {
+                              let geoJsonUrl =root+"peta/sumber_air?jenis=Mata Air&id_kab="+ $('#kabkot').val();  
+                                      $.getJSON(geoJsonUrl) 
+                                        .done(loadGeoJsonMataAir); 
+                            } else {
+                                map.removeLayer(mata_air)
+                            }
+                          });
+                          $("#danau").change(function() {
+                            if($(this).prop('checked')) {
+                              let geoJsonUrl =root+"peta/sumber_air?jenis=Danau&id_kab="+ $('#kabkot').val();  
+                                      $.getJSON(geoJsonUrl) 
+                                        .done(loadGeoJsonDanau); 
+                            } else {
+                                map.removeLayer(danau)
+                            }
+                          });
+                          $("#sumur").change(function() {
+                            if($(this).prop('checked')) {
+                              let geoJsonUrl =root+"peta/sumber_air?jenis=Sumur&id_kab="+ $('#kabkot').val();  
+                                      $.getJSON(geoJsonUrl) 
+                                        .done(loadGeoJsonSumur); 
+                            } else {
+                                map.removeLayer(sumur)
+                            }
+                          });
+                          $("#embung").change(function() {
+                            if($(this).prop('checked')) {
+                              let geoJsonUrl =root+"peta/sumber_air?jenis=Embung&id_kab="+ $('#kabkot').val();  
+                                      $.getJSON(geoJsonUrl) 
+                                        .done(loadGeoJsonEmbung); 
+                            } else {
+                                map.removeLayer(embung)
+                            }
+                          });
+                             
+                          //pencarian 
+                          $.ajax({ 
+                                        type : "GET", 
+                                        async : false, 
+                                        global : false, 
+                                        url : root + "peta/json_kab", 
+                                        dataType : 'json', 
+                                        success: function (data) { 
+                                       $('#kabkot').empty() 
+                                   
+                                       $.each(data, function(index, item){ 
+                                            
+                                            $('#kabkot').append('<option value="'+item.kabupaten_id+'">'+item.kabupaten+'</option>') 
+                                        }) 
+                                           
+                                        } 
+                                      });  
+                                      function reset() {
+                                        
+                                        pelayanan_dak.clearLayers(); 
+                                        pelayanan_pdam.clearLayers(); 
+                                        pelayanan_pamsimas.clearLayers(); 
+                                        pelayanan_lainnya.clearLayers(); 
+                                        pelayanan_spam.clearLayers(); 
+                                        cakupan_pelayanan.clearLayers(); 
+                                        rawan_kekeringan.clearLayers(); 
+                                        kebutuhan_air.clearLayers(); 
+                                        penduduk_belum_terlayani.clearLayers(); 
+                                        kategori_pengembangan_spam.clearLayers(); 
+                                        nilai_pengembangan_spam.clearLayers(); 
+                                        // if( $('#pelayanan').val()=='pdam'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayananPDAM); 
+                                        // }else if( $('#pelayanan').val()=='pamsimas'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayananPAMSIMAS); 
+                                        // }else if( $('#pelayanan').val()=='dak'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayananDAK); 
+                                        // }else if( $('#pelayanan').val()=='lainnya'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayananLAINNYA); 
+                                        // }else if( $('#pelayanan').val()=='spam'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayananSPAM); 
+                                        // }else if( $('#pelayanan').val()=='cakupan_pelayanan'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayanancakupan_pelayanan); 
+                                        // }else if( $('#pelayanan').val()=='rawan_kekeringan'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayananrawan_kekeringan); 
+                                        // }else if( $('#pelayanan').val()=='kebutuhan_air'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayanankebutuhan_air); 
+                                        // }else if( $('#pelayanan').val()=='penduduk_belum_terlayani'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayananpenduduk_belum_terlayani); 
+                                        // }else if( $('#pelayanan').val()=='kategori_pengembangan_spam'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayanankategori_pengembangan_spam); 
+                                        // }else if( $('#pelayanan').val()=='nilai_pengembangan_spam'){
+                                        //   let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabkot').val();  
+                                        //     $.getJSON(geoJsonUrl) 
+                                        //       .done(loadGeoJsonPelayanannilai_pengembangan_spam); 
+                                             
+                                        // }
+                                        if($('#kabupaten').val()){
+                                               let geoJsonUrl =root+"peta/pelayanan?id_kab="+ $('#kabupaten').val();  
+                                            $.getJSON(geoJsonUrl) 
+                                              .done(loadGeoJsonPelayananPDAM); 
+                                        }
+                                     
+                                       
+                                      }
+                                      // $('#pelayanan').change(()=>{
+                                      //   reset()
+                                    
+                                      // })
+                                      // $('#kabupaten').change(()=>{
+                                      //   reset()
+                                      // })
+                          $('#kecamatan').change(function(){ 
+                              if($('#kecamatan').val()=="0"){ 
+                                  alert("Pilih Desa Terlebih Dahulu !") 
+                              }else{ 
+                               $.ajax({ 
+                                        type : "GET", 
+                                        async : false, 
+                                        global : false, 
+                                        url : root + "peta/desa?kecamatan="+$('#kecamatan').val(), 
+                                        dataType : 'json', 
+                                        success: function (data) { 
+                                       $('#desa').empty() 
+                                       $('#desa').append('<option value="0">-- Pilih Desa --</option>') 
+                                       $.each(data, function(index, item){ 
+                                      
+                                            $('#desa').append('<option value="'+item.xe+','+item.ye+','+item.nm_desa+'">'+item.nm_desa+'</option>') 
+                                        }) 
+                                           
+                                        } 
+                                      });    
+                              } 
+                               
+                          }) 
+         
+                           //  map.on('moveend', function(){ 
+                           //   if(map.getZoom() > 10 && map.getZoom() < 14){ 
+                           //         tampil_label_kec(); 
+                           //   }else{ 
+                           //    hide_label_kec(); 
+                           //   } 
+                           // }) 
+                              var kiri_atas_lng  = map.getBounds().getSouthWest().lng; 
+                        var kiri_atas_lat  = map.getBounds().getSouthWest().lat; 
+                        var kanan_bawah_lng = map.getBounds().getNorthEast().lng; 
+                        var kanan_bawah_lat = map.getBounds().getNorthEast().lat; 
+                            
+                                 
+                                
+                            //end ambil_kec 
+         
+                      //saat pindah 
+                      function ambil_desa(){ 
+         
+                      } 
+
+                      map.on('moveend', function(){ 
+
+                        if(map.getZoom()>9){
+                          // tampil_label_kec()
+                        }else{
+                          hide_label_kec()
+                        }
+                       if(map.getZoom() > wellmaxzoom){ 
+                        //kembali ke asal 
+         
+                        
+                       //kembali ke asal 
+         
+                        var kiri_atas_lng  = map.getBounds().getSouthWest().lng; 
+                        var kiri_atas_lat  = map.getBounds().getSouthWest().lat; 
+                        var kanan_bawah_lng = map.getBounds().getNorthEast().lng; 
+                        var kanan_bawah_lat = map.getBounds().getNorthEast().lat; 
+                       //   var geoJsonUrl =root + "index.php/peta/geo_kec_bound/"+kiri_atas_lng+"/"+kiri_atas_lat+"/"+kanan_bawah_lng+"/"+kanan_bawah_lat;  
+                          var geoJsonUrl =root+"peta/topojson_desa?kiri_lng="+kiri_atas_lng+"&kiri_lat="+kiri_atas_lat+"&kanan_lng="+kanan_bawah_lng+"&kanan_lat="+kanan_bawah_lat;  
+                         // console.log(geoJsonUrl); 
+                        // console.log(map.getBounds().toBBoxString()); 
+                        // console.log(map.getBounds().getSouthWest().lng + ';' + map.getBounds().getSouthWest().lat + ';' + map.getBounds().getNorthEast().lng + ';' + map.getBounds().getNorthEast().lat); 
+                      //    var boundingBox = L.rectangle(map.getBounds(), {color: "#ff7800", weight: 1}); 
+                      // map.addLayer(boundingBox); 
+                          // $.ajax({ 
+                          //     url: geoJsonUrl, 
+                          //     datatype: 'json', 
+                          //     jsonCallback: 'getJson', 
+                          //     success: loadGeoJson 
+                          //     }); 
+                          //load desa 
+                          // $.getJSON(geoJsonUrl) 
+                          //   .done(loadGeoJsondesa); 
+         
+         
+                             
+                          }else{ 
+                          hapus_label_desa(); 
+                            map.removeLayer(desa_layer); 
+                          }; 
+                      }); 
+         
+                      //end moveend 
+         
+                 legend.onAdd = function (map) { 
+                          var div = L.DomUtil.create('div', 'info-legend') 
+                          
+                         // loop through our density intervals and generate a label with a colored square for each interval 
+                          for (var i = 0; i < warna_total.length; i++) { 
+                            div.innerHTML += '<i style="background:' + warna_total[i] + '"></i> ' + labels[i] + '<br>'; 
+                          } 
+                          return div; 
+                        }; 
+         
+                       legend.addTo(map); 
+         
+                        var baseLayers = { 
+                          "Google Roadmap": google_roadmap, 
+                          "Google Hybrid": google_hybrid, 
+                          "Google Satellite": google_satelit, 
+                          "Open Street Map": osm, 
+                          "ESRI World Imagery": Esri_WorldImagery, 
+                          "RBI": RBI 
+                        }; 
+                         
+                        // var overlays = { 
+                        //   "kecamatan": kabupaten_layer, 
+                        //   "<span>RTRW Semapadan Sungai</span>&nbsp;&nbsp;<span style='background-color:#499277;padding:2px 8px 2px 8px;'></span>": sempadan_sungai, 
+                        //   "<span>RTRW Sempadan Pantai</span>&nbsp;&nbsp;<span style='background-color:#3F786F;padding:2px 8px 2px 8px;'></span>": sempadan_pantai, 
+                        //   "<span>RTRW Kawasan Konservasi/KA</span>&nbsp;&nbsp;<span style='background-color:#195344;padding:2px 8px 2px 8px;'></span>": kawasan_konservasi, 
+                        //   "<span>RTRW Hutan Lindung</span>&nbsp;&nbsp;<span style='background-color:#8C8D88;padding:2px 8px 2px 8px;'></span>": hutan_lindung, 
+                        //   "<span>RTRW Tambak</span>&nbsp;&nbsp;<span style='background-color:#48B3C5;padding:2px 8px 2px 8px;'></span>": tambak, 
+                        //   "<span>RTRW Lahan Basah Kering</span>&nbsp;&nbsp;<span style='background-color:#C8DEB0;padding:2px 8px 2px 8px;'></span>": lahan_basah_kering, 
+                        //   "<span>RTRW Permukiman Perkotaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perkotaan, 
+                        //   "<span>RTRW Permukiman Perdesaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perdesaan, 
+                        //   "<span>RTRW Perkebunan</span>&nbsp;&nbsp;<span style='background-color:#ABBC6E;padding:2px 8px 2px 8px;'></span>": perkebunan, 
+                        //   "<span>RTRW Industri</span>&nbsp;&nbsp;<span style='background-color:#9E8986;padding:2px 8px 2px 8px;'></span>": industri, 
+                        //   "<span>RTRW Hutan Produksi Terbatas</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi_terbatas, 
+                        //   "<span>RTRW Hutan Produksi</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi, 
+                        //   "<span>Jalan</span>&nbsp;&nbsp;<span style='background-color:red;padding:2px 8px 2px 8px;'></span>": jalan_layer 
+                          
+                           
+                        // }; 
+                         
+                        // L.control.layers(baseLayers,overlays,{ 
+                        //   position : 'topright' 
+                        // }, {'drawlayer':drawnItems}, { position: 'topleft', collapsed: false }).addTo(map); 
+         
+                                        var groupedOverlays = { 
+                                             "Administrasi": { 
+                               "&nbsp;&nbsp;&nbsp;&nbsp;Kabupaten": kabupaten_layer
+                               }, 
+                               "Layer": { 
+                                
+                                // "<span>PDAM</span>&nbsp;&nbsp;<span style=';padding:2px 8px 2px 8px;'></span>": pdam, 
+                                // "<span>KEKERINGAN</span>&nbsp;&nbsp;<span style=';padding:2px 8px 2px 8px;'></span>": kekeringan, 
+                                // "<span>STUNTING</span>&nbsp;&nbsp;<span style=';padding:2px 8px 2px 8px;'></span>": stunting, 
+                                // "<span>KEMISKINAN</span>&nbsp;&nbsp;<span style=';padding:2px 8px 2px 8px;'></span>": kemiskinan, 
+                                // "<span>BELUM TERLAYANI</span>&nbsp;&nbsp;<span style=';padding:2px 8px 2px 8px;'></span>": belum_terlayani, 
+                                // "<span>PAMS</span>&nbsp;&nbsp;<span style=';padding:2px 8px 2px 8px;'></span>": pams, 
+                                // "<span>DAK</span>&nbsp;&nbsp;<span style=';padding:2px 8px 2px 8px;'></span>": dak, 
+                         
+                        } 
+                             }; 
+                                   var options = { 
+                     // Make the "Landmarks" group exclusive (use radio inputs) 
+                    // exclusiveGroups: ["Landmarks"], 
+                     // Show a checkbox next to non-exclusive group labels for toggling all 
+                     collapsed:true, 
+                     groupCheckboxes: false 
+                   }; 
+                        L.control.groupedLayers(baseLayers, groupedOverlays, options).addTo(map); 
+                      
+                        
+         
+         
+                        streetview.onAdd = function (map) { 
+                          var div = L.DomUtil.create('div', 'sv') 
+                          
+                         // loop through our density intervals and generate a label with a colored square for each interval 
+                            div.innerHTML += ''; 
+                           
+                          return div; 
+                        }; 
+         
+                       // streetview.addTo(map); 
+         
+                        L.control.scale({ 
+                          position : 'bottomright', 
+                          metric : true, 
+                          imperial : false 
+                        }).addTo(map); 
+                         
+                        // lc = L.control.locate({ 
+                        //   position : 'topleft', 
+                        //   follow : true, 
+                        //   strings : { 
+                        //     title : "Lokasi Anda", 
+                        //     popup: "Anda berada di radius {distance} {unit} dari titik ini" 
+                        //   }, 
+                        //   markerClass : L.marker, 
+                        //   markerStyle : {icon: locateIcon}, 
+                        //   keepCurrentZoomLevel : true 
+                        // }).addTo(map); 
+         
+                        map 
+                          .on('startfollowing', function() { 
+                            map.on('dragstart', lc._stopFollowing, lc); 
+                          }) 
+                          .on('stopfollowing', function() { 
+                              map.off('dragstart', lc._stopFollowing, lc); 
+                          }); 
+         
+                        map.on('locationfound', onLocationFound); 
+                         
+         
+                        // map.on('moveend', function() {  
+                        //      console.log(map.getBounds()); 
+                        // }); 
+         
+                        map.on('baselayerchange', function(e) { 
+                          console.log(e.name); 
+         
+                          if ( e.name == 'Google Roadmap' || e.name == 'Open Street Map' || e.name == 'Mapbox Street') { 
+                            kabupaten_layer.eachLayer(function (layer) { 
+                           //   layer.setStyle(style_kabupaten_gelap); 
+                            }); 
+                          }else{ 
+                            kabupaten_layer.eachLayer(function (layer) { 
+                              layer.setStyle(style_kabupaten); 
+                            }); 
+                          } 
+         
+                        }); 
+                         
+                        //ganti kabupaten 
+                        $('#search_maps').hide(); 
+         
+         
+                       // $('.leaflet-bottom.leaflet-left').hide(); 
+                         
+                        $('.leaflet-bar-part.leaflet-bar-part-single').click(function () { 
+                          
+                        }) 
+                         
+         
+                        //panorama 
+                       var marker= ""; 
+                       var titik_panorama = null; 
+                        function panorama(xe,ye){ 
+                           if(titik_panorama != null){ 
+                          map.removeLayer(titik_panorama);      
+                           } 
+                           if(marker!=""){ 
+                             map.removeLayer(marker); 
+                              
+                           } 
+                              titik_panorama = L.marker([xe, ye]).addTo(map); 
+                           var fenway = new google.maps.LatLng(xe,ye); 
+                             var panoramaOptions = { 
+                               position: fenway, 
+                               pov: { 
+                                 heading: 34, 
+                                 pitch: 10 
+                               } 
+                             }; 
+                             var panorama = new  google.maps.StreetViewPanorama(document.getElementById('pano'),panoramaOptions); 
+                            
+                      } 
+                        map.on('click', function(e) { 
+         
+                      console.log(e.latlng.lat+' '+e.latlng.lng); 
+                    // var xe = e.latlng.lat; 
+                    // var ye = e.latlng.lng; 
+                      
+                    // panorama(xe,ye) 
+                    
+                            
+                  });
+    </script>
+</body>
+</html>

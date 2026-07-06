@@ -1,0 +1,122 @@
+<!DOCTYPE html>
+<% let rooturl = ''; %>
+<html>
+    <head>
+        <meta charset="UTF-8">
+        <meta content="width=device-width, initial-scale=1, maximum-scale=1, shrink-to-fit=no" name="viewport">
+        <title>Administrator Panel</title>
+
+        <!-- General CSS Files -->
+        <link rel="stylesheet" href="<%= rooturl %>/plugins/bootstrap/css/bootstrap.min.css">
+        <link rel="stylesheet" href="<%= rooturl %>/plugins/fontawesome/css/all.min.css">
+
+        <!-- CSS Libraries -->
+    
+
+        <!-- Template CSS -->
+        <link rel="stylesheet" href="<%= rooturl %>/stylesheets/backoffice/css/style.css">
+        <link rel="stylesheet" href="<%= rooturl %>/stylesheets/backoffice/css/components.css">
+        <link rel="stylesheet" href="<%= rooturl %>/stylesheets/backoffice/css/custom.css">
+    </head>
+<body>
+  <div id="app">
+    <section class="section">
+      <div class="container mt-5">
+        <div class="row">
+          <div class="col-12 col-sm-8 offset-sm-2 col-md-6 offset-md-3 col-lg-6 offset-lg-3 col-xl-4 offset-xl-4">
+            <!-- <div class="login-brand">
+              <img src="<%= rooturl %>/images/backoffice/stisla-fill.svg" alt="logo" width="100" class="shadow-light rounded-circle">
+            </div> -->
+
+            <div class="card card-primary">
+                <!-- <div class="card-header">
+                    <div class="w-100-flex" style="flex-direction: column;">
+                        <h4 style="font-weight: normal;padding: 0;margin: 0;">Login</h4>
+                        <h4 style="padding: 0;margin: 0;">SMART RT</h4>
+                    </div>  
+                </div> -->
+
+                <div class="card-body">
+                    <form method="POST" action="<%= rooturl %>/autentifikasi/login" class="needs-validation" novalidate="">
+                    <h6 style="text-align: center;font-weight: normal;font-size: 14px;color: #fc544b;"><%=pesan%></h6>
+                        <div class="form-group">
+                            <input type="hidden" name="tujuan" class="form-control" value="<%=tujuan%>"/>
+                        </div>
+                        <div class="form-group">
+                            <label>Username</label>
+                            <input type="text" class="form-control" name="username" tabindex="1" required autofocus>
+                            <div class="invalid-feedback">
+                                Silahkan isi username anda
+                            </div>
+                        </div>
+
+                        <div class="form-group">
+                            <label>Password</label>
+                            <div style="position: relative;background-color: ;">
+                            <input type="password" class="form-control" id="pwd" name="password" tabindex="2" required>
+                            <i class="fa fa-eye-slash" id="iconne" aria-hidden="true" style="position: absolute;right:10px;top:13px;font-size: 16px;cursor: pointer;" onclick="myFunction()"></i>
+                            </div>
+                            <div class="invalid-feedback">
+                                Silahkan isi password anda
+                            </div>
+                        </div>
+                        
+                        <div class="form-group">
+                            <label>Captcha</label>
+                            <div class="w-100-flex" style="justify-content: center;align-items: center;background-color: ;border-top-left-radius: 10px;border-top-right-radius: 10px;border:1px solid #e4e6fc;padding-bottom: 10px;border-bottom: hidden;">
+                                <%-captcha.data%>
+                            </div> 
+                            <input type="text" class="form-control" id="captcha" name="captcha" placeholder="Isi dengan hasil penjumlahan captcha" required style="border-top-left-radius: 0;border-top-right-radius: 0;">
+                            <div class="invalid-feedback">
+                                Silahkan isi captcha
+                            </div>
+                        </div>
+                                        <input type="hidden" name="target" value="backoffice">
+
+                        <div class="form-group">
+                            <button type="submit" class="btn btn-primary btn-lg btn-block" tabindex="4">
+                                Login
+                            </button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="simple-footer">
+                Copyright &copy; 2026
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <script type="text/javascript">
+    function myFunction() {
+      $("#iconne").toggleClass("fa fa-eye-slash fa fa-eye");
+      var x = document.getElementById("pwd");
+      if (x.type === "password") {
+        x.type = "text";
+      } else {
+        x.type = "password";
+      }
+    }
+  </script>
+
+  <!-- General JS Scripts -->
+  <script src="<%= rooturl %>/plugins/jquery.min.js"></script>
+  <script src="<%= rooturl %>/plugins/popper.js"></script>
+  <script src="<%= rooturl %>/plugins/tooltip.js"></script>
+  <script src="<%= rooturl %>/plugins/bootstrap/js/bootstrap.min.js"></script>
+  <script src="<%= rooturl %>/plugins/nicescroll/jquery.nicescroll.min.js"></script>
+  <script src="<%= rooturl %>/plugins/moment.min.js"></script>
+  <script src="<%= rooturl %>/javascripts/backoffice/stisla.js"></script>
+  
+  <!-- JS Libraies -->
+
+  <!-- Page Specific JS File -->
+  
+  <!-- Template JS File -->
+  <script src="<%= rooturl %>/javascripts/backoffice/scripts.js"></script>
+  <script src="<%= rooturl %>/javascripts/backoffice/custom.js"></script>
+</body>
+</html>

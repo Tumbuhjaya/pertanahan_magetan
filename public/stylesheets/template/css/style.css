@@ -1,0 +1,41 @@
+body{
+    font-family: "Inter Tight", sans-serif;
+}
+
+
+h1,h2,h3,h4,h5,h6{
+	margin: 0;
+	padding: 0;
+}
+
+.w-100{
+	width: 100%;
+}
+
+.w-100-flex{
+	width: 100%;
+	display: flex;
+}
+
+.btn:focus, .btn.focus{
+	box-shadow: none;
+}
+
+#myHeader{
+            background-color: #fff;
+            /* position: fixed;
+            top:0;
+            left:0;
+            right: 0;
+            z-index: 1; */
+            box-shadow:0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+        }
+
+        .sticky {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            z-index: 1;
+            background-color:#fff !important;
+            box-shadow:0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
+        }

@@ -1,0 +1,3548 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="Sistem Informasi Manajemen Makam Kota Semarang, Makam Kota Semarang, Kota Semarang, Pemerintah Kota Semarang">
+    <meta name="author" content="Pemerintah Kota Semarang, Dinas Perumahan dan Kawasan Permukiman Kota Semarang">
+    <link rel="shortcut icon" href="/images/template/shortcut_icon.ico">
+    <title>Sistem Informasi Manajemen Makam Kota Semarang</title>
+
+    <link href="/stylesheets/template/css/bootstrap.min.css" rel="stylesheet">
+    <link href="/stylesheets/template/css/style.css" rel="stylesheet">
+    <link href="/stylesheets/template/font-awesome/css/font-awesome.min.css" rel="stylesheet" type="text/css">
+
+    <!-- Plugin This Page --> 
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/css/select2.min.css" rel="stylesheet" />
+    <link href="/plugins/bootstrap-datepicker/css/bootstrap-datepicker.css" rel="stylesheet">
+
+    <link href="/resources-maps/stylesheets/leaflet-routing-machine.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/L.Control.Locate.min.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet-routing-machine.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet.extra-markers.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet.label.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/groupedlayercontrol.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/leaflet.draw.css" rel="stylesheet" />
+    <link href="https://unpkg.com/leaflet@1.3.4/dist/leaflet.css" rel="stylesheet">
+    <link href="/resources-maps/stylesheets/Control.FullScreen.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/MarkerCluster.css" rel="stylesheet" />
+    <link href="/resources-maps/stylesheets/MarkerCluster.Default.css" rel="stylesheet" />
+    <script src="https://unpkg.com/leaflet@1.3.4/dist/leaflet-src.js"></script>
+    <script src="https://unpkg.com/esri-leaflet@2.1.1/dist/esri-leaflet.js"
+        integrity="sha512-ECQqaYZke9cSdqlFG08zSkudgrdF6I1d8ViSa7I3VIszJyVqw4ng1G8sehEXlumdMnFYfzY0tMgdQa4WCs9IUw=="
+        crossorigin=""></script>
+    <script src="/javascripts/template/jquery.min.js"></script>
+    <script src="/plugins/mcustom-scrollbar/jquery.mCustomScrollbar.concat.min.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-routing-machine.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.label.js"></script>
+    <script src="/resources-maps/panah-asmara.js"></script>
+    <script src="https://maps.google.com/maps/api/js?v=3.2&key=AIzaSyBy8irzccEOp7ezf5nQ2UPaLGcte_AEsOQ"></script>
+    <script src='https://unpkg.com/leaflet.gridlayer.googlemutant@latest/dist/Leaflet.GoogleMutant.js'></script>
+    <script src="/resources-maps/javascripts/L.Control.Locate.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-routing-machine.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.extra-markers.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-image.js"></script>
+    <script src="https://d3js.org/topojson.v1.min.js"></script>
+    <script src="/resources-maps/javascripts/Control.FullScreen.js"></script>
+    <script src="/resources-maps/javascripts/groupedlayercontrol.js"></script>
+    <script src="/resources-maps/javascripts/wicket.js"></script>
+    <script src="/resources-maps/javascripts/wicket-leaflet.js"></script>
+    <script src="/resources-maps/javascripts/leaflet-omnivore.min.js"></script>
+    <script src="/resources-maps/javascripts/leaflet.markercluster-src.js"></script>
+    <script src="/resources-maps/draw/Leaflet.draw.js"></script>
+    <script src="/resources-maps/draw/Leaflet.Draw.Event.js"></script>
+    <script src="/resources-maps/draw/Toolbar.js"></script>
+    <script src="/resources-maps/draw/Tooltip.js"></script>
+    <script src="/resources-maps/draw/ext/GeometryUtil.js"></script>
+    <script src="/resources-maps/draw/ext/LatLngUtil.js"></script>
+    <script src="/resources-maps/draw/ext/LineUtil.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/Polygon.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/Polyline.Intersect.js"></script>
+    <script src="/resources-maps/draw/ext/TouchEvents.js"></script>
+    <script src="/resources-maps/draw/draw/DrawToolbar.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Feature.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.SimpleShape.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Polyline.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Marker.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Polygon.js"></script>
+    <script src="/resources-maps/draw/draw/handler/Draw.Rectangle.js"></script>
+    <script src="/resources-maps/draw/edit/EditToolbar.js"></script>
+    <script src="/resources-maps/draw/edit/handler/EditToolbar.Edit.js"></script>
+    <script src="/resources-maps/draw/edit/handler/EditToolbar.Delete.js"></script>
+    <script src="/resources-maps/draw/Control.Draw.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Poly.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.SimpleShape.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Rectangle.js"></script>
+    <script src="/resources-maps/draw/edit/handler/Edit.Marker.js"></script>
+    <script src="/resources-maps/main.js"></script>
+    <!-- End Plugins This Page -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+        .select2-container .select2-selection--single {
+            height: 38px;
+            border: 1px solid #e7e7e7;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+            line-height: 38px;
+        }
+
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+            height: 38px;
+        }
+
+        .datepicker {
+            margin-top: 0 !important;
+        }
+
+        /* Theme Builder */
+/* Theme Builder */
+  .builder {
+	-webkit-transition: -webkit-transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1);
+	background: #ffffff;
+	border-left: 1px solid rgba(224, 226, 234, 0.53);
+	bottom: 0;
+	box-shadow: 0 0 9px rgba(155, 155, 155, 0.55);
+	position: fixed;
+	right: -240px;
+	top: 0;
+	transition: transform 600ms cubic-bezier(0.25, 0.1, 0.25, 1);
+	width: 240px;
+	z-index: 1000;
+  }
+  .builder .inner .builder-container {
+	padding: 20px;
+  }
+  
+  .builder .builder-close {
+	padding: 7px;
+	position: absolute;
+	right: 36px;
+	top: 20px;
+	width: auto;
+	z-index: 10;
+  }
+  .builder .builder-toggle {
+	cursor: pointer;
+	font-size: 16px;
+	height: 50px;
+	left: -48px;
+	line-height: 50px;
+	padding-top: 2px;
+	position: absolute;
+	text-align: center;
+	top: 100px;
+	width: 54px;
+	z-index: 1010;
+  }
+  .builder .builder-toggle i {
+	padding-right: 5px;
+  }
+  .builder:before {
+	background-color: #ffffff;
+	border-bottom-left-radius: 4px;
+	border-left: 1px solid rgba(224, 226, 234, 0.53);
+	border-top-left-radius: 4px;
+	box-shadow: -3px 2px 2px rgba(189, 189, 189, 0.28);
+	content: '';
+	height: 50px;
+	left: -47px;
+	position: absolute;
+	top: 100px;
+	width: 48px;
+  }
+  
+  .builder.open {
+	-ms-transform: translate(-100%, 0);
+	-webkit-transform: translate3d(-100%, 0, 0);
+	transform: translate3d(-100%, 0, 0);
+  }
+    </style>
+</head>
+
+<body>
+    <section>
+        <div class="container-fluid">
+            <div class="row">
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-4 col-xl-4 pl-0 pr-0 d-none d-sm-none d-md-block d-lg-block d-xl-block">
+                    <div style="width: 100%;height:100vh;background-color: whitesmoke;padding: 15px;overflow-x: scroll;">
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <div style="width: 100%;display:flex">
+                                    <img src="/images/template/logo kota semarang.png" alt="" style="height: 70px;">
+                                    <div style="display: flex;justify-content:center;align-items:flex-start;height:70px;background-color: ;flex-direction: column;margin-left: 10px;">
+                                        <h5 class="m-0"><strong>PEMERINTAH KOTA SEMARANG</strong></h5>
+                                        <h6 class="m-0">DINAS PERUMAHAN DAN KAWASAN PERMUKIMAN</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <!-- <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <form>
+                                    <div class="form-group">
+                                      <label for="">Pencarian Tempat Pemakaman</label>
+                                      <select name="" id="" class="form-control">
+                                        <option value="">-- Pilih --</option>
+                                      </select>
+                                    </div>
+
+                                    <div class="form-group">
+                                        <label for="">Blok</label>
+                                        <select name="" id="" class="form-control autocomplete>
+                                          <option value="">-- Pilih --</option>
+                                        </select>
+                                      </div>
+                                    <button class="btn btn-primary">Cari</button>
+                                </form>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr>
+                            </div>
+                        </div> -->
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <h5 class="m-0 text-center"><strong>PERMOHONAN & PERPANJANGAN IJIN</strong></h5>
+                            </div>
+                            <div class="col-lg-12 col-xl-12 mt-3">
+                                <div style="width: 100%;display:flex;justify-content:space-around;align-items:center">
+                                    <a href="/permohonan_ijin" style="text-decoration: none;color: #333;">
+                                        <div style="width: 160px;height: 280px;background-color: ;display: flex;justify-content: center;align-items: center;flex-direction: column;border-radius: 10px;padding: 0 10px;" class="shadow">
+                                            <img src="/images/template/permohonan.png" alt="" style="height:120px">
+                                            
+                                            <h5 class="mt-2 mb-0 text-center" style="font-size: 18px;"><strong>PERMOHONAN</strong></h5>
+                                            <h5 class="mt-0 mb-0 text-center" style="font-size: 18px;"><strong>IJIN</strong></h5>
+                                            <h6 class="mt-1 mb-0 text-center pl-1 pr-1" style="font-size: 14px;">Pemakaman Jenazah / Pemakaman Tumpang </h6>
+                                        </div>
+                                    </a>
+                                    
+                                    <span data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+                                        <div style="width: 160px;height: 280px;background-color: ;display: flex;justify-content: center;align-items: center;flex-direction: column;border-radius:10px;padding: 0 10px;" class="shadow">
+                                            <img src="/images/template/perpanjangan.png" alt="" style="height:120px">
+                                            
+                                            <h5 class="mt-2 mb-0 text-center" style="font-size: 18px;"><strong>PERPANJANGAN IJIN</strong></h5>
+                                            <!-- <h6 class="mt-1 mb-0 text-center pl-2 pr-2" style="font-size: 14px;"> Pemakaman Jenazah / Makam Tumpang / Pesan Tempat Makam </h6> -->
+                                            <h6 class="mt-1 mb-0 text-center pl-2 pr-2" style="font-size: 14px;"> Pemakaman Jenazah / Makam Tumpang </h6>
+
+                                        </div>
+                                    </span>
+                                </div>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <h5 class="m-0 text-center"><strong>RINGKASAN INFORMASI</strong></h5>
+                            </div>
+                            <div class="col-lg-12 col-xl-12 mt-3">
+                                <div style="width: 100%;display:flex;justify-content:space-around;align-items:center">
+                                    <div style="width: 160px;height: 240px;background-color: ;display: flex;justify-content: center;align-items: center;flex-direction: column;border-radius: 10px;" class="shadow">
+                                        <img src="/images/template/terisi.png" alt="" style="height: 120px;">
+                                        <!-- <h4 class="mt-2 mb-0 text-center">00</h4> -->
+                                        <h4 class="mt-2 mb-0 text-center" id="liang_isi"><%= liang_isi[0].total%></h4>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 18px;font-weight: bold;">JUMLAH LIANG</h5>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 18px;font-weight: bold;">TERISI</h5>
+                                    </div>
+
+                                    <div style="width: 160px;height: 240px;background-color: ;display: flex;justify-content: center;align-items: center;flex-direction: column;border-radius: 10px;" class="shadow">
+                                        <img src="/images/template/belum_terisi.png" alt="" style="height: 120px;">
+                                        <!-- <h4 class="mt-2 mb-0 text-center">00</h4> -->
+                                        <h4 class="mt-2 mb-0 text-center" id="liang_kosong"><%= liang_kosong[0].total%></h4>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 18px;font-weight: bold;">JUMLAH LIANG</h5>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 18px;font-weight: bold;">BELUM TERISI</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                        
+
+                        <div class="row mt-4">
+                            
+
+                            <div class="col-lg-12 col-xl-12 mt-4">
+                                <div style="width: 100%;display:flex;justify-content:space-around;align-items:center">
+                                    <div style="width: 160px;height: 240px;background-color: ;display: flex;justify-content: center;align-items: center;flex-direction: column;border-radius: 10px;" class="shadow pl-2 pr-2">
+                                        <img src="/images/template/masa_ijin_berlaku.png" alt="" style="height: 120px;">
+                                        <!-- <h4 class="mt-2 mb-0 text-center">00</h4> -->
+                                        <h4 class="mt-2 mb-0 text-center" id="liang_berlaku"><%= liang_berlaku%></h4>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 18px;font-weight: bold;">JUMLAH LIANG</h5>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 14px;font-weight: bold;">DENGAN MASA IJIN MASIH BERLAKU</h5>
+                                    </div>
+
+                                    <div style="width: 160px;height: 240px;background-color: ;display: flex;justify-content: center;align-items: center;flex-direction: column;border-radius: 10px;" class="shadow pl-2 pr-2">
+                                        <img src="/images/template/masa_ijin_habis.png" alt="" style="height: 120px;">
+                                        <!-- <h4 class="mt-2 mb-0 text-center">00</h4> -->
+                                        <h4 class="mt-2 mb-0 text-center" id="liang_kadaluarsa"><%= liang_kadaluarsa%></h4>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 18px;font-weight: bold;">JUMLAH LIANG</h5>
+                                        <h5 class="mt-0 mb-0 text-center" style="font-size: 14px;font-weight: bold;">DENGAN MASA IJIN SUDAH HABIS</h5>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="col-xs-12 col-sm-12 col-md-12 col-lg-8 col-xl-8 pl-0 pr-0">
+                    <div style="width: 100%;height:100vh;background-color: #333;position: relative;" id="map">
+                        <div style="width:90%;position:absolute;left:55px;top:13px;background-color:trasnparent;border-radius: 10px;z-index: 1000;">
+                            <button class="btn btn-primary" type="button" data-toggle="collapse" data-target="#collapseExample" aria-expanded="false" aria-controls="collapseExample" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                                <i class="fa fa-search" aria-hidden="true"></i>&nbsp;&nbsp;PENCARIAN DATA </button>
+                            <div class="collapse" id="collapseExample">
+                                <div class="card card-body p-3">
+                                        <div class="form-group">
+                                            <h6 class="m-0" style="font-size: 18px;font-family: 'Mukta', sans-serif;font-weight: bold;"><strong>Pencarian Berdasarkan Lokasi Makam</strong></h6>
+                                            <hr class="m-2">
+                                        </div>
+                                        <div class="form-group row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Pemakaman</label>
+                                            <div class="col-sm-9 pl-0">
+                                              <select name="makam" id="makamm" class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                                                  <option value="">-- Pilih Pemakaman--</option>
+                                                  <% for(var i=0; i<makam.length; i++){ %>
+                                                    <option value="<%= makam[i].id%>" x="<%= makam[i].x%>" y="<%= makam[i].y%>"><%= makam[i].nama_tpu%></option>
+                                                <%}%>
+                                              </select>
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Blok/Subblok/No. Liang</label>
+                                            <div class="col-sm-3 pl-0">
+                                                <select name="" id="blok" class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                                                    <option value="">-- Pilih Blok --</option>
+                                                </select>
+                                            </div>
+            
+                                            <div class="col-sm-3">
+                                                <select name="" id="subblok" class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                                                    <option value="">-- Pilih Subblok --</option>
+                                                </select>
+                                            </div>
+
+                                            <div class="col-sm-3 pl-0">
+                                                <select name="" id="no_liang" class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                                                    <option value="">-- Pilih Nomor Liang --</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                                        
+                                        <div class="form-group">
+                                            <h6 class="m-0" style="font-size: 18px;font-family: 'Mukta', sans-serif;font-weight: bold;"><strong>Pencarian Berdasarkan Nama Jenazah/Nama Pemohon & Tahun Meninggal</strong></h6>
+                                            <hr class="m-2">
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Nama Jenazah</label>
+                                            <div class="col-sm-9 pl-0">
+                                                <input type="text" id="nama_jenazah_peta"  class="form-control" placeholder="Ketikan nama jenazah" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Tahun Meninggal Jenazah</label>
+                                            <div class="col-sm-9 pl-0">
+                                                <input type="number" id="tahun_jenazah_peta"  class="form-control" placeholder="Ketikan tahun meninggal jenazah" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                                            </div>
+                                        </div>
+
+                                        <div class="form-group row mb-3">
+                                            <div class="col-sm-9 offset-sm-3 pl-0">
+                                                <button id="get_nama_dan_lokasi" class="btn btn-primary">Cari</button>
+                                            </div>
+                                            
+                                        </div>
+                                        
+                                        <div class="alert alert-primary" role="alert">
+                                            <div class="form-group">
+                                                <h6 class="m-0" style="font-size: 18px;font-family: 'Mukta', sans-serif;font-weight: bold;"><strong>Hasil Pencarian Berdasarkan Nama Jenazah/Nama Pemohon dan Tahun Meninggal</strong></h6>
+                                                <hr class="m-2">
+                                            </div>
+    
+                                            <div class="form-group row mb-3">
+                                                <div class="col-sm-12 ">
+                                                    <select name="" id="jenazah" class="form-control autocomplete" style="font-size: 16px;font-family: 'Mukta', sans-serif;width: 100%; ">
+                                                        <option value="">-- Silahkan pilih nama jenazah --</option>
+                                                      
+                                                    </select>
+                                                </div>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                            <!-- <a href="/backoffice" class="btn btn-primary" style="font-size: 16px;font-family: 'Mukta', sans-serif;color: #fff;margin-left: 15px;">LOGIN</a> -->
+                        </div>
+
+                        <div style="width: 45%;height:50px;background-color:;position:absolute;bottom:30px;left:30px;z-index:1000">
+                            <ul class="list-inline">
+                                <!-- <li class="list-inline-item">
+                                    <a href="#" ><img src="/images/template/010-whatsapp.png" alt="" style="height: 50px;" data-toggle="tooltip" data-placement="top" title="Contact Center"></a>
+                                </li> -->
+
+                                <li class="list-inline-item">
+                                    <span data-toggle="modal" data-target="#ambulancehebat"><img src="/images/template/mobil-jenazah.png" alt="" style="height: 50px;border-radius: 100%;" data-toggle="tooltip" data-placement="top" title="Sewa Mobil Jenazah"></span>
+                                </li>
+
+                                <li class="list-inline-item">
+                                    <a href="https://makam.semarangkota.go.id/backoffice"><img src="/images/template/001-login.png" alt="" style="height: 50px;"></a>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <div class="builder d-sm-block d-md-none d-lg-none d-xl-none" id="builder">
+        <a class="builder-toggle">
+            <center><i class="fa fa-bars fa-2x" aria-hidden="true" style="margin-top: 10px;margin-left: 5px;;"></i></center>
+        </a>
+        <div class="inner">
+            <div class="builder-container">
+                <div class="row">
+                    <div class="col-12 col-sm-12">
+                        <a href="/permohonan_ijin" style="text-decoration: none;color: #333;">
+                            <div style="width: 100%;background-color:#f3f3f3;display: flex;padding:0 10px;border-radius: 10px;" class="shadow">
+                                <div style="width: 30%;display: flex;justify-content: center;align-items: center;height:80px;">
+                                    <img src="/images/template/permohonan.png" alt="" style="width:100%">
+                                </div>
+                                <div style="width: 70%;display: flex;justify-content: center;align-items: center;padding-left: 15px;height:80px;">
+                                    <h6><strong>PERMOHONAN IJIN</strong></h6>
+                                </div>
+                            </div>
+                        </a>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-12 col-sm-12">
+                        <span data-toggle="modal" data-target="#exampleModal" style="cursor: pointer;">
+                            <div style="width: 100%;background-color:#f3f3f3;display: flex;padding:0 10px;border-radius: 10px;" class="shadow">
+                                <div style="width: 30%;display: flex;justify-content: center;align-items: center;height:80px;">
+                                    <img src="/images/template/perpanjangan.png" alt="" style="width:100%">
+                                </div>
+                                <div style="width: 70%;display: flex;justify-content: center;align-items: center;padding-left: 15px;height:80px;">
+                                    <h6><strong>PERPANJANGAN IJIN</strong></h6>
+                                </div>
+                            </div>
+                        </span>
+                    </div>
+                </div>
+
+                <!-- <div class="row">
+                    <div class="col-12 col-sm-12">
+                        <hr>
+                    </div>
+                </div>-->
+                <div class="row" style="margin-top: 30px;">
+                    <div class="col-12 col-sm-12">
+                        <h5 style="margin: 0;text-align:center;"><strong>RINGKASAN</strong></h5>
+                    </div>
+                </div> 
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-12 col-sm-12">
+                        <div style="width: 100%;background-color:#f3f3f3;display: flex;padding:0 10px;border-radius: 10px;" class="shadow">
+                            <div style="width: 30%;display: flex;justify-content: center;align-items: center;height:80px;">
+                                <img src="/images/template/terisi.png" alt="" style="width:100%">
+                            </div>
+                            <div style="width: 70%;display: flex;justify-content: center;align-items: center;padding-left: 15px;height:80px;flex-direction: column;">
+                                <h6><strong>LIANG TERISI : <span id="liang_isi"><%= liang_isi[0].total%></span></strong></h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-12 col-sm-12">
+                        <div style="width: 100%;background-color:#f3f3f3;display: flex;padding:0 10px;border-radius: 10px;" class="shadow">
+                            <div style="width: 30%;display: flex;justify-content: center;align-items: center;height:80px;">
+                                <img src="/images/template/terisi.png" alt="" style="width:100%">
+                            </div>
+                            <div style="width: 70%;display: flex;justify-content: center;align-items: center;padding-left: 15px;height:80px;flex-direction: column;">
+                                <h6><strong>LIANG BELUM TERISI : <span id="liang_kosong"><%= liang_kosong[0].total%></span></strong></h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-12 col-sm-12">
+                        <div style="width: 100%;background-color:#f3f3f3;display: flex;padding:0 10px;border-radius: 10px;" class="shadow">
+                            <div style="width: 30%;display: flex;justify-content: center;align-items: center;height:80px;">
+                                <img src="/images/template/masa_ijin_berlaku.png" alt="" style="width:100%">
+                            </div>
+                            <div style="width: 70%;display: flex;justify-content: center;align-items: center;padding-left: 15px;height:80px;flex-direction: column;">
+                                <h6><strong>IJIN MASIH BERLAKU : <span id="liang_berlaku"><%= liang_berlaku%></span></strong></h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="row" style="margin-top: 15px;">
+                    <div class="col-12 col-sm-12">
+                        <div style="width: 100%;background-color:#f3f3f3;display: flex;padding:0 10px;border-radius: 10px;" class="shadow">
+                            <div style="width: 30%;display: flex;justify-content: center;align-items: center;height:80px;">
+                                <img src="/images/template/masa_ijin_habis.png" alt="" style="width:100%">
+                            </div>
+                            <div style="width: 70%;display: flex;justify-content: center;align-items: center;padding-left: 15px;height:80px;flex-direction: column;">
+                                <h6><strong>IJIN SUDAH TIDAK BERLAKU : <span id="liang_kadaluarsa"><%= liang_kadaluarsa%></span></strong></h6>
+                                
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered modal-xl modal-dialog-centered modal-dialog-scrollable">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Pendaftaran Perpanjangan Ijin </h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <div class="form-group row">
+                    <label for="" class="col-lg-3 col-form-label">Jenis Perpanjangan Ijin</label>
+                    <div class="col-lg-9">
+                      <select name="" id="jns_permohonan" class="form-control">
+                        <option value="">-- Pilih --</option>
+                        <option value="0">Perpanjangan Pemakaman Jenazah</option>
+                        <option value="4">Perpanjangan Makam Tumpang</option>
+                        <!-- <option value="2">Perpanjangan Pesan Tempat Makam</option> -->
+                        <!-- <option value="6">Pembongkaran Makam</option> -->
+                      </select>
+                    </div>
+                </div>
+
+                <div class="form-group row">
+                    <div class="col-lg-12 col-xl-12">
+                        <hr style="margin:0;">
+                    </div>
+                </div>
+
+                <div class="form-group row konten-perpanjangan">
+                    <div class="col-lg-12 col-xl-12">
+                        <center>
+                        <span class="badge badge-danger"><h6 style="font-size: 16px;font-family: 'Mukta', sans-serif;text-align: center;margin:0;"><i>Silahkan lakukan filter data terlebih dahulu berdasarkan nama jenazah dan tahun meninggal yang akan anda cari</i></h6></span>
+                        </center>
+                    </div>
+
+                    <div class="col-lg-12 col-xl-12" style="margin-top:15px;">
+                        <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Nama Jenazah</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="nama_jenazah_nama-jenazah"  class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Tahun Meninggal Jenazah</label>
+                            <div class="col-sm-9">
+                                <input type="number" id="tahun_jenazah_nama-jenazah"  class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button onclick="cari_nama_jenazah('nama-jenazah',0)" class="btn btn-primary">Filter</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr style="margin:0;">
+                            </div>
+                        </div>
+
+                        <div class="alert alert-primary" role="alert">
+                            <div class="form-group">
+                                <h6 class="m-0" style="font-size: 18px;font-family: 'Mukta', sans-serif;font-weight: bold;"><strong>Hasil filter data berdasarkan nama jenazah dan tahun meninggal</strong></h6>
+                                <h6><i>Silahkan pilih nama jenazah dan masukkan tanggal meninggal jenazah kemudian klik tombol cari</i></h6>
+                                <hr class="m-2">
+                            </div>
+
+                            <div class="form-group row mb-3">
+                                <div class="col-sm-7">
+                                    <select name="" id="nama-jenazah" class="form-control autocomplete" style="width: 100%;">
+                                        <option value="">-- Silahkan pilih nama jenazah --</option>
+                                      
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="" id="tgl1" value="" placeholder="Masukkan tanggal meninggal">
+                                </div>
+
+                                <div class="col-lg-1">
+                                    <button class="btn btn-primary" id="cari-perpanjang-makam">Cari</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xl-12" id="konten-detail-perpanjang-makam">
+                        <div class="row konten-detail-perpanjang-makam">
+                            
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row konten-perpanjangan-pesan">
+                    <div class="col-lg-12 col-xl-12">
+                        <center>
+                        <span class="badge badge-danger"><h6 style="font-size: 16px;font-family: 'Mukta', sans-serif;text-align: center;margin:0;"><i>Silahkan lakukan filter data terlebih dahulu berdasarkan nama pemohon yang akan anda cari</i></h6></span>
+                        </center>
+                    </div>
+
+                    <div class="col-lg-12 col-xl-12" style="margin-top: 15px;">
+                        <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Nama Pemohon</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="nama_jenazah_nama_pemohon"  class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                            </div>
+                        </div>
+
+                        <!-- <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Tahun Meninggal Jenazah</label>
+                            <div class="col-sm-9 pl-0">
+                                <input type="number" id="tahun_jenazah_nama_pemohon"  class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                            </div>
+                        </div> -->
+
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button onclick="cari_nama_jenazah('nama_pemohon')" class="btn btn-primary">Filter</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr style="margin:0;">
+                            </div>
+                        </div>
+                        <div class="alert alert-primary" role="alert">
+                            <div class="form-group">
+                                <h6 class="m-0" style="font-size: 18px;font-family: 'Mukta', sans-serif;font-weight: bold;"><strong>Hasil Filter data Berdasarkan Nama Pemohon</strong></h6>
+                                <!-- <h6><i>Silahkan pilih nama pemohon</i></h6> -->
+                                <hr class="mt-2 mb-2">
+                            </div>
+
+                            <div class="form-group row mb-3">
+                                <div class="col-sm-11">
+                                    <select name="" id="nama_pemohon" class="form-control autocomplete" style="width: 100%;">
+                                        <option value="">-- Silahkan pilih nama pemohon --</option>
+                                        
+                                    </select>
+                                </div>
+    
+                                <!-- <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="" id="tgl1" value="" placeholder="Masukkan tanggal meninggal">
+                                </div> -->
+    
+                                <div class="col-lg-1">
+                                    <button class="btn btn-primary" id="cari-perpanjang-pesan">Cari</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="col-lg-12 col-xl-12" id="konten-detail-perpanjang-pesan">
+                        <div class="perpanjang-pesan"></div>
+
+                        <div class="peringatan"></div>
+                        
+                        <div id="button-perpanjang-pesan-makam"></div>
+                    </div>
+                </div>
+
+                <div class="form-group row konten-perpanjangan-tumpang">
+                    <div class="col-lg-12 col-xl-12">
+                        <center>
+                        <span class="badge badge-danger"><h6 style="font-size: 16px;font-family: 'Mukta', sans-serif;text-align: center;margin:0;"><i>Silahkan lakukan filter data terlebih dahulu berdasarkan nama jenazah dan tahun meninggal yang akan anda cari</i></h6></span>
+                        </center>
+                    </div>
+
+                    <div class="col-lg-12 col-xl-12" style="margin-top:15px">
+                        <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Nama Jenazah</label>
+                            <div class="col-sm-9">
+                                <input type="text" id="nama_jenazah_nama-jenazah-tumpang"  class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Tahun Meninggal Jenazah</label>
+                            <div class="col-sm-9">
+                                <input type="number" id="tahun_jenazah_nama-jenazah-tumpang"  class="form-control" style="font-size: 16px;font-family: 'Mukta', sans-serif;">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-9 offset-sm-3">
+                                <button onclick="cari_nama_jenazah('nama-jenazah-tumpang',4)" class="btn btn-primary">Filter</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr style="margin:0;">
+                            </div>
+                        </div>
+
+                        <div class="alert alert-primary" role="alert">
+                            <div class="form-group">
+                                <h6 class="m-0" style="font-size: 18px;font-family: 'Mukta', sans-serif;font-weight: bold;"><strong>Hasil filter data berdasarkan nama jenazah dan tahun meninggal</strong></h6>
+                                <h6><i>Silahkan pilih nama jenazah dan masukkan tanggal meninggal jenazah kemudian klik tombol cari</i></h6>
+                                <hr class="m-2">
+                            </div>
+
+                            <div class="form-group row mb-3">
+                                <div class="col-sm-7">
+                                    <select name="" id="nama-jenazah-tumpang" class="form-control autocomplete" style="width: 100%;">
+                                        <option value="">-- Silahkan pilih nama jenazah --</option>
+                                      
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="" id="tgl2" value="" placeholder="Masukkan tanggal meninggal">
+                                </div>
+
+                                <div class="col-lg-1">
+                                    <button class="btn btn-primary " id="cari-perpanjang-tumpang">Cari</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="col-lg-12 col-xl-12" id="konten-detail-perpanjang-tumpang">
+                        <div class="row konten-detail-perpanjang-tumpang">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-group row konten-bongkar">
+                    <div class="col-lg-12 col-xl-12">
+                        <h6 style="font-size: 16px;font-family: 'Mukta', sans-serif;"><i>Silahkan cari nama jenazah dan tahun meninggal terlebih dahulu</i></h6>
+                    </div>
+
+                    <div class="col-lg-12 col-xl-12">
+                        <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Nama Jenazah</label>
+                            <div class="col-sm-9 pl-0">
+                                <input type="text" id="nama_jenazah_nama-jenazah-bongkar"  class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <label for="" class="col-sm-3 col-form-label" style="font-size: 16px;font-family: 'Mukta', sans-serif;">Tahun Meninggal Jenazah</label>
+                            <div class="col-sm-9 pl-0">
+                                <input type="number" id="tahun_jenazah_nama-jenazah-bongkar"  class="form-control">
+                            </div>
+                        </div>
+
+                        <div class="form-group row mb-3">
+                            <div class="col-sm-9 offset-sm-3 pl-0">
+                                <button onclick="cari_nama_jenazah('nama-jenazah-bongkar',0)" class="btn btn-primary">Cari</button>
+                            </div>
+                        </div>
+
+                        <div class="form-group row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr style="margin:0;">
+                            </div>
+                        </div>
+
+                        <div class="alert alert-primary" role="alert">
+                            <div class="form-group">
+                                <h6 class="m-0" style="font-size: 18px;font-family: 'Mukta', sans-serif;font-weight: bold;"><strong>Hasil Pencarian Berdasarkan Nama Jenazah dan Tahun Meninggal</strong></h6>
+                                <h6><i>Silahkan pilih nama jenazah dan masukkan tanggal meninggal jenazah yang akan anda perpanjang ijinnya</i></h6>
+                                <hr class="m-2">
+                            </div>
+
+                            <div class="form-group row mb-3">
+                                <div class="col-sm-7">
+                                    <select name="" id="nama-jenazah-bongkar" class="form-control">
+                                        <option value="">-- Pilih --</option>
+                                     
+                                    </select>
+                                </div>
+
+                                <div class="col-sm-4">
+                                    <input type="text" class="form-control" name="" id="tgl3" value="">
+                                </div>
+
+                                <div class="col-lg-1">
+                                    <button class="btn btn-primary">Cari</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <!-- <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div> -->
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="infopemakaman" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-dialog-centered">
+            <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">INFORMASI BIAYA PEMAKAMAN</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <h4 style="font-weight: normal;text-align: center;">BIAYA PEMAKAMAN JENAZAH DI KOTA SEMARANG <span style="color: red;"><strong>"GRATIS"</strong></span> BERLAKU PADA TPU MILIK PEMERINTAH KOTA SEMARANG</h4>
+            </div>
+            <div class="modal-footer">
+                <!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="modal fade" id="ambulancehebat" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog ">
+          <div class="modal-content ">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: #000;">Mobil Jenazah Kota Semarang<br/>Informasi sewa mobil jenazah silahkan hubungi koordinat mobile jenazaha PEMKOT Semarang<br/>(Bapak Surana - 082135313500)</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <div class="modal-body">
+                <img src="/images/template/mobil_jenazah_tiga.jpg" alt="" style="width: 100%;">
+            </div>
+            <div class="modal-footer">
+              <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+              <!-- <button type="button" class="btn btn-primary">Save changes</button> -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="modal fade" id="perpanjanMakamDanUpdatePemohon" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg modal-dialog-centered">
+          <div class="modal-content">
+            <div class="modal-header bg-secondary">
+              <h5 class="modal-title" id="exampleModalLabel" style="color: #fff;"><strong>Input Data Ahli Waris / Pemohon Baru</strong></h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+              </button>
+            </div>
+            <form action="/permohonan_ijin/perpanjanganMakam" method="post" enctype="multipart/form-data">
+                <div class="modal-body">
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >Nama Ahli Waris </label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="nama_ahli_waris" id="nama_ahli_waris" >
+                        </div>
+                    </div>
+                    <input type="hidden" name="tipe" id="tipe_perpanjangan" >
+                    <input type="hidden" name="jenazah_id" id="jenazah_id_perpanjangan" >
+
+                    
+                    
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >NIK </label>
+                        <div class="col-lg-9">
+                            <input     oninput="javascript: if (this.value.length > this.maxLength) this.value = this.value.slice(0, this.maxLength);"
+                            type="number" class="form-control" name="nik" id="nik" maxlength="16">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >Pekerjaan </label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="pekerjaan" id="pekerjaan" >
+                        </div>
+                    </div>
+
+                    
+
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >Domisili Pemohon</label>
+                        <div class="col-lg-9">
+                            <select name="domisili" id="domisili_pemohon" class="form-control">
+                                <option value="">-- Pilih --</option>
+                                <option value="0">Dalam Kota Semarang</option>
+                                <option value="1">Luar Kota Semarang</option>
+                            </select>
+                        </div>
+                    </div>  
+
+                    <div class="form-group row konten-luar-pemohon">
+                        <label for="" class="col-lg-3 col-form-label" >Alamat Lengkap <small>(RT, RW, Kelurahan, Kecamatan, Kabupaten/Kota)</small> </label>
+                        <div class="col-lg-9">
+                            <textarea name="alamat" id="alamat_pemohon" class="form-control" rows="2"></textarea>
+                        </div>
+                    </div>
+
+                    <div class="form-group row konten-dalam-pemohon">
+                        <label for="" class="col-lg-3 col-form-label" >Kecamatan</label>
+                        <div class="col-lg-9">
+                            <select name="kec_id" id="kecamatan_pemohon" class="form-control autocomplete" style="width: 100%;">
+                                <option value="">-- Pilih --</option>
+                                <% for(var i=0; i<kec.length; i++){ %>
+                                    <option value="<%= kec[i].id_kecamatan%>"><%= kec[i].kecamatan%></option>
+                                <%}%>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row konten-dalam-pemohon">
+                        <label for="" class="col-lg-3 col-form-label" >Kelurahan</label>
+                        <div class="col-lg-9">
+                            <select name="kel_id" id="kelurahan_pemohon" class="form-control autocomplete" style="width: 100%;">
+                                <option value="">-- Pilih --</option>
+                            </select>
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >No. Telepon / Hp</label>
+                        <div class="col-lg-9">
+                            <input type="text" class="form-control" name="hp" id="hp" value="62"  maxlength="13">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >Email <br/><sup style="color: yellow;"><small> * Wajib diisi</small></sup></label>
+                        <div class="col-lg-9">
+                            <input type="email" class="form-control" name="email" id="email" required>
+                            <small style="color: yellow;"><i>Pastikan email yang anda inputkan adalah email aktif</i></small>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >Foto ktp pemohon <br/><sup style="color: yellow;"><small> * Wajib diisi</small></sup></label>
+                        <div class="col-lg-9">
+                            <input type="file" class="form-control" name="foto_ktp_pemohon" id="foto_ktp_pemohon" required>
+                        </div>
+                    </div>
+                    <div class="form-group row">
+                        <label for="" class="col-lg-3 col-form-label" >SK Lama pemohon <br/><sup style="color: yellow;"><small></small></sup></label>
+                        <div class="col-lg-9">
+                            <input type="file" class="form-control" name="sk_lama" id="sk_lama">
+                        </div>
+                    </div>
+                </div>
+                <div class="modal-footer bg-secondary">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="submit" class="btn btn-primary">Simpan</button>
+                </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    <script src="/javascripts/template/bootstrap.bundle.min.js"></script>
+    <script src="/plugins/bootstrap-datepicker/js/bootstrap-datepicker.js"></script> 
+
+    <!-- Plugins This Page -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.7/js/select2.min.js"></script>
+    <!-- End Plugins This Page -->
+    <script type="text/javascript">
+        $(window).on('load', function() {
+        $('#infopemakaman').modal('show');
+    });
+        $('.konten-dalam-pemohon-baru').hide(); 
+        $('#konten-luar-pemohon-baru').hide(); 
+        $('#konten-pilih-ya').hide(); 
+        $('#domisili_pemohon_baru_makam').change(function(){ 
+            if ($(this).val() == '') { 
+                $('.konten-dalam-pemohon-baru').hide(); 
+                $('#konten-luar-pemohon-baru').hide(); 
+            } 
+    
+            if ($(this).val() == '0') { 
+                $('.konten-dalam-pemohon-baru').show(); 
+                $('#konten-luar-pemohon-baru').hide(); 
+            }  
+    
+            if ($(this).val() == '1') { 
+                $('.konten-dalam-pemohon-baru').hide(); 
+                $('#konten-luar-pemohon-baru').show();    
+            } 
+        });
+
+              $('#tgl1').datepicker({ 
+            format: 'yyyy-mm-dd', 
+            orientation: "auto top", 
+            autoclose: true, 
+            todayHighlight:true, 
+        }); 
+ 
+        $('#tgl2').datepicker({ 
+            format: 'yyyy-mm-dd', 
+            orientation: "auto top", 
+            autoclose: true, 
+            todayHighlight:true, 
+        }); 
+        $('#tgl3').datepicker({ 
+            format: 'yyyy-mm-dd', 
+            orientation: "auto top", 
+            autoclose: true, 
+            todayHighlight:true, 
+        });
+        $('#tgl4').datepicker({ 
+            format: 'yyyy-mm-dd', 
+            orientation: "auto top", 
+            autoclose: true, 
+            todayHighlight:true, 
+        });
+        $(function () {
+  $('[data-toggle="tooltip"]').tooltip()
+})
+
+        /**** BUILDER FUNCTIONS ****/
+        function toggleBuilder() {
+            $('.builder-toggle').on('click', function () {
+                if ($('#builder').hasClass('open')) $('#builder').removeClass('open');
+                else $('#builder').addClass('open');
+            });
+        }
+
+        /* Active Custom Scroll for Builder Sidebar */
+        function builderScroll() {
+            $('.builder .inner').mCustomScrollbar("destroy");
+            scroll_height = "100%";
+            $('.builder .inner').mCustomScrollbar({
+                scrollButtons: {
+                    enable: false
+                },
+                autoHideScrollbar: true,
+                scrollInertia: 150,
+                theme: "light",
+                set_height: scroll_height,
+                advanced: {
+                    updateOnContentResize: true
+                }
+            });
+        }
+
+        toggleBuilder();
+        builderScroll();
+        $('#jenazah').change(function () {
+            let x = $(this).val()
+            $(`#blok`).empty()
+            $(`#subblok`).empty()
+            $(`#no_liang`).empty()
+            $("#makamm").val('')
+            var geoJsonUrl = root+`peta/makam?makam_id=${x}`;
+        $.getJSON(geoJsonUrl)
+            .done(loadGeoJsonMakam);
+            cari($('option:selected', this).attr('x'), $('option:selected', this).attr('y'), 21);
+        })
+        
+          $("#makamm").change(function() {
+            var x = $( this ).val();
+            console.log(x,'x');
+            $(`#blok`).empty()
+            $(`#subblok`).empty()
+            $(`#no_liang`).empty()
+            $(`#jenazah`).val('')
+            $.get(`/permohonan_ijin/getBlokByLokasi?lokasi=${x}`,function (data) {
+                console.log(data,'data');
+                $(`#blok`).append(`<option value="">-- Pilih --</option>`)
+                for (let i = 0; i < data.length; i++) {
+                    if (data[i].blok) {
+                     $(`#blok`).append(`<option value="${data[i].blok}">${data[i].blok}</option>`)
+                    }
+                }
+                
+            })
+            $.get(`/getJumlahLiang?master_makam_id=${x}`,function (data) {
+                    console.log(data,x);
+                    $('#liang_isi').html(data.liang_isi[0].total)
+                    $('#liang_kosong').html(data.liang_kosong[0].total)
+                    $('#liang_berlaku').html(data.liang_berlaku[0].total)
+                    $('#liang_kadaluarsa').html(data.liang_kadaluarsa[0].total)
+                })
+            cari($('option:selected', this).attr('x'), $('option:selected', this).attr('y'), 17);
+        })
+        $( "#blok" ).change(function() {
+            var x = $( this ).val();
+            let c =  $("#makamm").val()
+            $(`#subblok`).empty()
+            $(`#no_liang`).empty()
+            $(`#jenazah`).val('')
+            $.get(`/permohonan_ijin/getSubblokByBlok?blok=${x}&master_makam_id=${c}`,function (data) {   
+                console.log(data);             
+                data.sort((a,b)=>a.subblok.substring(1,a.subblok.length)-b.subblok.substring(1,b.subblok.length))
+                console.log(data);
+                $(`#subblok`).append(`<option value="">-- Pilih --</option>`)
+                for (let i = 0; i < data.length; i++) {
+                     $(`#subblok`).append(`<option value="${data[i].subblok}">${data[i].subblok}</option>`)
+                }
+            })
+            $.get(`/getJumlahLiang?master_makam_id=${c}&blok=${x}`,function (data) {
+                    console.log(data,x);
+                    $('#liang_isi').html(data.liang_isi[0].total)
+                    $('#liang_kosong').html(data.liang_kosong[0].total)
+                    $('#liang_berlaku').html(data.liang_berlaku[0].total)
+                    $('#liang_kadaluarsa').html(data.liang_kadaluarsa[0].total)
+                })
+        })
+        $( "#subblok" ).change(function() {
+            var x = $( this ).val();
+            let g=$( "#blok" ).val();
+            let c =  $("#makamm").val()
+            $(`#no_liang`).empty()
+            $(`#jenazah`).val('')
+            $.get(`/permohonan_ijin/noliangBySubblok?subblok=${x}&blok=${g}&master_makam_id=${c}`,function (data) {
+                console.log(data);
+                if (data.length>0) {
+                    $(`#no_liang`).append(`<option value="">-- Pilih --</option>`)
+                    for (let i = 0; i < data.length; i++) {
+                        $(`#no_liang`).append(`<option value="${data[i].no_liang}" x="${data[i].x}" y="${data[i].y}">${data[i].no_liang}</option>`)
+                    }
+                } else {
+                    $(`#no_liang`).append(`<option value="">Nomor liang tidak tersedia silahkan pilih blok lain</option>`)
+                }
+
+            })
+          
+
+            $.get(`/getJumlahLiang?master_makam_id=${c}&blok=${g}&sub_blok=${x}`,function (data) {
+                    console.log(data,x);
+                    $('#liang_isi').html(data.liang_isi[0].total)
+                    $('#liang_kosong').html(data.liang_kosong[0].total)
+                    $('#liang_berlaku').html(data.liang_berlaku[0].total)
+                    $('#liang_kadaluarsa').html(data.liang_kadaluarsa[0].total)
+                })
+        })
+        $( "#no_liang" ).change(function() {
+            var x = $( this ).val();
+            $(`#jenazah`).val('')
+            cari($('option:selected', this).attr('x'), $('option:selected', this).attr('y'), 21);
+        })
+        $('#makamm, #blok, #subblok, #no_liang').change(function(){
+          let makamm = $('#makamm').val();
+          let blok = $('#blok').val();
+          let subblok = $('#subblok').val();
+          let no_liang = $('#no_liang').val();
+          let a = ''
+          if (blok) {
+            a+=`&blok=${blok}`
+          }
+          if (subblok) {
+            a+=`&sub_blok=${subblok}`
+        }
+        if (no_liang) {
+            a+=`&no_liang=${no_liang}`
+        }
+          $.get(`/getJumlahLiang?master_makam_id=${makamm}${a}`,function (data) {
+            console.log(data);
+                    $('#liang_isi').html(data.liang_isi[0].total)
+                    $('#liang_kosong').html(data.liang_kosong[0].total)
+                    $('#liang_berlaku').html(data.liang_berlaku[0].total)
+                    $('#liang_kadaluarsa').html(data.liang_kadaluarsa[0].total)
+                })
+          var geoJsonUrl = root+`peta/makam?master_makam_id=${makamm}${a}`;
+        $.getJSON(geoJsonUrl)
+            .done(loadGeoJsonMakam);
+        })
+
+        $('.autocomplete').select2();
+
+        $('#konten-detail-perpanjang-makam').hide();
+        $('#cari-perpanjang-makam').click(function(){
+            let pin = $(`#pin-pemakaman`).val()
+            $('.konten-detail-perpanjang-makam').empty()
+            // $('#perpanjang-makam').empty()
+            // $(".peringatan").empty()
+            // $('#perpanjang-makam').empty()
+            // $(`#button-perpanjang-makam`).empty()
+            // $('#lokasi_makam').empty()
+            // $(`#pemohon`).empty()
+            let nama =  $(`#nama-jenazah`).val()
+            let nik =  $(`#nik-jenazah`).val()
+            let tanggal = $(`#tgl1`).val()
+            if (tanggal&&nama) {
+
+            $.get(`/permohonan_ijin/dataJenazah?nama=${nama}&nik=${nik}&type=0&tanggal=${tanggal}`, function (x) {
+                console.log(x);
+                if (x.data.length == 0) {
+                alert('Tidak ada Data Jenazah')
+            }
+                let data = x.data
+                for (let i = 0; i < data.length; i++) {
+                    
+               
+            // $.get(`/permohonan_ijin/cekPin/${pin}`,function (x) {
+                let y = x.data[i]
+                let alamat =''
+                console.log(y);
+
+                if (y.domisili_jenazah=="Dalam kota semarang") {
+                    alamat = 
+                    `<!-- apabila domisili dalam kota semarang tampilkan ini -->
+                    <tr>
+                        <td>Kecamatan</td>
+                        <td>:</td>
+                        <td>${y.kecamatan_jenazah}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Kelurahan</td>
+                        <td>:</td>
+                        <td>${y.kelurahan_jenazah}</td>
+                    </tr>`
+                } else {
+                    alamat = ` <!-- apabila domisili luar kota semarang tampilkan ini -->
+                    <tr>
+                        <td>Alamat Lengkap</td>
+                        <td>:</td>
+                        <td>${y.alamat_jenazah}</td>
+                    </tr>`
+                }
+                let perpanjang_makam =`
+                <tbody>
+
+                    <tr>
+                        <td style="width: 160px;">Nama Jenazah</td>
+                        <td style="width: 5px;">:</td>
+                        <td>${y.nama_jenazah}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>:</td>
+                        <td>${y.jenis_kelamin}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Agama</td>
+                        <td>:</td>
+                        <td>${y.agama_jenazah}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Domisili</td>
+                        <td>:</td>
+                        <td>${y.domisili_jenazah}</td>
+                    </tr>
+
+                    ${alamat}
+
+                    <tr>
+                        <td>Meninggal Pada Tanggal</td>
+                        <td>:</td>
+                        <td>${y.tanggal_meninggal}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Akan Dimakamkan Tanggal</td>
+                        <td>:</td>
+                        <td>
+                            ${y.tanggal_dimakamkan}
+                        </td>
+                    </tr>
+                </tbody>
+                `
+                let peringatan = ''
+                let button_perpanjang_pesan_makam = ''
+                let badge = ''
+                if (y.kadaluarsa==0) {
+                    badge = `<span class="badge badge-success">${y.tanggal_berlaku_surat}</span>`
+                    peringatan = `<center><span class="badge badge-success"><h5 class="m-0">Masa berlaku ijin penggunaan tanah makam/pemakaman jenazah anda berlaku sampai dengan ${y.tanggal_berlaku_surat}</h5></span></center>`
+                    button_perpanjang_pesan_makam =`<center><button class="btn btn-primary" onclick="perpanjang('${y.jenazah_id}',${0})">Daftar Perpanjangan Penggunaan Tanah Makam/Pemakaman Jenazah</button><br/>Atau<br/><button class="btn btn-warning" data-toggle="modal" data-target="#perpanjanMakamDanUpdatePemohon" onclick="perpanjangan('${y.jenazah_id}',${0})">Daftar Perpanjangan Penggunaan Tanah Makam/Pemakaman Jenazah Dan Ganti Ahli Waris / Pemohon</button></center>`
+                    // button_perpanjang_pesan_makam =`<button class="btn btn-primary" onclick="perpanjang('${y.jenazah_id}',${0})">Daftar Perpanjangan Makam</button>`
+                } else if (y.kadaluarsa==1) {
+                    badge = `<span class="badge badge-danger">${y.tanggal_berlaku_surat}</span>`
+                    peringatan = `<center><span class="badge badge-danger"><h5 class="m-0">Masa berlaku ijin penggunaan tanah makam/pemakaman jenazah anda telah berakhir pada tanggal ${y.tanggal_berlaku_surat}</h5></span></center>`
+                    button_perpanjang_pesan_makam =`<center><button class="btn btn-primary" onclick="perpanjang('${y.jenazah_id}',${0})">Daftar Perpanjangan Penggunaan Tanah Makam/Pemakaman Jenazah</button><br/>Atau<br/><button class="btn btn-warning" data-toggle="modal" data-target="#perpanjanMakamDanUpdatePemohon" onclick="perpanjangan('${y.jenazah_id}',${0})">Daftar Perpanjangan Penggunaan Tanah Makam/Pemakaman Jenazah Dan Ganti Ahli Waris / Pemohon</button></center>`
+                    // button_perpanjang_pesan_makam =`<button class="btn btn-primary" onclick="perpanjang('${y.jenazah_id}',${0})">Daftar Perpanjangan Makam</button>`
+                }else{
+                    peringatan = `<center><span class="badge badge-info"><h5 class="m-0">Permohonan perpanjangan ijin anda belum diverifikasi</h5></span></center>`
+                }
+           
+
+                let lokasi_makam = `
+                <tbody>
+
+                    <tr>
+                        <td style="width: 160px;">Lokasi Pemakaman</td>
+                        <td style="width: 5px;">:</td>
+                        <td>${y.nama_tpu}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Cluster</td>
+                        <td>:</td>
+                        <td>${y.cluster}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Blok</td>
+                        <td>:</td>
+                        <td>${y.blok}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Subblok</td>
+                        <td>:</td>
+                        <td>${y.sub_blok_makam}</td>
+                    </tr>
+
+                    <tr>
+                        <td>No. Liang</td>
+                        <td>:</td>
+                        <td>${y.no_liang_makam}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Masa Berlaku s/d</td>
+                        <td>:</td>
+                        <td>
+                           ${badge}
+                        </td>
+                    </tr>
+                </tbody>
+                `
+                let alamat_pemohon = ''
+                if (y.domisili_pemohon=='Dalam kota semarang') {
+                    alamat_pemohon = 
+                    `<tr>
+                        <td>Kecamatan</td>
+                        <td>:</td>
+                        <td>${y.kecamatan_pemohon}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Kelurahan</td>
+                        <td>:</td>
+                        <td>${y.kelurahan_pemohon}</td>
+                    </tr>`
+                } else {
+                    alamat_pemohon = 
+                    `<tr>
+                        <td>Alamat Lengkap</td>
+                        <td>:</td>
+                        <td>${y.alamat_pemohon}</td>
+                    </tr>`
+                }
+              
+                let pemohon = `
+                <tbody>
+                    <tr>
+                        <td style="width: 160px;">Nama Ahli Waris</td>
+                        <td style="width: 5px;">:</td>
+                        <td>${y.nama_ahli_waris}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Pekerjaan</td>
+                        <td>:</td>
+                        <td>${y.pekerjaan}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Domisili</td>
+                        <td>:</td>
+                        <td>${y.domisili_pemohon}</td>
+                    </tr>
+                    ${alamat_pemohon}
+                    <tr>
+                        <td>No. Telepon/Hp</td>
+                        <td>:</td>
+                        <td>${y.hp}</td>
+                    </tr>
+                </tbody>
+                `
+                $('.konten-detail-perpanjang-makam').append(`
+                <div class="col-lg-12 col-xl-12">
+                    <div style="width:100%;padding:15px;border-radius:4px;border:1px solid #ddd;margin-bottom:15px;" class="shadow">
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-4">
+                                <h5 class="m-0"><strong>INFORMASI AHLI WARIS/PEMOHON </strong></h5>
+                                <hr/ style="margin:5px 0">
+                                <table class="table table-sm table-borderless mb-0">
+                                    ${pemohon}
+                                </table>
+                            </div>
+
+                            <div class="col-lg-4 col-xl-4">
+                                <h5 class="m-0"><strong>INFORMASI JENAZAH </strong></h5>
+                                <hr/ style="margin:5px 0">
+                                <table class="table table-sm table-borderless mb-0" id="perpanjang-makam">
+                                    ${perpanjang_makam}
+                                </table>
+                           
+                            </div>
+
+                            <div class="col-lg-4 col-xl-4">
+                                <h5 class="m-0"><strong>INFORMASI LOKASI MAKAM </strong></h5>
+                                <hr/ style="margin:5px 0">
+                                <table class="table table-sm table-borderless mb-0">
+                                    ${lokasi_makam}
+                                </table>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                ${peringatan}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                ${button_perpanjang_pesan_makam}
+                            </div>
+                        </div>
+                    </div>
+                </div>`)
+                if (y.jns_pemakaman !=0) {
+                    // $(`#perpanjang-makam`).empty()
+                    // $(`#lokasi_makam`).empty()
+                    // $(`#pemohon`).empty()
+                    $('.konten-detail-perpanjang-makam').empty()
+                    location.reload();
+                    alert(`bukan permohonan makam`)
+                }
+            
+                $('#konten-detail-perpanjang-makam').slideDown(1000);
+            // })
+                }
+            })
+                
+            }else{
+                alert('Silahkan Isi  Data Jenazah  Terlebih Dahulu')
+            }
+        });
+
+        
+
+        $('#konten-detail-perpanjang-pesan').hide();
+        $('#cari-perpanjang-pesan').click(function(){
+            let pin = $(`#pin-pesan`).val()
+            let nama = $(`#nama_pemohon`).val()
+            console.log(pin,'this');
+            // $.get(`/permohonan_ijin/cekPin/${pin}`,function (x) {
+            $.get(`/permohonan_ijin/dataJenazah?nama=${nama}`,function (x) {
+            let y = x.data[0]
+            let alamat =''
+            console.log(y);
+            // $(`#button-perpanjang-pesan-makam`).empty()
+            // $(".peringatan").empty()
+            let peringatan = ''
+            let button_perpanjang_pesan_makam = ''
+            let badge = ''
+                if (y.kadaluarsa==0) {
+                    badge = `<span class="badge badge-success">${y.tanggal_berlaku_surat}</span>`
+                    peringatan =`<center><span class="badge badge-success"><h5 class="m-0">Masa berlaku ijin pesan tempat makam anda masih berlaku sampai dengan ${y.tanggal_berlaku_surat}</h5></span></center> `
+                    button_perpanjang_pesan_makam =`<center><button class="btn btn-primary cari-perpanjang-pesan-makam" onclick="perpanjang('${y.jenazah_id}',${2})">Daftar Perpanjangan Pesan Tempat Makam</button></center>`
+
+                } else if(y.kadaluarsa==1){
+                    badge = `<span class="badge badge-danger">${y.tanggal_berlaku_surat}</span>`
+                    peringatan =`<center><span class="badge badge-danger"><h5 class="m-0">Masa berlaku ijin pesan tempat makam anda telah berakhir pada tanggal ${y.tanggal_berlaku_surat}</h5></span></center> `
+                    button_perpanjang_pesan_makam =`<center><button class="btn btn-primary cari-perpanjang-pesan-makam" onclick="perpanjang('${y.jenazah_id}',${2})">Daftar Perpanjangan Pesan Tempat Makam</button></center>`
+                }else{
+                    peringatan =`<center><span class="badge badge-info"><h5 class="m-0">Permohonan Perpanjangan ijin anda belum diverifikasi</h5></span></center> `
+                }
+               
+                $(`.perpanjang-pesan`).empty()
+                $(`.perpanjang-pesan`).append(`
+                <div class="row">
+                    <div class="col-lg-6 col-xl-6">
+                        <h5 class="m-0"><strong>INFORMASI AHLI WARIS/PEMOHON </strong></h5>
+                        <hr/ style="margin:5px 0">
+                        <table class="table table-sm table-borderless mb-0">
+                            <tbody>
+                                <tr>
+                                    <td style="width: 160px;">Nama Pemohon</td>
+                                    <td style="width: 5px;">:</td>
+                                    <td>${y.nama_ahli_waris}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>No. KTP</td>
+                                    <td>:</td>
+                                    <td>${y.nik}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>No. Hp</td>
+                                    <td>:</td>
+                                    <td>${y.hp}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Email</td>
+                                    <td>:</td>
+                                    <td>${y.email}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Alamat Lengkap</td>
+                                    <td>:</td>
+                                    <td>${y.alamat}</td>
+                                </tr>
+
+                                
+                            </tbody>
+                        </table>
+                    </div>
+
+                    <div class="col-lg-6 col-xl-6">
+                        <h5 class="m-0"><strong>INFORMASI LOKASI MAKAM </strong></h5>
+                        <hr/ style="margin:5px 0">
+                        <table class="table table-sm table-borderless mb-0">
+                            <tbody>
+                                <tr>
+                                    <td colspan="3"></td>
+                                </tr>
+
+                                <tr>
+                                    <td style="width: 160px;">Lokasi Pemakaman</td>
+                                    <td style="width: 5px;">:</td>
+                                    <td>${y.nama_tpu}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Cluster</td>
+                                    <td>:</td>
+                                    <td>${y.agama}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Blok</td>
+                                    <td>:</td>
+                                    <td>${y.blok}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Subblok</td>
+                                    <td>:</td>
+                                    <td>${y.sub_blok}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>No. Liang</td>
+                                    <td>:</td>
+                                    <td>${y.no_liang}</td>
+                                </tr>
+
+                                <tr>
+                                    <td>Masa Berlaku s/d</td>
+                                    <td>:</td>
+                                    <td>
+                                        ${badge}
+                                    </td>
+                                </tr>
+                                
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12">
+                        ${peringatan}
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12">
+                        <hr/>
+                    </div>
+                </div>
+                <div class="row">
+                    <div class="col-lg-12 col-xl-12">
+                        ${button_perpanjang_pesan_makam}
+                    </div>
+                </div>
+                
+            `)
+                if (y.jns_pemakaman !=2) {
+                    $('.perpanjang-pesan').empty()
+                    location.reload();
+                    alert('bukan tipe pesam makam')
+                }
+            })
+       
+            $('#konten-detail-perpanjang-pesan').slideDown(1000);
+        });
+
+        $('#konten-detail-perpanjang-tumpang').hide();
+        $('#cari-perpanjang-tumpang').click(function(){
+            let pin = $(`#pin-tumpang`).val()
+            console.log(pin,'this');
+            $(".peringatan").empty()
+            $(`#button-perpanjang-pesan-makam-tumpang`).empty()
+            $('#data-perpanjang-tumpang').empty()
+
+            // $.get(`/permohonan_ijin/cekPin/${pin}`,function (x) {
+            let nama =  $(`#nama-jenazah-tumpang`).val()
+            let nik =  $(`#nik-jenazah-tumpang`).val()
+            let tanggal = $(`#tgl2`).val()
+            if (tanggal&&nama) {
+
+        $.get(`/permohonan_ijin/dataJenazah?nama=${nama}&nik=${nik}&type=4&tanggal=${tanggal}`, function (x) {
+            if (x.data.length == 0) {
+                alert('Tidak ada Data Jenazah')
+            }
+            $('.konten-detail-perpanjang-tumpang').empty()
+            let data = x.data
+                for (let i = 0; i < data.length; i++) {
+                    
+               
+            // $.get(`/permohonan_ijin/cekPin/${pin}`,function (x) {
+                let y = x.data[i]
+                let alamat =''
+                console.log(y);
+
+                if (y.domisili_jenazah=="Dalam kota semarang") {
+                    alamat = 
+                    `<!-- apabila domisili dalam kota semarang tampilkan ini -->
+                    <tr>
+                        <td>Kecamatan</td>
+                        <td>:</td>
+                        <td>${y.kecamatan_jenazah}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Kelurahan</td>
+                        <td>:</td>
+                        <td>${y.kelurahan_jenazah}</td>
+                    </tr>`
+                } else {
+                    alamat = ` <!-- apabila domisili luar kota semarang tampilkan ini -->
+                    <tr>
+                        <td>Alamat Lengkap</td>
+                        <td>:</td>
+                        <td>${y.alamat_jenazah}</td>
+                    </tr>`
+                }
+                let perpanjang_makam =`
+                <tbody>
+                    <tr>
+                        <td style="width: 160px;">Nama Jenazah</td>
+                        <td style="width: 5px;">:</td>
+                        <td>${y.nama_jenazah}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Jenis Kelamin</td>
+                        <td>:</td>
+                        <td>${y.jenis_kelamin}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Agama</td>
+                        <td>:</td>
+                        <td>${y.agama_jenazah}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Domisili</td>
+                        <td>:</td>
+                        <td>${y.domisili_jenazah}</td>
+                    </tr>
+
+                    ${alamat}
+
+                   
+
+                    <tr>
+                        <td>Meninggal Pada Tanggal</td>
+                        <td>:</td>
+                        <td>${y.tanggal_meninggal}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Akan Dimakamkan Tanggal</td>
+                        <td>:</td>
+                        <td>
+                            ${y.tanggal_dimakamkan}
+                        </td>
+                    </tr>
+                </tbody>
+                `
+                let peringatan = ''
+                let button_perpanjang_pesan_makam = ''
+                let badge = ''
+                if (y.kadaluarsa==0) {
+                    badge = `<span class="badge badge-success">${y.tanggal_berlaku_surat}</span>`
+                    peringatan = `<center><span class="badge badge-success"><h5 class="m-0">Masa berlaku ijn pemakaman tumpang anda berlaku sampai dengan ${y.tanggal_berlaku_surat}</h5></span></center>`
+                    button_perpanjang_pesan_makam =`<center><button class="btn btn-primary mb-2" onclick="perpanjang('${y.jenazah_id}',${4})">Daftar Perpanjangan Ijin Pemakaman Tumpang</button><br/>Atau<br/><button class="btn btn-warning mt-2" data-toggle="modal" data-target="#perpanjanMakamDanUpdatePemohon" onclick="perpanjangan('${y.jenazah_id}',${4})">Daftar Perpanjangan Ijin Pemakaman Tumpang Dan Ganti Ahli Waris / Pemohon</button></center>`
+                    // button_perpanjang_pesan_makam =`<button class="btn btn-primary" onclick="perpanjang('${y.jenazah_id}',${0})">Daftar Perpanjangan Makam</button>`
+                } else if (y.kadaluarsa==1) {
+                    badge = `<span class="badge badge-danger">${y.tanggal_berlaku_surat}</span>`
+                    peringatan = `<center><span class="badge badge-danger"><h5 class="m-0">Masa berlaku ijin pemakaman tumpag anda telah berakhir pada tanggal <span class="badge badge-success">${y.tanggal_berlaku_surat}</span></div> `
+                    button_perpanjang_pesan_makam =`<center><button class="btn btn-primary" onclick="perpanjang('${y.jenazah_id}',${4})">Daftar Perpanjangan Ijin Pemakaman Tumpang</button><button class="btn btn-primary" data-toggle="modal" data-target="#perpanjanMakamDanUpdatePemohon" onclick="perpanjangan('${y.jenazah_id}',${4})">Daftar Perpanjangan ijin Pemakaman Tumpang Dan Ganti Ahli Waris / Pemohon</button></center>`
+                    // button_perpanjang_pesan_makam =`<button class="btn btn-primary" onclick="perpanjang('${y.jenazah_id}',${0})">Daftar Perpanjangan Makam</button>`
+                }else{
+                    peringatan = `<center><span class="badge badge-info"><h5 class="m-0">Permohonan perpanjangan ijin anda belum diverifikasi</h5></span></center>`
+                }
+           
+
+                let lokasi_makam = `
+                <tbody>
+                    <tr>
+                        <td style="width: 160px;">Lokasi Pemakaman</td>
+                        <td style="width: 5px;">:</td>
+                        <td>${y.nama_tpu}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Cluster</td>
+                        <td>:</td>
+                        <td>${y.cluster}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Blok</td>
+                        <td>:</td>
+                        <td>${y.blok}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Subblok</td>
+                        <td>:</td>
+                        <td>${y.sub_blok_makam}</td>
+                    </tr>
+
+                    <tr>
+                        <td>No. Liang</td>
+                        <td>:</td>
+                        <td>${y.no_liang_makam}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Masa Berlaku s/d</td>
+                        <td>:</td>
+                        <td>
+                           ${badge}
+                        </td>
+                    </tr>
+                </tbody>
+                `
+                let alamat_pemohon = ''
+                if (y.domisili_pemohon=='Dalam kota semarang') {
+                    alamat_pemohon = 
+                    `<tr>
+                        <td>Kecamatan</td>
+                        <td>:</td>
+                        <td>${y.kecamatan_pemohon}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Kelurahan</td>
+                        <td>:</td>
+                        <td>${y.kelurahan_pemohon}</td>
+                    </tr>`
+                } else {
+                    alamat_pemohon = 
+                    `<tr>
+                        <td>Alamat Lengkap</td>
+                        <td>:</td>
+                        <td>${y.alamat_pemohon}</td>
+                    </tr>`
+                }
+              
+                let pemohon = `
+                <tbody>
+                    <tr>
+                        <td style="width: 160px;">Nama Ahli Waris</td>
+                        <td style="width: 5px;">:</td>
+                        <td>${y.nama_ahli_waris}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Pekerjaan</td>
+                        <td>:</td>
+                        <td>${y.pekerjaan}</td>
+                    </tr>
+
+                    <tr>
+                        <td>Domisili</td>
+                        <td>:</td>
+                        <td>${y.domisili_pemohon}</td>
+                    </tr>
+                    ${alamat_pemohon}
+                    <tr>
+                        <td>No. Telepon/Hp</td>
+                        <td>:</td>
+                        <td>${y.hp}</td>
+                    </tr>
+                </tbody>
+                `
+                $('.konten-detail-perpanjang-tumpang').append(`
+                <div class="col-lg-12 col-xl-12">
+                    <div style="width:100%;padding:15px;border-radius:4px;border:1px solid #ddd;margin-top:15px;" class="shadow">
+                        <div class="row">
+                            <div class="col-lg-4 col-xl-4">
+                                <h5 class="m-0"><strong>INFORMASI AHLI WARIS/PEMOHON </strong></h5>
+                                <hr/ style="margin:5px 0">
+                                <table class="table table-sm table-borderless mb-0">
+                                    ${pemohon}
+                                </table>
+                            </div>
+
+                            <div class="col-lg-4 col-xl-4">
+                                <h5 class="m-0"><strong>INFORMASI JENAZAH </strong></h5>
+                                <hr/ style="margin:5px 0">
+                                <table class="table table-sm table-borderless mb-0" id="perpanjang-makam">
+                                    ${perpanjang_makam}
+                                </table>
+                           
+                            </div>
+
+                            <div class="col-lg-4 col-xl-4">
+                                <h5 class="m-0"><strong>INFORMASI LOKASI MAKAM </strong></h5>
+                                <hr/ style="margin:5px 0">
+                                <table class="table table-sm table-borderless mb-0">
+                                    ${lokasi_makam}
+                                </table>
+                            </div>
+                        </div>
+                        
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                 ${peringatan}
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                <hr/>
+                            </div>
+                        </div>
+
+                        <div class="row">
+                            <div class="col-lg-12 col-xl-12">
+                                ${button_perpanjang_pesan_makam}
+                            </div>
+                        </div>
+                    </div>
+                </div>`)
+                if (y.jns_pemakaman !=4) {
+                    $('#data-perpanjang-tumpang').empty()
+                    location.reload();
+                    alert('bukan tipe tumpang')
+                }
+                }
+            })
+        }else{
+                alert('Silahkan Isi Data Jenazah Terlebih Dahulu')
+            }
+            $('#konten-detail-perpanjang-tumpang').slideDown(1000);
+        
+        });
+
+        $('.konten-perpanjangan').hide();
+        $('.konten-perpanjangan-pesan').hide(); 
+        $('.konten-perpanjangan-tumpang').hide();
+        $('.konten-bongkar').hide();
+
+        $('#jns_permohonan').change(function(){ 
+            if ($(this).val() == '') { 
+                $('.konten-perpanjangan').hide(); 
+                $('.konten-perpanjangan-pesan').hide(); 
+                $('.konten-perpanjangan-tumpang').hide(); 
+                $('.konten-bongkar').hide();
+            }  
+    
+            if ($(this).val() == '0') { 
+                $('.konten-perpanjangan').show();
+                $('.konten-perpanjangan-pesan').hide();
+                $('.konten-perpanjangan-tumpang').hide();
+                $('.konten-bongkar').hide();
+            } 
+
+
+            if ($(this).val() == '2') { 
+                $('.konten-perpanjangan').hide();
+                $('.konten-perpanjangan-pesan').show();
+                $('.konten-perpanjangan-tumpang').hide(); 
+                $('.konten-bongkar').hide();
+            } 
+
+            if ($(this).val() == '4') { 
+                $('.konten-perpanjangan').hide(); 
+                $('.konten-perpanjangan-pesan').hide(); 
+                $('.konten-perpanjangan-tumpang').show();
+                $('.konten-bongkar').hide(); 
+            }
+            
+            if ($(this).val() == '6') { 
+                $('.konten-perpanjangan').hide(); 
+                $('.konten-perpanjangan-pesan').hide(); 
+                $('.konten-perpanjangan-tumpang').hide();
+                $('.konten-bongkar').show(); 
+            }
+        });
+
+
+        function toWKT(layer) {
+            var lng, lat, coords = [];
+            if (layer instanceof L.Polygon || layer instanceof L.Polyline) {
+                var latlngs = layer.getLatLngs();
+                for (var i = 0; i < latlngs.length; i++) {
+                    var latlngs1 = latlngs[i];
+                    if (latlngs1.length) {
+                        for (var j = 0; j < latlngs1.length; j++) {
+                            coords.push(latlngs1[j].lng + " " + latlngs1[j].lat);
+                            if (j === 0) {
+                                lng = latlngs1[j].lng;
+                                lat = latlngs1[j].lat;
+                            }
+                        }
+                    } else {
+                        coords.push(latlngs[i].lng + " " + latlngs[i].lat);
+                        if (i === 0) {
+                            lng = latlngs[i].lng;
+                            lat = latlngs[i].lat;
+                        }
+                    }
+                };
+                if (layer instanceof L.Polygon) {
+                    return "POLYGON((" + coords.join(",") + "," + lng + " " + lat + "))";
+                } else if (layer instanceof L.Polyline) {
+                    return "LINESTRING(" + coords.join(",") + ")";
+                }
+            } else if (layer instanceof L.Marker) {
+                return "POINT(" + layer.getLatLng().lng + " " + layer.getLatLng().lat + ")";
+            }
+        };
+        $(document).ready(function () {
+
+            // $.ajax({ 
+            //   type : "GET", 
+            //   async : false, 
+            //   global : false, 
+            //   url : root + "peta/json_kec", 
+            //   dataType : 'json', 
+            //   success: function (data) { 
+            //    $("#kabupaten").empty(); 
+            //     $("#kabupaten").append('<option value="">Pilih Kecamatan / Kota</option>') 
+            //  $.each(data, function(){ 
+            //       $("#kabupaten").append('<option value="'+ this.kecamatan +'">'+ this.kecamatan +'</option>') 
+            //   }) 
+
+            //   } 
+            // }); 
+
+            $("#parsepeta").on("click", function () {
+                drawnItems.clearLayers();
+                inputan_koordinat = "";
+                end_koordinat = "";
+                var tableHtml = $('table.order-list') // tableHtml is a jQuery of the table 
+
+                tableHtml.find('tbody > tr').each(function () {
+
+                    if (inputan_koordinat == "") {
+                        end_koordinat = '' + $(this).find('input[name^="x"]').val() + ' ' + $(
+                            this).find('input[name^="y"]').val()
+                    }
+                    inputan_koordinat = inputan_koordinat + '' + $(this).find(
+                            'input[name^="x"]').val() + ' ' + $(this).find('input[name^="y"]')
+                        .val() + ',';
+                });
+                inputan_koordinat = inputan_koordinat + end_koordinat;
+                console.log(inputan_koordinat);
+                layer_parse = omnivore.wkt.parse('POLYGON((' + inputan_koordinat + '))');
+
+                $('#SHAPE').val('POLYGON((' + inputan_koordinat + '))');
+                layer_parse.eachLayer(function (layer) {
+
+                    var bounds = layer.getBounds();
+                    //         // Get center of bounds 
+                    var center = bounds.getCenter();
+
+
+                    drawnItems.addLayer(layer);
+                })
+            });
+            $("#reset_peta").on("click", function () {
+                drawnItems.clearLayers();
+
+
+                $('#myTable tbody').html(
+                    '<tr><td><input type="text" name="x[]" style="width:100%"/></td><td><input type="text" name="y[]" style="width:100%"/></td><td><a class="deleteRow" style="width:100%"></a></td> </tr>'
+                );
+                $('#wkt_inputan').empty();
+
+            });
+            $("#addrow").on("click", function () {
+
+                counter = $('#myTable tr').length - 2;
+
+                var newRow = $("<tr>");
+                var cols = "";
+
+                cols += '<td><input type="text" name="x[]" style="width:100%"/></td>';
+                cols += '<td><input type="text" name="y[]" style="width:100%"/></td>';
+
+                cols +=
+                    '<td><input type="button" class="ibtnDel"  value="Hapus" style="width:100%"></td>';
+                newRow.append(cols);
+                //  if (counter == 4) $('#addrow').attr('disabled', true).prop('value', "You've reached the limit"); 
+                $("table.order-list").append(newRow);
+                counter++;
+                $("table.order-list").on("click", ".ibtnDel", function (event) {
+                    $(this).closest("tr").remove();
+
+
+                    counter -= 1
+                    $('#addrow').attr('disabled', false).prop('value', "Tambah Koordinat");
+                });
+                //  var price = +row.find('input[name^="price"]').val(); 
+            });
+
+        });
+
+
+        var warna_total = ['#ffffff', '#ffffff'];
+        var labels = ['', ''];
+        var wkt = new Wkt.Wkt();
+
+        function onLocationFound(e) {
+            var radius = e.accuracy / 2;
+
+            if (center == 0) {
+                map.setView(e.latlng, 13);
+                center++;
+            }
+            //   var koordinat = {latlng:{lat: ye, lng: xe}}; 
+
+
+            //console.log(koordinat) 
+            clickHandler(e)
+            // iht_layer.eachLayer(function (layer) { 
+            //   layer_lat_long = layer.getLatLng(); 
+            //   layer_lat = layer.getLatLng().lat; 
+            //   layer_lng = layer.getLatLng().lng; 
+
+            //   // jarak ke point saat ini dalam meter 
+            //   var posisi_kita_lat = e.latlng.lat; 
+            //   var posisi_kita_lng = e.latlng.lng; 
+
+            //   jarak = layer_lat_long.distanceTo(e.latlng); 
+
+            //   var popupContent = getPopup( layer, posisi_kita_lat, posisi_kita_lng, layer_lat, layer_lng ); 
+            //   layer.bindPopup(popupContent, popupOptions); 
+            //   if(jarak > 30000){ 
+            //      // layer.setOpacity(0); 
+            //      // layer.unbindPopup(); 
+            //   } 
+            // }); 
+        }
+
+
+
+        function ke_lokasi(x_awal, y_awal, x_akhir, y_akhir) {
+            map.closePopup();
+            console.log(x_awal + ' , ' + y_awal + ' ; ' + x_akhir + ' , ' + y_akhir)
+
+            if (navigasi != null) {
+                navigasi.spliceWaypoints(navigasi.getWaypoints().length - 1, 1, L.latLng(x_akhir, y_akhir));
+            } else {
+                navigasi = L.Routing.control({
+                    // waypointIcon : 
+                    // waypoints : [L.latLng(x_awal, y_awal), L.latLng(x_akhir, y_akhir)] 
+                    plan: L.Routing.plan([
+                        L.latLng(x_awal, y_awal),
+                        L.latLng(x_akhir, y_akhir)
+                    ], {
+                        createMarker: function (i, wp) {
+                            return L.marker(wp.latLng, {
+                                draggable: false,
+                                icon: routeIcon
+                            });
+                        }
+                        // geocoder: L.Control.Geocoder.nominatim(), 
+                        // routeWhileDragging: true 
+                    })
+                });
+                navigasi.addTo(map);
+                console.log(navigasi.getPlan());
+                $('.leaflet-routing-container').append(
+                    '<a href="#" id="tutup_navigasi" onclick="tutup_navigasi()">BATAL</a>');
+            }
+        }
+
+        function tutup_navigasi() {
+            if (navigasi != null) {
+                navigasi.spliceWaypoints(0, 2);
+                $('.leaflet-routing-container').hide();
+                navigasi = null;
+            }
+        }
+
+        function tambah_titik(x, y, id_jalan) {
+
+            map.panTo(new L.LatLng(x, y));
+            map.setZoom(16);
+
+            jalan_layer.eachLayer(function (layer) {
+                if (layer.feature.properties.id_jalan == id_jalan) {
+                    console.log(layer.feature.properties)
+                    layer.openPopup();
+                };
+            });
+        }
+
+        $('#cari').click(function () {
+            var xe = $('#xe').val();
+            var ye = $('#ye').val();
+            map.panTo(new L.LatLng(ye, xe));
+            map.setZoom(16);
+            var koordinat = {
+                latlng: {
+                    lat: ye,
+                    lng: xe
+                }
+            };
+
+
+            //console.log(koordinat) 
+            clickHandler(koordinat)
+        })
+        function cari(x, y, zoom){
+ 
+  
+ map.setView(new L.LatLng(y, x), zoom);
+
+ 
+}
+
+        /** 
+         *  
+         *  Variables Initialization 
+         *  
+         */
+        var kabupaten_layer;
+        var iht_layer = null;
+        var source = null;
+        var marker;
+        var lingkaran;
+        var center = 0;
+        var navigasi = null;
+        var kabupaten_layer;
+        var marker_search = '';
+
+        /** 
+         *  
+         *  Layer Styling 
+         *  
+         */
+        var sembunyi = {
+            color: "transparent",
+            weight: 1,
+            opacity: 0,
+            fillOpacity: 0
+        };
+
+        var style_kabupaten = {
+            color: "yellow",
+            weight: 3,
+            opacity: 1,
+            fillOpacity: 0,
+            dashArray: 3
+        };
+        var style_gambar = {
+            color: "blue",
+            weight: 2,
+            opacity: 1,
+            fillOpacity: 0
+
+        };
+        var style_desa = {
+            color: "white",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0,
+            dashArray: 3
+        };
+
+
+
+
+        var style_kabupaten_gelap = {
+            color: "#000",
+            weight: 1,
+            opacity: 1,
+            fillOpacity: 0,
+            dashArray: 3
+        };
+
+        var popupOptions = {
+            maxWidth: '450',
+            minWidth: '250',
+            className: 'custom',
+            closeOnClick: true
+        };
+
+        /** 
+         *  
+         *  Map initialization 
+         *  
+        . The Longitude of Kota Pati is  
+         */
+        var southWest = L.latLng(-8.629903118263488, 108.0780029296875),
+            northEast = L.latLng(-6.124169589851178, 112.52746582031249),
+            bounds = L.latLngBounds(southWest, northEast);
+        var map = L.map('map', {
+            center: [-7.0135366261313825, 110.39355397224428],
+            // maxBounds: bounds, 
+
+            zoom: 11,
+            minZoom: 2,
+            maxZoom: 21,
+            fullscreenControl: true,
+            fullscreenControlOptions: {
+                position: 'topleft'
+            }
+        });
+
+
+        //ngilangi garis putih 
+
+
+
+
+        function clickHandler(e) {
+
+            //  var clickBounds = L.latLngBounds(e.latlng, e.latlng); 
+
+            //  var intersectingFeatures = []; 
+            //    for (var l in map._layers) { 
+            //    var overlay = map._layers[l]; 
+            //    if (overlay._layers) { 
+            //      for (var f in overlay._layers) { 
+            //        var feature = overlay._layers[f]; 
+            //        var bounds; 
+            //        if (feature.getBounds) bounds = feature.getBounds(); 
+            //        else if (feature._latlng) { 
+            //          bounds = L.latLngBounds(feature._latlng, feature._latlng); 
+            //        } 
+            //        if (bounds && clickBounds.intersects(bounds)) { 
+            //          intersectingFeatures.push(feature); 
+            //        } 
+            //      } 
+            //    } 
+            //  } 
+            // intersectingFeatures.map(function(o) { 
+            //    console.log(o) 
+            //  }) 
+            //  var html = "Found features: " + intersectingFeatures.length + "<br/>" + intersectingFeatures.map(function(o) { 
+            //    return o.feature 
+            //  }).join('<br/>'); 
+            $('#xe').val(e.latlng.lng)
+            $('#ye').val(e.latlng.lat)
+            var html = "";
+
+            html = html + "</br></br>Pola Ruang RTRW : </br>"
+            $.ajax({
+                type: "GET",
+                async: false,
+                global: false,
+                url: root + "peta/list_polaruang?x=" + e.latlng.lng + "&y=" + e.latlng.lat,
+                dataType: 'json',
+                success: function (data) {
+                    // console.log(data) 
+                    $.each(data, function () {
+                        html = html + this.rencana_tg + "</br>";
+                    })
+
+                }
+            });
+
+            html = html + "</br>Koordinat : </br>"
+            html = html + "</br>" + e.latlng.lng + " " + e.latlng.lat + "</br>"
+
+
+
+            map.openPopup(html, e.latlng);
+        }
+
+
+
+
+
+        // map.fitBounds(bounds); 
+
+        var google_roadmap = L.gridLayer.googleMutant({
+            type: 'roadmap',
+            styles: [{
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#242f3e'
+                    }]
+                },
+                {
+                    elementType: 'labels.text.stroke',
+                    stylers: [{
+                        color: '#242f3e'
+                    }]
+                },
+                {
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#746855'
+                    }]
+                },
+                {
+                    featureType: 'administrative.locality',
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#d59563'
+                    }]
+                },
+                {
+                    featureType: 'poi',
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#d59563'
+                    }]
+                },
+                {
+                    featureType: 'poi.park',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#263c3f'
+                    }]
+                },
+                {
+                    featureType: 'poi.park',
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#6b9a76'
+                    }]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#38414e'
+                    }]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'geometry.stroke',
+                    stylers: [{
+                        color: '#212a37'
+                    }]
+                },
+                {
+                    featureType: 'road',
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#9ca5b3'
+                    }]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#746855'
+                    }]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'geometry.stroke',
+                    stylers: [{
+                        color: '#1f2835'
+                    }]
+                },
+                {
+                    featureType: 'road.highway',
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#f3d19c'
+                    }]
+                },
+                {
+                    featureType: 'transit',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#2f3948'
+                    }]
+                },
+                {
+                    featureType: 'transit.station',
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#d59563'
+                    }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'geometry',
+                    stylers: [{
+                        color: '#17263c'
+                    }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.fill',
+                    stylers: [{
+                        color: '#515c6d'
+                    }]
+                },
+                {
+                    featureType: 'water',
+                    elementType: 'labels.text.stroke',
+                    stylers: [{
+                        color: '#17263c'
+                    }]
+                }
+            ]
+            // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid' 
+        })
+
+        var google_hybrid = L.gridLayer.googleMutant({
+            type: 'hybrid' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid' 
+        })
+        var google_satelit = L.gridLayer.googleMutant({
+            type: 'satellite' // valid values are 'roadmap', 'satellite', 'terrain' and 'hybrid' 
+        })
+        var osm = L.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {});
+        var Esri_WorldImagery = L.tileLayer(
+            'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}');
+        // var RBI            = L.tileLayer('http://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer'); 
+
+        var RBI = L.esri.tiledMapLayer({
+            url: "https://portal.ina-sdi.or.id/arcgis/rest/services/IGD/RupabumiIndonesia/MapServer"
+        });
+        (function () {
+            var originalInitTile = L.GridLayer.prototype._initTile
+            L.GridLayer.include({
+                _initTile: function (tile) {
+                    originalInitTile.call(this, tile);
+
+                    var tileSize = this.getTileSize();
+
+                    tile.style.width = tileSize.x + 1 + 'px';
+                    tile.style.height = tileSize.y + 1 + 'px';
+                }
+            });
+        })()
+        map.addLayer(google_hybrid);
+
+        var legend = L.control({
+            position: 'bottomleft'
+        });
+        var streetview = L.control({
+            position: 'bottomright'
+        });
+
+        //gambar 
+        var drawnItems = L.featureGroup().addTo(map);
+        var options = {
+            position: 'topleft',
+            draw: {
+                polyline: false,
+                polygon: {
+                    showArea: true,
+                    allowIntersection: false, // Restricts shapes to simple polygons 
+                    drawError: {
+                        color: '#e1e100', // Color the shape will turn when intersects 
+                        message: '<strong>Digitasi Salah!' // Message that will show when intersect 
+                    },
+                    shapeOptions: {
+                        color: '#bada55'
+                    }
+                },
+                circle: false, // Turns off this drawing tool 
+                rectangle: false,
+                marker: false
+            },
+            edit: {
+                featureGroup: drawnItems, //REQUIRED!! 
+                remove: true
+            }
+        };
+
+        var drawControl = new L.Control.Draw(options);
+        //  map.addControl(drawControl); 
+
+        map.on(L.Draw.Event.CREATED, function (event) {
+            drawnItems.clearLayers();
+            var layer = event.layer;
+            var latlngss = layer.getLatLngs();
+            // console.log(latlngss[0]) 
+            var seeArea = L.GeometryUtil.geodesicArea(latlngss[0]);
+            seeArea = L.GeometryUtil.readableArea(seeArea, true, {})
+            // console.log(seeArea); 
+            // console.log(toWKT(layer)); 
+            // console.log(layer); 
+
+
+
+
+            //    html = html+"</br>"+"<a href='/peta/print?p="+toWKT(layer)+"' style='color:blue' target='_blank'>[DOWNLOAD]</a>"; 
+            var bounds = layer.getBounds();
+            //         // Get center of bounds 
+            var center = bounds.getCenter();
+            // map.openPopup(html, center, { 
+            //     offset: L.point(0, -24) 
+            //   }); 
+            //  $('#konten_polaruang').empty() 
+            // $('#konten_polaruang').append(html) 
+
+            // // $("#konten-detail").toggle("slide", {direction:"right"}, 500); 
+            // $('.modal').modal('show'); 
+            //  drawnItems.addLayer(layer); 
+            peta_pemohon(toWKT(layer))
+
+
+        });
+
+
+        //gambar end  
+
+
+
+        var locateIcon = L.ExtraMarkers.icon({
+            icon: 'fa-map-marker',
+            markerColor: 'blue-dark',
+            prefix: 'fa',
+            iconColor: 'white',
+            shape: 'square'
+        });
+
+        var ihtIconAktif = L.ExtraMarkers.icon({
+            prefix: 'fa',
+            markerColor: 'green-light',
+            icon: 'fa-building',
+            iconColor: 'white',
+            shape: 'square'
+        });
+
+        var ihtIconTidakAktif = L.ExtraMarkers.icon({
+            prefix: 'fa',
+            markerColor: 'red',
+            icon: 'fa-ban',
+            iconColor: 'white',
+            shape: 'square'
+        });
+
+        var ihtIconTidakDiketahui = L.ExtraMarkers.icon({
+            prefix: 'fa',
+            markerColor: 'orange',
+            icon: 'fa-question',
+            iconColor: 'white',
+            shape: 'square'
+        });
+
+        var routeIcon = L.ExtraMarkers.icon({
+            prefix: 'fa',
+            markerColor: 'red',
+            icon: 'fa-location-arrow',
+            iconColor: 'white',
+            shape: 'square'
+        });
+
+        // $.getJSON( root + "index.php/kabupaten", function( json ) { 
+        //   $.each(json, function( i, item ) { 
+        //     $('#kabupaten').append('<option value="'+item.id_kabupaten+'">'+item.nama_kabupaten+'</option>'); 
+        //   }) 
+        // }); 
+        //ambil ksp   
+        var label_kec = [];
+        var label_desa = [];
+        var popup = new L.popup();
+
+        //topojson 
+        L.TopoJSON = L.GeoJSON.extend({
+            addData: function (jsonData) {
+                if (jsonData.type === "Topology") {
+                    for (key in jsonData.objects) {
+                        geojson = topojson.feature(jsonData, jsonData.objects[key]);
+                        L.GeoJSON.prototype.addData.call(this, geojson);
+                    }
+                } else {
+                    L.GeoJSON.prototype.addData.call(this, jsonData);
+                }
+            }
+        });
+        //topojson 
+        var wellmaxzoom = 13;
+        var polaruang_layer = new L.GeoJSON();
+        var kabupaten_layer = new L.TopoJSON();
+        var desa_layer = new L.TopoJSON();
+
+
+
+        var makam = new L.GeoJSON();
+        // var sampah_markers = L.markerClusterGroup();
+        var pdam = new L.TopoJSON();
+        var pdam_markers = L.markerClusterGroup();
+        var ipal = new L.TopoJSON();
+        var ipal_markers = L.markerClusterGroup();
+        var non_pdam = new L.TopoJSON();
+        var non_pdam_markers = L.markerClusterGroup();
+        //hapus labeh 
+        function hapus_label_kec() {
+            var ii = 0;
+            kabupaten_layer.eachLayer(function (layer) {
+                map.removeLayer(label_kec[ii]);
+                // label[ii].clearLayers(); 
+                ii++;
+            })
+            label_kec = [];
+        }
+
+        function tampil_label_kec() {
+            var ii = 0;
+            kabupaten_layer.eachLayer(function (layer) {
+                label_kec[ii].setOpacity(1);
+                // label[ii].clearLayers(); 
+                ii++;
+            })
+        }
+
+        function hide_label_kec() {
+            var ii = 0;
+            kabupaten_layer.eachLayer(function (layer) {
+                label_kec[ii].setOpacity(0);
+                // label[ii].clearLayers(); 
+                ii++;
+            })
+        }
+
+        function hapus_label_desa() {
+            var ii = 0;
+            desa_layer.eachLayer(function (layer) {
+                if (label_desa[ii]) {
+                    map.removeLayer(label_desa[ii]);
+                }
+
+                // label[ii].clearLayers(); 
+                ii++;
+            })
+            label_desa = [];
+        }
+
+        function tampil_label_desa() {
+            var ii = 0;
+            desa_layer.eachLayer(function (layer) {
+                label_desa[ii].setOpacity(1);
+                // label[ii].clearLayers(); 
+                ii++;
+            })
+        }
+
+        function hide_label_desa() {
+            var ii = 0;
+            desa_layer.eachLayer(function (layer) {
+                label_desa[ii].setOpacity(0);
+                // label[ii].clearLayers(); 
+                ii++;
+            })
+        }
+
+        function loadGeoJsonkec(data) {
+            //hapus_label_kec(); 
+            kabupaten_layer.clearLayers();
+            kabupaten_layer.addData(data);
+
+            kabupaten_layer.addTo(map);
+            var i = 0;
+            var labelnya = "";
+            kabupaten_layer.eachLayer(function (layer) {
+
+
+                layer.setStyle(style_kabupaten);
+                // layer.bindPopup(feature.properties.kabupaten); 
+                // Get bounds of polygon 
+                var bounds = layer.getBounds();
+                // Get center of bounds 
+                var center = bounds.getCenter();
+                //  console.log(layer.feature.properties.id_kec)
+
+                //center.on('click', alert('asu')); 
+                // Use center to put marker on map 
+                //var marker = L.marker(center).addTo(map); 
+                //labelnya 
+                label_kec[i] = new L.Tooltip({
+                    noHide: false,
+                    direction: 'auto',
+                    permanent: true
+                });
+                labelnya = layer.feature.properties.kecamatan;
+
+                label_kec[i].setContent(labelnya);
+                label_kec[i].setLatLng(center);
+                // label_kec[i].setOpacity(0); 
+                map.showLabel(label_kec[i]);
+                layer.on('click', function (e) {
+                    //  panorama(e.latlng.lat, e.latlng.lng); 
+                    // clickHandler(e) 
+                });
+                i++;
+                // layer.on("click", function (e) { 
+                //       // var bounds = layer.getBounds(); 
+                //       // var popupContent = "popup content here"; 
+                //       // popup.setLatLng(bounds.getCenter()); 
+                //       // popup.setContent(popupContent); 
+                //       // map.openPopup(popup); 
+                //    //  $('#bs-example-modal-lg').modal('show'); 
+                //   }); 
+            });
+        }
+
+        function loadGeoJsondesa(data) {
+
+            hapus_label_desa();
+            desa_layer.clearLayers();
+            desa_layer.addData(data);
+            desa_layer.addTo(map);
+            var i = 0;
+            var labelnya = "";
+            desa_layer.eachLayer(function (layer) {
+
+
+                layer.setStyle(style_desa);
+
+                // layer.bindPopup(feature.properties.kabupaten); 
+                // Get bounds of polygon 
+                var bounds = layer.getBounds();
+                // Get center of bounds 
+                var center = bounds.getCenter();
+                //center.on('click', alert('asu')); 
+                // Use center to put marker on map 
+                //var marker = L.marker(center).addTo(map); 
+                //labelnya 
+                label_desa[i] = new L.Tooltip({
+                    noHide: false,
+                    direction: 'auto',
+                    permanent: true
+                });
+                labelnya = layer.feature.properties.desa;
+
+                label_desa[i].setContent(labelnya);
+                label_desa[i].setLatLng(center);
+                label_desa[i].setOpacity(0);
+                map.showLabel(label_desa[i]);
+                layer.on('click', function (e) {
+
+                });
+                i++;
+
+            });
+            tampil_label_desa();
+            map.removeLayer(drawnItems);
+            drawnItems.addTo(map);
+
+            map.removeLayer(makam); 
+            makam.addTo(map); 
+        }
+
+        function loadGeoJsonMakam(data) {
+            
+            makam.clearLayers();
+            makam.addData(data);
+            makam.addTo(map);
+
+            var i = 0;
+            var labelnya = "";
+            //  console.log(data.objects.output.geometries.length) 
+            makam.eachLayer(function (layer) {
+
+
+                // layer.setStyle(style_sempadan_sungai); 
+                // layer.bindPopup(layer.feature.properties.rencana_tg); 
+                // Get bounds of polygon 
+                // var bounds = layer.getBounds(); 
+                // Get center of bounds 
+                // var center = bounds.getCenter(); 
+                //center.on('click', alert('asu')); 
+                // Use center to put marker on map 
+                //var marker = L.marker(center).addTo(map); 
+                //labelnya 
+                //         var stl = { 
+                //   color : "cyan",  
+                //   weight : 3,  
+                //   opacity : 1,  
+                //   fillOpacity  : 0.6 
+                // }; 
+                // layer.setStyle(stl); 
+                // var ihIconAktif = L.ExtraMarkers.icon({
+
+                //     shape: 'penta',
+                //     markerColor: 'green',
+                //     prefix: '',
+                //     icon: 'fa-number',
+                //     iconColor: '#fff',
+                //     iconRotate: 0,
+                //     extraClasses: '',
+                //     number: layer.feature.properties.jenis,
+                //     svg: true
+                // });
+                // layer.setIcon(ihIconAktif);
+                // sampah_markers.addLayer(layer); 
+                let wrn ='cyan';
+                // if(layer.feature.properties.keterangan=='Liang'||layer.feature.properties.keterangan=='Liang Terisi'||layer.feature.properties.keterangan=='Sudah dipesan'||layer.feature.properties.keterangan=='Liang Tersedia'){
+                if(!layer.feature.properties.keterangan||layer.feature.properties.keterangan=='Makam Tumpang'||layer.feature.properties.keterangan== 'Tanggal Meninggal Tidak Jelas'||layer.feature.properties.keterangan=='Liang Kosong'||layer.feature.properties.keterangan=='Liang'||layer.feature.properties.keterangan=='Liang Terisi'||layer.feature.properties.keterangan=='Liang Tersedia'){
+                    wrn ='green'
+                       var stl = {
+                      color : wrn, 
+                      weight : 2.5, 
+                      opacity : 1, 
+                      fillOpacity  : 0.6
+                    };
+                    layer.setStyle(stl);
+                }
+             
+                if (layer.feature.properties.id==57916) {
+                    console.log(layer.feature.properties);
+                }
+                if(layer.feature.properties.jenazahId){
+                    wrn ='red'
+                       var stl = {
+                      color : wrn, 
+                      weight : 2.5, 
+                      opacity : 1, 
+                      fillOpacity  : 0.6
+                    };
+                    layer.setStyle(stl);
+                }
+                if (layer.feature.properties.keterangan=='Pesan Tempat'||layer.feature.properties.keterangan=='Sudah dipesan') {
+                    wrn ='blue'
+                       var stl = {
+                      color : wrn, 
+                      weight : 2.5, 
+                      opacity : 1, 
+                      fillOpacity  : 0.6
+                    };
+                    layer.setStyle(stl);
+                }
+                // 'Operasioal'
+                // 'Lahan Sudah Terjual'
+                // 'Lahan Ditawarkan'
+                // 'Jalan'
+                // 'Sudah Tidak Operasional'
+                // 'Lainnya'
+              
+           
+          
+           
+        
+               
+         
+                //  popupContent = popupContent+"</br>Status Tanah  : "+layer.feature.properties.status_tnh; 
+                //  // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                //  var foto = layer.feature.properties.foto_tampak_dpn; 
+                // if(n > -1){ 
+                //     foto = foto.split("-"); 
+                //     foto = foto[0]; 
+                // } 
+                //  popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+
+
+                i++;
+                // if(data.objects.output.geometries.length == 1){ 
+                //      var bounds = layer.getBounds(); 
+                //      map.fitBounds(bounds) 
+                //        popup.setLatLng(bounds.getCenter()); 
+                //        popup.setContent(popupContent); 
+                //         map.openPopup(popup); 
+                // } 
+                layer.on("click", function (e) {
+                    let popupContentt ='';
+                    // if(layer.feature.properties.keterangan=='Liang'||layer.feature.properties.keterangan=='Liang Terisi'||layer.feature.properties.keterangan=='Sudah dipesan'||layer.feature.properties.keterangan=='Liang Tersedia'){
+                    if(!layer.feature.properties.keterangan||layer.feature.properties.keterangan=='Makam Tumpang'||layer.feature.properties.keterangan== 'Tanggal Meninggal Tidak Jelas'||layer.feature.properties.keterangan=='Pesan Tempat'||layer.feature.properties.keterangan=='Liang Kosong'||layer.feature.properties.keterangan=='Liang'||layer.feature.properties.keterangan=='Liang Terisi'||layer.feature.properties.keterangan=='Sudah dipesan'||layer.feature.properties.keterangan=='Liang Tersedia'){
+                        //  popupContentt = layer.feature.properties.nm_perusahaan;
+                    popupContentt += '<table class="table table-borderless table-sm">';
+                     popupContentt += '<tr><td>Blok</td><td>:</td><td>'+layer.feature.properties.blok+'</td></tr>';
+                     popupContentt += '<tr><td>No. Liang</td><td>:</td><td>'+layer.feature.properties.no_liang+'</td></tr>';
+                     popupContentt += '<tr><td>Keterangan</td><td>:</td><td>'+layer.feature.properties.keterangan+'</td></tr>';
+                     popupContentt += '<tr><td>Sub Blok</td><td>:</td><td>'+layer.feature.properties.sub_blok+'</td></tr>';
+                     if (layer.feature.properties.nama_jenazah) {
+                        popupContentt += '<tr><td>Nama Jenazah</td><td>:</td><td>'+layer.feature.properties.nama_jenazah+'</td></tr>';
+                        popupContentt += '<tr><td>Tanggal Meninggal</td><td>:</td><td>'+layer.feature.properties.tanggal_meninggal+'</td></tr>';
+                     }
+                     popupContentt += '</table>';
+                    // popupContentt+='</br> Alamat:'+layer.feature.properties.alamat;
+                    // popupContentt+='</br> No telp:'+layer.feature.properties.no_tlpn;
+                    // popupContentt+='</br> Email:'+layer.feature.properties.no_tlpn;
+                    // popupContentt+='</br> Jenis Usaha:'+layer.feature.properties.jenis_usaha;
+                    // popupContentt+='</br> Kategori:'+layer.feature.properties.kategori_industri;
+                    // popupContentt+='</br> Pemasaran:'+layer.feature.properties.pemasaran;
+                    // popupContentt+='</br> Nilai Investasi:'+layer.feature.properties.nilai_investasi;
+                    // popupContentt += '</br><img src="/foto/'+layer.feature.properties.foto_1+'" class="img-responsive" style="height: 100px;"> '; 
+                    }
+                     var bounds = layer.getBounds(); 
+                       popup.setLatLng(bounds.getCenter()); 
+                     popup.setContent(popupContentt); 
+                       map.openPopup(popup); 
+                    // $('.popup_peta_sampah').modal('show')
+                    // detail_sampah(layer.feature.properties.id)
+                    //  $('#bs-example-modal-lg').modal('show'); 
+                });
+            });
+            //   map.removeLayer(sampah); 
+            //  map.addLayer(sampah_markers); 
+        }
+
+        function loadGeoJsonpdam(data) {
+
+            pdam.clearLayers();
+            pdam.addData(data);
+            pdam.addTo(map);
+
+            var i = 0;
+            var labelnya = "";
+            //  console.log(data.objects.output.geometries.length) 
+            pdam.eachLayer(function (layer) {
+
+
+
+                //labelnya 
+                //         var stl = { 
+                //   color : "cyan",  
+                //   weight : 3,  
+                //   opacity : 1,  
+                //   fillOpacity  : 0.6 
+                // }; 
+                // layer.setStyle(stl); 
+                var ihIconAktif = L.ExtraMarkers.icon({
+
+                    shape: 'penta',
+                    markerColor: 'cyan',
+                    prefix: '',
+                    icon: 'fa-number',
+                    iconColor: '#fff',
+                    iconRotate: 0,
+                    extraClasses: '',
+                    number: '' + layer.feature.properties.jml + '',
+                    svg: true
+                });
+                layer.setIcon(ihIconAktif);
+                if (layer.feature.properties.jml == 0) {
+                    pdam.removeLayer(layer);
+                }
+
+                //  pdam_markers.addLayer(layer); 
+
+                var popupContent = "Kelurahan : " + layer.feature.properties.desa;
+                popupContent = popupContent + "</br>Jumlah : " + layer.feature.properties.jml + " Pelanggan";
+
+                //  popupContent = popupContent+"</br>Status Tanah  : "+layer.feature.properties.status_tnh; 
+                //  // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                //  var foto = layer.feature.properties.foto_tampak_dpn; 
+                // if(n > -1){ 
+                //     foto = foto.split("-"); 
+                //     foto = foto[0]; 
+                // } 
+                //  popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+
+
+                i++;
+                // if(data.objects.output.geometries.length == 1){ 
+                //      var bounds = layer.getBounds(); 
+                //      map.fitBounds(bounds) 
+                //        popup.setLatLng(bounds.getCenter()); 
+                //        popup.setContent(popupContent); 
+                //         map.openPopup(popup); 
+                // } 
+                layer.on("click", function (e) {
+                    //  var bounds = layer.getBounds(); 
+                    popup.setLatLng(layer.getLatLng());
+                    popup.setContent(popupContent);
+                    map.openPopup(popup);
+                    // $('.popup_peta_sampah').modal('show');
+                    //  $('#bs-example-modal-lg').modal('show'); 
+                });
+            });
+            // map.removeLayer(pdam); 
+            //  map.addLayer(pdam_markers); 
+        }
+
+        function loadGeoJsonipal(data) {
+
+            ipal.clearLayers();
+            ipal.addData(data);
+            ipal.addTo(map);
+
+            var i = 0;
+            var labelnya = "";
+            //  console.log(data.objects.output.geometries.length) 
+            ipal.eachLayer(function (layer) {
+
+
+
+                //labelnya 
+                //         var stl = { 
+                //   color : "cyan",  
+                //   weight : 3,  
+                //   opacity : 1,  
+                //   fillOpacity  : 0.6 
+                // }; 
+                // layer.setStyle(stl); 
+                var iIconAktif = L.ExtraMarkers.icon({
+
+
+                    shape: 'square',
+                    markerColor: 'yellow',
+                    prefix: '',
+                    icon: 'fa-number',
+                    iconColor: '#fff',
+                    iconRotate: 0,
+                    extraClasses: '',
+                    number: "IPAL",
+                    svg: true
+                });
+                layer.setIcon(iIconAktif);
+                //  ipal_markers.addLayer(layer); 
+
+                var popupContent = "Kelurahan : " + layer.feature.properties.kelurahan;
+                //  popupContent = popupContent+"</br>Alamat : "+layer.feature.properties.alamat; 
+                //  popupContent = popupContent+"</br>Tarif: "+layer.feature.properties.tarif; 
+                //  popupContent = popupContent+"</br>Status: "+layer.feature.properties.status; 
+                //  popupContent = popupContent+"</br>Status Tanah  : "+layer.feature.properties.status_tnh; 
+                //  // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                //  var foto = layer.feature.properties.foto_tampak_dpn; 
+                // if(n > -1){ 
+                //     foto = foto.split("-"); 
+                //     foto = foto[0]; 
+                // } 
+                //  popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+
+
+                i++;
+
+                layer.on("click", function (e) {
+                    //  var bounds = layer.getBounds(); 
+                    //    popup.setLatLng(layer.getLatLng()); 
+                    //  popup.setContent(popupContent); 
+                    //    map.openPopup(popup); 
+                    // $('.popup_peta_sampah').modal('show');
+                    detail_ipal(layer.feature.properties.id)
+                    //  $('#bs-example-modal-lg').modal('show'); 
+                });
+            });
+            // map.removeLayer(ipal); 
+            //  map.addLayer(ipal_markers); 
+        }
+
+
+        function loadGeoJsonnon_pdam(data) {
+
+            non_pdam.clearLayers();
+            non_pdam.addData(data);
+            non_pdam.addTo(map);
+
+            var i = 0;
+            var labelnya = "";
+            //  console.log(data.objects.output.geometries.length) 
+            non_pdam.eachLayer(function (layer) {
+
+
+
+                //labelnya 
+                //         var stl = { 
+                //   color : "cyan",  
+                //   weight : 3,  
+                //   opacity : 1,  
+                //   fillOpacity  : 0.6 
+                // }; 
+                // layer.setStyle(stl); 
+                var IconAktif = L.ExtraMarkers.icon({
+                    shape: 'square',
+                    markerColor: 'red',
+                    prefix: '',
+                    icon: 'fa-number',
+                    iconColor: '#fff',
+                    iconRotate: 0,
+                    extraClasses: '',
+
+                    svg: true
+                });
+                layer.setIcon(IconAktif);
+                //  non_pdam_markers.addLayer(layer); 
+
+                var popupContent = "Kelurahan : " + layer.feature.properties.kelurahan;
+                //  popupContent = popupContent+"</br>Alamat : "+layer.feature.properties.alamat; 
+                //  popupContent = popupContent+"</br>Tarif: "+layer.feature.properties.tarif; 
+                //  popupContent = popupContent+"</br>Status: "+layer.feature.properties.status; 
+                //  popupContent = popupContent+"</br>Status Tanah  : "+layer.feature.properties.status_tnh; 
+                //  // var n = layer.feature.properties.foto_tampak_depan.search("-"); 
+                //  var foto = layer.feature.properties.foto_tampak_dpn; 
+                // if(n > -1){ 
+                //     foto = foto.split("-"); 
+                //     foto = foto[0]; 
+                // } 
+                //  popupContent = popupContent+'<img src="/foto/'+foto+'" class="img-responsive" style="height: 100px;"> '; 
+
+
+                i++;
+
+                layer.on("click", function (e) {
+                    //  var bounds = layer.getBounds(); 
+                    //    popup.setLatLng(layer.getLatLng()); 
+                    //  popup.setContent(popupContent); 
+                    //    map.openPopup(popup); 
+                    // $('.popup_peta_sampah').modal('show');
+                    //  $('#bs-example-modal-lg').modal('show'); 
+                    detail_spam(layer.feature.properties.id)
+                });
+            });
+            // map.removeLayer(non_pdam); 
+            //  map.addLayer(non_pdam_markers); //
+        }
+
+
+
+
+
+
+
+        // do stuff after marker has been added 
+
+
+        function doAnimations() {
+            var myIcon = document.querySelector('.gps_ring')
+            //sesudah 
+            myIcon.style.width = '1000px'
+
+        }
+
+        //ambil kec 
+        var geoJsonUrl = root + "peta/topojson_kec";
+        $.getJSON(geoJsonUrl)
+            .done(loadGeoJsonkec);
+        //ambil polaruang 
+        // var geoJsonUrl = root+"peta/makam";
+        // $.getJSON(geoJsonUrl)
+        //     .done(loadGeoJsonMakam);
+
+
+
+        //pencarian 
+
+        $('#kecamatan').change(function () {
+            if ($('#kecamatan').val() == "0") {
+                alert("Pilih Desa Terlebih Dahulu !")
+            } else {
+                $.ajax({
+                    type: "GET",
+                    async: false,
+                    global: false,
+                    url: root + "peta/desa?kecamatan=" + $('#kecamatan').val(),
+                    dataType: 'json',
+                    success: function (data) {
+                        $('#desa').empty()
+                        $('#desa').append('<option value="0">-- Pilih Desa --</option>')
+                        $.each(data, function (index, item) {
+
+                            $('#desa').append('<option value="' + item.xe + ',' + item.ye +
+                                ',' + item.nm_desa + '">' + item.nm_desa + '</option>')
+                        })
+
+                    }
+                });
+            }
+
+        })
+
+        //  map.on('moveend', function(){ 
+        //   if(map.getZoom() > 10 && map.getZoom() < 14){ 
+        //         tampil_label_kec(); 
+        //   }else{ 
+        //    hide_label_kec(); 
+        //   } 
+        // }) 
+        var kiri_atas_lng = map.getBounds().getSouthWest().lng;
+        var kiri_atas_lat = map.getBounds().getSouthWest().lat;
+        var kanan_bawah_lng = map.getBounds().getNorthEast().lng;
+        var kanan_bawah_lat = map.getBounds().getNorthEast().lat;
+
+
+
+        //end ambil_kec 
+
+        //saat pindah 
+        function ambil_desa() {
+
+        }
+        map.on('moveend', function () {
+            //  console.log(map.getZoom(), wellmaxzoom)
+            if (map.getZoom() > wellmaxzoom) {
+                //kembali ke asal 
+
+
+                //kembali ke asal 
+
+                var kiri_atas_lng = map.getBounds().getSouthWest().lng;
+                var kiri_atas_lat = map.getBounds().getSouthWest().lat;
+                var kanan_bawah_lng = map.getBounds().getNorthEast().lng;
+                var kanan_bawah_lat = map.getBounds().getNorthEast().lat;
+                //   var geoJsonUrl =root + "index.php/peta/geo_kec_bound/"+kiri_atas_lng+"/"+kiri_atas_lat+"/"+kanan_bawah_lng+"/"+kanan_bawah_lat;  
+                var geoJsonUrl = "/peta/topojson_desa?kiri_lng=" + kiri_atas_lng + "&kiri_lat=" +
+                    kiri_atas_lat + "&kanan_lng=" + kanan_bawah_lng + "&kanan_lat=" + kanan_bawah_lat;
+                // console.log(geoJsonUrl); 
+                // console.log(map.getBounds().toBBoxString()); 
+                // console.log(map.getBounds().getSouthWest().lng + ';' + map.getBounds().getSouthWest().lat + ';' + map.getBounds().getNorthEast().lng + ';' + map.getBounds().getNorthEast().lat); 
+                //    var boundingBox = L.rectangle(map.getBounds(), {color: "#ff7800", weight: 1}); 
+                // map.addLayer(boundingBox); 
+                // $.ajax({ 
+                //     url: geoJsonUrl, 
+                //     datatype: 'json', 
+                //     jsonCallback: 'getJson', 
+                //     success: loadGeoJson 
+                //     }); 
+                //load desa 
+                $.getJSON(geoJsonUrl)
+                    .done(loadGeoJsondesa);
+
+
+
+            } else {
+                hapus_label_desa();
+                map.removeLayer(desa_layer);
+            };
+        });
+
+        //end moveend 
+
+        legend.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'info-legend')
+
+            // loop through our density intervals and generate a label with a colored square for each interval 
+            for (var i = 0; i < warna_total.length; i++) {
+                div.innerHTML += '<i style="background:' + warna_total[i] + '"></i> ' + labels[i] + '<br>';
+            }
+            return div;
+        };
+
+        legend.addTo(map);
+
+        var baseLayers = {
+            "Google Roadmap": google_roadmap,
+            "Google Hybrid": google_hybrid,
+            "Google Satellite": google_satelit,
+            "Open Street Map": osm,
+            "ESRI World Imagery": Esri_WorldImagery,
+            "RBI": RBI
+        };
+
+        // var overlays = { 
+        //   "kecamatan": kabupaten_layer, 
+        //   "<span>RTRW Semapadan Sungai</span>&nbsp;&nbsp;<span style='background-color:#499277;padding:2px 8px 2px 8px;'></span>": sempadan_sungai, 
+        //   "<span>RTRW Sempadan Pantai</span>&nbsp;&nbsp;<span style='background-color:#3F786F;padding:2px 8px 2px 8px;'></span>": sempadan_pantai, 
+        //   "<span>RTRW Kawasan Konservasi/KA</span>&nbsp;&nbsp;<span style='background-color:#195344;padding:2px 8px 2px 8px;'></span>": kawasan_konservasi, 
+        //   "<span>RTRW Hutan Lindung</span>&nbsp;&nbsp;<span style='background-color:#8C8D88;padding:2px 8px 2px 8px;'></span>": hutan_lindung, 
+        //   "<span>RTRW Tambak</span>&nbsp;&nbsp;<span style='background-color:#48B3C5;padding:2px 8px 2px 8px;'></span>": tambak, 
+        //   "<span>RTRW Lahan Basah Kering</span>&nbsp;&nbsp;<span style='background-color:#C8DEB0;padding:2px 8px 2px 8px;'></span>": lahan_basah_kering, 
+        //   "<span>RTRW Permukiman Perkotaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perkotaan, 
+        //   "<span>RTRW Permukiman Perdesaan</span>&nbsp;&nbsp;<span style='background-color:#E8B05D;padding:2px 8px 2px 8px;'></span>": permukiman_perdesaan, 
+        //   "<span>RTRW Perkebunan</span>&nbsp;&nbsp;<span style='background-color:#ABBC6E;padding:2px 8px 2px 8px;'></span>": perkebunan, 
+        //   "<span>RTRW Industri</span>&nbsp;&nbsp;<span style='background-color:#9E8986;padding:2px 8px 2px 8px;'></span>": industri, 
+        //   "<span>RTRW Hutan Produksi Terbatas</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi_terbatas, 
+        //   "<span>RTRW Hutan Produksi</span>&nbsp;&nbsp;<span style='background-color:#7EA4D3;padding:2px 8px 2px 8px;'></span>": hutan_produksi, 
+        //   "<span>Jalan</span>&nbsp;&nbsp;<span style='background-color:red;padding:2px 8px 2px 8px;'></span>": jalan_layer 
+
+
+        // }; 
+
+        // L.control.layers(baseLayers,overlays,{ 
+        //   position : 'topright' 
+        // }, {'drawlayer':drawnItems}, { position: 'topleft', collapsed: false }).addTo(map); 
+
+        var groupedOverlays = {
+            "Administrasi": {
+                "&nbsp;&nbsp;&nbsp;&nbsp;Kecamatan": kabupaten_layer
+            },
+            "Layer": {
+                // "<span>Penghuni</span>&nbsp;&nbsp;<span style='background-color:green;padding:2px 8px 2px 8px;'></span>": penghuni,
+                // "<span>PDAM</span>&nbsp;&nbsp;<span style='background-color:cyan;padding:2px 8px 2px 8px;'></span>": pdam,
+                // "<span>IPAL</span>&nbsp;&nbsp;<span style='background-color:orange;padding:2px 8px 2px 8px;'></span>": ipal,
+                // "<span>Non PDAM</span>&nbsp;&nbsp;<span style='background-color:red;padding:2px 8px 2px 8px;'></span>": non_pdam,
+
+            }
+        };
+        var options = {
+            // Make the "Landmarks" group exclusive (use radio inputs) 
+            // exclusiveGroups: ["Landmarks"], 
+            // Show a checkbox next to non-exclusive group labels for toggling all 
+            collapsed: true,
+            groupCheckboxes: false
+        };
+        L.control.groupedLayers(baseLayers, groupedOverlays, options).addTo(map);
+
+
+
+
+        streetview.onAdd = function (map) {
+            var div = L.DomUtil.create('div', 'sv')
+
+            // loop through our density intervals and generate a label with a colored square for each interval 
+            div.innerHTML += '';
+
+            return div;
+        };
+
+        // streetview.addTo(map); 
+
+        L.control.scale({
+            position: 'bottomright',
+            metric: true,
+            imperial: false
+        }).addTo(map);
+
+        lc = L.control.locate({
+            position: 'topleft',
+            follow: true,
+            strings: {
+                title: "Lokasi Anda",
+                popup: "Anda berada di radius {distance} {unit} dari titik ini"
+            },
+            markerClass: L.marker,
+            markerStyle: {
+                icon: locateIcon
+            },
+            keepCurrentZoomLevel: true
+        }).addTo(map);
+
+        map
+            .on('startfollowing', function () {
+                map.on('dragstart', lc._stopFollowing, lc);
+            })
+            .on('stopfollowing', function () {
+                map.off('dragstart', lc._stopFollowing, lc);
+            });
+
+        map.on('locationfound', onLocationFound);
+
+
+        // map.on('moveend', function() {  
+        //      console.log(map.getBounds()); 
+        // }); 
+
+        map.on('baselayerchange', function (e) {
+            console.log(e.name);
+
+            if (e.name == 'Google Roadmap' || e.name == 'Open Street Map' || e.name == 'Mapbox Street') {
+                kabupaten_layer.eachLayer(function (layer) {
+                    //   layer.setStyle(style_kabupaten_gelap); 
+                });
+            } else {
+                kabupaten_layer.eachLayer(function (layer) {
+                    layer.setStyle(style_kabupaten);
+                });
+            }
+
+        });
+
+        //ganti kabupaten 
+        $('#search_maps').hide();
+
+
+        // $('.leaflet-bottom.leaflet-left').hide(); 
+
+        $('.leaflet-bar-part.leaflet-bar-part-single').click(function () {
+
+        })
+
+
+        //panorama 
+        var marker = "";
+        var titik_panorama = null;
+
+        function panorama(xe, ye) {
+            if (titik_panorama != null) {
+                map.removeLayer(titik_panorama);
+            }
+            if (marker != "") {
+                map.removeLayer(marker);
+
+            }
+            titik_panorama = L.marker([xe, ye]).addTo(map);
+            var fenway = new google.maps.LatLng(xe, ye);
+            var panoramaOptions = {
+                position: fenway,
+                pov: {
+                    heading: 34,
+                    pitch: 10
+                }
+            };
+            var panorama = new google.maps.StreetViewPanorama(document.getElementById('pano'), panoramaOptions);
+
+        }
+        map.on('click', function (e) {
+
+            console.log(e.latlng.lat + ' ' + e.latlng.lng);
+            // var xe = e.latlng.lat; 
+            // var ye = e.latlng.lng; 
+
+            // panorama(xe,ye) 
+
+// ama Ahli Waris
+        });
+
+        
+        function perpanjang(id,tipe) {
+            $.get(`/permohonan_ijin/perpanjangan/${id}/${tipe}`,function (data) {
+               console.log(data.response);
+               alert(data.response.message);
+               window.location.assign('/')
+            })
+        }
+
+        $('.konten-dalam-pemohon').hide(); 
+        $('.konten-luar-pemohon').hide(); 
+        $('#domisili_pemohon').change(function(){ 
+            if ($(this).val() == '') { 
+                $('.konten-dalam-pemohon').hide(); 
+                $('.konten-luar-pemohon').hide(); 
+            } 
+    
+            if ($(this).val() == '0') { 
+                $('.konten-dalam-pemohon').show(); 
+                $('.konten-luar-pemohon').hide(); 
+            }  
+    
+            if ($(this).val() == '1') { 
+                $('.konten-dalam-pemohon').hide(); 
+                $('.konten-luar-pemohon').show();    
+            } 
+        });
+
+        // function kirimPerpanjangan() {
+        //     let formData = new FormData();
+        //         formData.append('nama_ahli_waris',$(`#nama_ahli_waris`).val());
+        //         formData.append('nik',$(`#nik_pemohon`).val());
+        //         formData.append('pekerjaan',$(`#pekerjaan_pemohon`).val());
+        //         formData.append(`domisili`,$(`#domisili_pemohon`).val())
+        //         formData.append(`alamat`,$(`#alamat_pemohon`).val())
+        //         formData.append(`kec_id`,$(`#kecamatan_pemohon`).val())
+        //         formData.append(`kel_id`,$(`#kelurahan_pemohon`).val())
+        //         formData.append(`jenazah_id`,$(`#jenazah_id_perpanjangan`).val())
+        //         formData.append(`tipe`,$(`#tipe_perpanjangan`).val())
+        //         formData.append(`hp`,$(`#hp_pemohon`).val())
+        //         formData.append(`email`,$(`#email_pemohon`).val())
+        //         console.log(formData);
+        //         $.ajax({
+        //           url : '/permohonan_ijin/perpanjanganMakam',
+        //           type : 'POST',
+        //           data : formData,
+        //           processData: false,  
+        //           contentType: false,  
+        //           success : function(data) {
+        //               console.log(data);
+        //               alert(ata.response.message);
+        //               window.location.assign('/')
+        //           }
+        //         });
+        // }
+        $(`#kecamatan_pemohon`).change(function () {
+            let x = $( this ).val();
+
+            $.get(`/permohonan_ijin/kelurahanByKec/${x}`,function (data) {
+                console.log(data);
+                $(`#kelurahan_pemohon`).empty()
+                $(`#kelurahan_pemohon`).append(`<option value="">-- Pilih --</option>`)
+                for (let i = 0; i < data.length; i++) {
+                     $(`#kelurahan_pemohon`).append(`<option value="${data[i].id_kelurahan}">${data[i].desa}</option>`)
+                }
+            })
+        })
+        // $('.button_perpanjangan_update').click(function () {
+        //     let jenazah_id = $(this).data('jenazah_id')
+        //     let tipe = $(this).data('tipe')
+        //     $('#tipe_perpanjangan').val(tipe)
+        //     $('#jenazah_id_perpanjangan').val(jenazah_id)
+        //     console.log(jenazah_id,tipe);
+        // })
+        function perpanjangan(x,y) {
+            $('#tipe_perpanjangan').val(y)
+            $('#jenazah_id_perpanjangan').val(x)
+            console.log(x,y);
+        }
+        function cari_nama_jenazah(params,status) {
+            if ($('#nama_jenazah_'+params).val() || $('#tahun_jenazah_'+params).val() ) {
+
+            $(`#`+params).empty()
+            $.post(`/get_nama_pemohon`,{kolom:'jns_pemakaman' , val_kol:status , nama_jenazah:$('#nama_jenazah_'+params).val(),tanggal_meninggal:$('#tahun_jenazah_'+params).val()  }).then(function (hsl) {
+                $(`#`+params).append(`<option value="">-- Silahkan pilih nama jenazah --</option>`)
+                for (let i = 0; i < hsl.data.length; i++) {
+                    $(`#`+params).append(`<option value="${hsl.data[i].nama_jenazah}">${hsl.data[i].nama_jenazah}</option>`)
+                }
+            })
+        }
+        }
+        $('#get_nama_dan_lokasi').click(function () {
+            if ($('#nama_jenazah_peta').val() || $('#tahun_jenazah_peta').val() ) {
+                $(`#jenazah`).empty()
+                $.post(`/get_nama_dan_lokasi`,{nama_jenazah:$('#nama_jenazah_peta').val(),tanggal_meninggal:$('#tahun_jenazah_peta').val()  }).then(function (hsl) {
+                    $(`#jenazah`).append(`<option value="">-- Silahkan pilih nama jenazah --</option>`)
+                    for (let i = 0; i < hsl.data.length; i++) {
+                        $(`#jenazah`).append(`<option value="${hsl.data[i].makam_id}"
+                                                            x="${hsl.data[i].x}"
+                                                            y="${hsl.data[i].y}"
+                                                            >${hsl.data[i].nama_jenazah}  ${hsl.data[i].tahun}</option>`)
+                    }
+                })
+            }
+        })
+
+
+    </script>
+</body>
+</html>
