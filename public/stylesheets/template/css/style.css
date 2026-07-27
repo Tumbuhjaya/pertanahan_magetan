@@ -20,22 +20,3 @@ h1,h2,h3,h4,h5,h6{
 .btn:focus, .btn.focus{
 	box-shadow: none;
 }
-
-#myHeader{
-            background-color: #fff;
-            /* position: fixed;
-            top:0;
-            left:0;
-            right: 0;
-            z-index: 1; */
-            box-shadow:0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-        }
-
-        .sticky {
-            position: fixed;
-            top: 0;
-            width: 100%;
-            z-index: 1;
-            background-color:#fff !important;
-            box-shadow:0 1rem 3rem rgba(0, 0, 0, 0.175) !important;
-        }

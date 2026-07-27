@@ -5,6 +5,6 @@
     user : 'root',
     port: '3306',
     password : 'Grafika9',
-    database : '2026_inkindo_prov_jateng'
+    database : '2026_basic_sql'
   }
 });

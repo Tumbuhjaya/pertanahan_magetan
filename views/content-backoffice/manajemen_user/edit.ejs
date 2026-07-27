@@ -28,35 +28,8 @@
 
 <% include ../../template-backoffice/footer.ejs %>
 <script type="text/javascript">
-              $('#div_pass').empty()
+  $('#div_pass').empty()
 
-  $('#is_admin').change(function () {
-   if ($('#is_admin').val()==2) {
-      $('#rusun').show()
-   }else{
-          $('#rusun').hide()
-
-   }
-    
-  })
-  
-    async function get_rusun() {    
-  data =await $.get(`/rusun/list`)
-    rusun = data.data
-    $('#rusun_id').empty()
-    $('#rusun_id').append(`<option value="">-- Pilih --</option>`)
-    $('#gedung_id').empty()
-    $('#gedung_id').append(`<option value="">-- Pilih --</option>`)
-    $('#kamar_id').empty()
-    $('#kamar_id').append(`<option value="">-- Pilih --</option>`)
-    $('#lantai_id').empty()
-    $('#lantai_id').append(`<option value="">-- Pilih --</option>`)
-
-        for (let i = 0; i < rusun.length; i++) {
-          $('#rusun_id').append(`<option value="${rusun[i].rusun_id}">${rusun[i].nama_rusun}</option>`)      
-        }
-  }
-   get_rusun()
   function myFunction() {
     $("#iconne").toggleClass("fa fa-eye-slash fa fa-eye");
     var x = document.getElementById("pwd");
@@ -80,7 +53,7 @@
         if (Object.hasOwnProperty.call(user, i) &&i!='pwd') {
           if (i.substring(0,4)=='foto') {
             if (user[i]) {
-              $('#lihat_'+i).append(`<a href="${rooturl}/foto/${user[i]}">Lihat</a>`)
+              $('#lihat_'+i).append(`<a href="${rooturl}/foto/${user[i]}" class="btn btn-dark btn-sm">-- Lihat File --</a>`)
             }
           }else if(i.substring(i.length-2,i.length)=='id'||i=='is_admin'){
             $('#'+i).val(user[i]).select2()
@@ -131,7 +104,7 @@
         $('#button_submit').append('<button class="btn btn-primary btn-embossed" disabled>Simpan</button>')
         let formData = new FormData();    
         // nama kolom db
-        let arr = ['username', 'pwd', 'is_admin', 'fullname', 'NIP', 'email', 'telp','rusun_id']
+        let arr = ['username', 'pwd', 'fullname', 'NIP', 'email', 'telp', 'is_admin',]
         
         formData.append('id_user', user.id_user);
 
