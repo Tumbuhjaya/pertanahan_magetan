@@ -34,6 +34,7 @@ var basic = require('./isine/basic.js');
 
 // BO
 var manajemen_basic = require('./isine/manajemen_basic.js');
+var manajemen_pertanahan = require('./isine/manajemen_pertanahan.js');
 var manajemen_users = require('./isine/manajemen_users.js');
 
 // API
@@ -102,6 +103,7 @@ app.use('/basic', basic);
 
 // BO
 app.use('/manajemen_basic', manajemen_basic);
+app.use('/manajemen_pertanahan', manajemen_pertanahan);
 app.use('/manajemen_users', manajemen_users);
 
 // API
