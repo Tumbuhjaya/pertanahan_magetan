@@ -51,7 +51,7 @@ app.set('view engine', 'ejs');
 
 
 // all environments
-app.set('port', process.env.PORT || 8936);
+app.set('port', process.env.PORT || 8900);
 
 app.use(cors({
   origin: 'http://localhost:8100' // or your Ionic frontend domain
