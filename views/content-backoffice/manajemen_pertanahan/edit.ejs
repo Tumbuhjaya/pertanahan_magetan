@@ -3,10 +3,10 @@
     <section class="section">
       <div class="w-100" style="padding: 0 30px;">
         <div class="section-header" style="border-radius: 0.25rem;">
-          <h1>Edit Data</h1>
+          <h1>Edit Data Pertanahan</h1>
           <div class="section-header-breadcrumb">
             <div class="breadcrumb-item active"><a href="/backoffice">Dashboard</a></div>
-            <div class="breadcrumb-item active"><a href="/manajemen_basic">Data</a></div>
+            <div class="breadcrumb-item active"><a href="/manajemen_pertanahan">Data</a></div>
             <div class="breadcrumb-item">Edit Data</div>
           </div>
         </div>
@@ -29,6 +29,48 @@
 <% include ../../template-backoffice/footer.ejs %>
 <script type="text/javascript">
   var rooturl = ''
+  document.addEventListener('DOMContentLoaded', function () {
+    const container = document.getElementById('koordinat-container');
+    const btnTambah = document.getElementById('btn-tambah');
+
+    // 1. Fitur Tambah Field Koordinat
+    btnTambah.addEventListener('click', function () {
+        // Buat elemen baris baru
+        const barisBaru = document.createElement('div');
+        barisBaru.className = 'row mt-3 koordinat-row';
+        
+        // Isi dengan struktur HTML yang sama
+        barisBaru.innerHTML = `
+            <div class="col-12 col-lg-5">
+              <input type="text" class="form-control" name="latitude[]" placeholder="Latitude" required>
+            </div>
+            <div class="col-12 col-lg-5">
+              <input type="text" class="form-control" name="longitude[]" placeholder="Longitude" required>
+            </div>
+            <div class="col-12 col-lg-2">
+              <button type="button" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i></button>
+            </div>
+        `;
+        
+        // Tambahkan ke dalam container
+        container.appendChild(barisBaru);
+    });
+
+    // 2. Fitur Hapus Field Koordinat (menggunakan event delegation agar berfungsi pada elemen yang baru ditambahkan)
+    container.addEventListener('click', function (e) {
+        // Cari elemen terdekat yang memiliki class 'btn-hapus'
+        const btnHapus = e.target.closest('.btn-hapus');
+        
+        if (btnHapus) {
+            // Cari elemen baris ('koordinat-row') yang membungkus tombol tersebut lalu hapus
+            const baris = btnHapus.closest('.koordinat-row');
+            if (baris) {
+                baris.remove();
+            }
+        }
+    });
+  });
+
   let data_basic = {}
   window.onload =async function (params) {
     await $.get('/api_basic/list?data_basic_id=').then(function (data) {

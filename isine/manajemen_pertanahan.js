@@ -61,15 +61,15 @@ var upload = multer({ storage: storage })
 
 //start-------------------------------------
 router.get('/', cek_login_all, function(req, res) {
-  res.render('content-backoffice/manajemen_basic/list'); 
+  res.render('content-backoffice/manajemen_pertanahan/list'); 
 });
 
 router.get('/insert', cek_login_all, function(req, res) {
-  res.render('content-backoffice/manajemen_basic/insert'); 
+  res.render('content-backoffice/manajemen_pertanahan/insert'); 
 });
 
 router.get('/edit/:id', cek_login_all, function(req, res) {
-  res.render('content-backoffice/manajemen_basic/edit'); 
+  res.render('content-backoffice/manajemen_pertanahan/edit'); 
 });
 
 module.exports = router;
