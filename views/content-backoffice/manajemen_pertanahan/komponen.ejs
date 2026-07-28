@@ -3,366 +3,365 @@
     <div class="col-12 col-lg-12 col-xl-12">
       <div class="card">
         <div class="card-body">
-          <div class="form-group row">
-            <div class="col-12">
-              <h5><strong>DIGITASI PETA</strong></h5>
-              <hr>
-            </div>
+          <form action="/simpan" method="post" enctype="multipart/form-data" id="formPertanahan">
+            <div class="form-group row">
+              <div class="col-12">
+                <h5><strong>DIGITASI PETA</strong></h5>
+                <hr>
+              </div>
 
-            <div class="col-12 col-lg-7 col-xl-7">
-              <div class="w-100" style="height: 500px;background-color: whitesmoke;"></div>
-            </div>
-            
-            <div class="col-12 col-lg-5 col-xl-5">
-              <ul class="nav nav-tabs" id="myTab" role="tablist">
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Gambar Peta By Koordinat</a>
-                </li>
-                <li class="nav-item" role="presentation">
-                  <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Import File SHP</a>
-                </li>
-              </ul>
-              <div class="tab-content" id="myTabContent">
-                <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
-                  <!-- Bungkus baris koordinat di dalam sebuah container dengan ID -->
-                  <div id="koordinat-container">
-                    <!-- Baris Pertama (Tanpa tombol hapus) -->
-                    <div class="row mt-3 koordinat-row">
-                      <div class="col-12 col-lg-5">
-                        <input type="text" class="form-control" name="latitude[]" placeholder="Latitude" required>
+              <div class="col-12 col-lg-7 col-xl-7">
+                <div class="w-100" style="height: 500px;background-color: whitesmoke;"></div>
+              </div>
+              
+              <div class="col-12 col-lg-5 col-xl-5">
+                <ul class="nav nav-tabs" id="myTab" role="tablist">
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link active" id="home-tab" data-toggle="tab" href="#home" role="tab" aria-controls="home" aria-selected="true">Gambar Peta By Koordinat</a>
+                  </li>
+                  <li class="nav-item" role="presentation">
+                    <a class="nav-link" id="profile-tab" data-toggle="tab" href="#profile" role="tab" aria-controls="profile" aria-selected="false">Import File SHP</a>
+                  </li>
+                </ul>
+                <div class="tab-content" id="myTabContent">
+                  <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
+                    <div id="koordinat-container">
+                      <div class="row mt-3 koordinat-row">
+                        <div class="col-12 col-lg-5">
+                          <input type="text" class="form-control" name="latitude[]" id="latitude" placeholder="Latitude" required>
+                        </div>
+                        <div class="col-12 col-lg-5">
+                          <input type="text" class="form-control" name="longitude[]" id="longitude" placeholder="Longitude" required>
+                        </div>
+                        <div class="col-12 col-lg-2">
+                          <!-- kosong -->
+                        </div>
                       </div>
-                      <div class="col-12 col-lg-5">
-                        <input type="text" class="form-control" name="longitude[]" placeholder="Longitude" required>
+                    </div>
+
+                    <div class="row">
+                      <div class="col-12">
+                        <hr>
+                        <ul class="list-inline">
+                          <li class="list-inline-item">
+                            <button type="button" id="btn-tambah" class="btn btn-dark">
+                              <i class="fas fa-plus"></i> Tambah Koordinat 
+                            </button>
+                          </li>
+                          <li class="list-inline-item">
+                            <button type="button" class="btn btn-primary">
+                              <i class="fas fa-pencil-ruler"></i> Gambar Peta
+                            </button>
+                          </li>
+                          <li class="list-inline-item">
+                            <button type="button" class="btn btn-warning">
+                              <i class="fas fa-undo-alt"></i> Reset Peta
+                            </button>
+                          </li>
+                        </ul>
                       </div>
-                      <div class="col-12 col-lg-2">
-                        <!-- Kosong untuk menjaga penataan -->
+                    </div>
+                  </div>
+                  <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
+                    <div class="form-group row mt-3">
+                      <label class="col-sm-4 col-form-label">Pilih File (.shp)</label>
+                      <div class="col-sm-8">
+                        <input type="file" class="form-control" name="file_shp">
                       </div>
                     </div>
-                  </div>
 
-                  <!-- Tombol Aksi -->
-                  <div class="row">
-                    <div class="col-12">
-                      <hr>
-                      <ul class="list-inline">
-                        <li class="list-inline-item">
-                          <!-- Tambahkan ID untuk menargetkan tombol ini -->
-                          <button type="button" id="btn-tambah" class="btn btn-dark">
-                            <i class="fas fa-plus"></i> Tambah Koordinat 
-                          </button>
-                        </li>
-                        <li class="list-inline-item">
-                          <button type="button" class="btn btn-primary">
-                            <i class="fas fa-pencil-ruler"></i> Gambar Peta
-                          </button>
-                        </li>
-                        <li class="list-inline-item">
-                          <button type="button" class="btn btn-warning">
-                            <i class="fas fa-undo-alt"></i> Reset Peta
-                          </button>
-                        </li>
-                      </ul>
+                    <div class="form-group row">
+                      <label class="col-sm-4 col-form-label">Pilih File (.shx)</label>
+                      <div class="col-sm-8">
+                        <input type="file" class="form-control" name="file_shx">
+                      </div>
                     </div>
-                  </div>
-                </div>
-                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                  <div class="form-group row mt-3">
-                    <label class="col-sm-4 col-form-label">Pilih File (.shp)</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control">
-                    </div>
-                  </div>
 
-                  <div class="form-group row">
-                    <label class="col-sm-4 col-form-label">Pilih File (.shx)</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control">
+                    <div class="form-group row mb-0">
+                      <label class="col-sm-4 col-form-label">Pilih File (.dbf)</label>
+                      <div class="col-sm-8">
+                        <input type="file" class="form-control" name="file_dbf">
+                      </div>
                     </div>
-                  </div>
 
-                  <div class="form-group row mb-0">
-                    <label class="col-sm-4 col-form-label">Pilih File (.dbf)</label>
-                    <div class="col-sm-8">
-                      <input type="file" class="form-control">
-                    </div>
-                  </div>
-
-                  <div class="form-group row">
-                    <div class="col-12">
-                      <hr>
-                      <button class="btn btn-dark"><i class="fas fa-check"></i> Simpan</button>
+                    <div class="form-group row">
+                      <div class="col-12">
+                        <hr>
+                        <button class="btn btn-dark"><i class="fas fa-check"></i> Simpan</button>
+                      </div>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <div class="col-12">
-              <h5><strong>INFORMASI UMUM</strong></h5>
-              <hr>
+            <!-- INFORMASI UMUM -->
+            <div class="form-group row">
+              <div class="col-12">
+                <h5><strong>INFORMASI UMUM</strong></h5>
+                <hr>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nama Penguasaan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Nama Penguasaan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="nama_penguasaan" id="nama_penguasaan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">NIK</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">NIK</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" name="nik" id="nik">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">No. KK</label>
-            <div class="col-sm-10">
-              <input type="number" class="form-control">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">No. KK</label>
+              <div class="col-sm-10">
+                <input type="number" class="form-control" name="no_kk" id="no_kk">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Alamat Sesuai KTP</label>
-            <div class="col-sm-10">
-              <textarea name="" id="" class="form-control" rows="1"></textarea>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Alamat Sesuai KTP</label>
+              <div class="col-sm-10">
+                <textarea name="alamat_ktp" id="alamat_ktp" class="form-control" rows="1"></textarea>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Alamat Rumah</label>
-            <div class="col-sm-10">
-              <textarea name="" id="" class="form-control" rows="1"></textarea>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Alamat Rumah</label>
+              <div class="col-sm-10">
+                <textarea name="alamat_rumah" id="alamat_rumah" class="form-control" rows="1"></textarea>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Kecamatan</label>
-            <div class="col-sm-10">
-              <select name="" id="" class="form-control select2">
-                <option value="">-- Pilih --</option>
-              </select>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kecamatan</label>
+              <div class="col-sm-10">
+                <select name="kecamatan" id="kecamatan" class="form-control select2">
+                  <option value="">-- Pilih --</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Kelurahan/Desa</label>
-            <div class="col-sm-10">
-              <select name="" id="" class="form-control select2">
-                <option value="">-- Pilih --</option>
-              </select>
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kelurahan/Desa</label>
+              <div class="col-sm-10">
+                <select name="kelurahan_desa" id="kelurahan_desa" class="form-control select2">
+                  <option value="">-- Pilih --</option>
+                </select>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <div class="col-12">
-              <h5><strong>INFORMASI TANAH</strong></h5>
-              <hr>
+            <!-- INFORMASI TANAH -->
+            <div class="form-group row">
+              <div class="col-12">
+                <h5><strong>INFORMASI TANAH</strong></h5>
+                <hr>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Luas Tanah (m<sup>2</sup>)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Luas Tanah (m<sup>2</sup>)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="luas_tanah" id="luas_tanah">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">No. Sertifikat</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">No. Sertifikat</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="no_sertifikat" id="no_sertifikat">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Jenis Hak</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Jenis Hak</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="jenis_hak" id="jenis_hak">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">No. Hak</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">No. Hak</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="no_hak" id="no_hak">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Tahun Kepemilikan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Tahun Kepemilikan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="tahun_kepemilikan" id="tahun_kepemilikan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">NIB</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">NIB</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="nib" id="nib">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Batas Utara</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Batas Utara</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="batas_utara" id="batas_utara">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Batas Selatan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Batas Selatan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="batas_selatan" id="batas_selatan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Batas Timur</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Batas Timur</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="batas_timur" id="batas_timur">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Batas Barat</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Batas Barat</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="batas_barat" id="batas_barat">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Zona Nilai Tanah (ZNT)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Zona Nilai Tanah (ZNT)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="znt" id="znt">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <div class="col-12">
-              <h5><strong>INFORMASI PBB</strong></h5>
-              <hr>
+            <!-- INFORMASI PBB -->
+            <div class="form-group row">
+              <div class="col-12">
+                <h5><strong>INFORMASI PBB</strong></h5>
+                <hr>
+              </div>
             </div>
-          </div>
 
-          
-
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nomor Objek Pajak (NOP)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Nomor Objek Pajak (NOP)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="nop" id="nop">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Luas Bumi (m<sup>2</sup>)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Luas Bumi (m<sup>2</sup>)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="luas_bumi" id="luas_bumi">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Pajak Bumi</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Pajak Bumi</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="pajak_bumi" id="pajak_bumi">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Luas Bangunan (m<sup>2</sup>)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Luas Bangunan (m<sup>2</sup>)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="luas_bangunan" id="luas_bangunan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Pajak Bangunan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Pajak Bangunan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="pajak_bangunan" id="pajak_bangunan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Nilai Jual Objek Pajak (NJOP)</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Nilai Jual Objek Pajak (NJOP)</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="njop" id="njop">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Tagihan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Tagihan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="tagihan" id="tagihan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Tanggal Pembayaran Terakhir</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Tanggal Pembayaran Terakhir</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="tanggal_pembayaran_terakhir" id="tanggal_pembayaran_terakhir">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Status Bayar</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Status Bayar</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="status_bayar" id="status_bayar">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <div class="col-12">
-              <h5><strong>INFORMASI TATA RUANG</strong></h5>
-              <hr>
+            <!-- INFORMASI TATA RUANG -->
+            <div class="form-group row">
+              <div class="col-12">
+                <h5><strong>INFORMASI TATA RUANG</strong></h5>
+                <hr>
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Pemanfaatan Lahan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Pemanfaatan Lahan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="pemanfaatan_lahan" id="pemanfaatan_lahan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Peruntukan Lahan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Peruntukan Lahan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="peruntukan_lahan" id="peruntukan_lahan">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Zona Ruang</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Zona Ruang</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="zona_ruang" id="zona_ruang">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Kelas Bumi</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kelas Bumi</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="kelas_bumi" id="kelas_bumi">
+              </div>
             </div>
-          </div>
 
-          <div class="form-group row">
-            <label class="col-sm-2 col-form-label">Kelas Bangunan</label>
-            <div class="col-sm-10">
-              <input type="text" class="form-control" name="" id="">
+            <div class="form-group row">
+              <label class="col-sm-2 col-form-label">Kelas Bangunan</label>
+              <div class="col-sm-10">
+                <input type="text" class="form-control" name="kelas_bangunan" id="kelas_bangunan">
+              </div>
             </div>
-          </div>
 
-
-          <hr>
-          <div class="form-group row">
-            <div class="col-sm-10 offset-sm-2">
-              <button class="btn btn-primary"><i class="fas fa-check"></i> Simpan</button>
+            <hr>
+            <div class="form-group row">
+              <div class="col-sm-10 offset-sm-2">
+                <button class="btn btn-primary"><i class="fas fa-check"></i> Simpan</button>
+              </div>
             </div>
-          </div>
+          </form>
         </div>
       </div>
     </div>

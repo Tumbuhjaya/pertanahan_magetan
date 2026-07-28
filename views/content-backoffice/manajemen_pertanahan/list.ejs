@@ -1,142 +1,164 @@
 <% include ../../template-backoffice/header.ejs %>
-  <!-- Main Content -->
-  <div class="main-content">
-    <section class="section">
-      <div class="w-100" style="padding: 0 30px;">
-        <div class="section-header">
-          <h1>Data Pertanahan</h1>
-          <div class="section-header-breadcrumb">
-            <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
-            <div class="breadcrumb-item">Data</div>
-          </div>
+<!-- Main Content -->
+<div class="main-content">
+  <section class="section">
+    <div class="w-100" style="padding: 0 30px;">
+      <div class="section-header">
+        <h1>Data Pertanahan</h1>
+        <div class="section-header-breadcrumb">
+          <div class="breadcrumb-item active"><a href="#">Dashboard</a></div>
+          <div class="breadcrumb-item">Data</div>
         </div>
       </div>
+    </div>
 
-      <div class="section-body">
-        <div class="row">
-          <div class="col-lg-12 col-xl-12">
-            <div class="card">
-              <div class="card-header">
-                <a href="/manajemen_pertanahan/insert" class="btn btn-primary custom-btn-card-header"><i class="fas fa-plus"></i> Tambah Data</a>
-              </div>
-              <div class="card-body">
-                <div class="table-responsive">
-                  <table class="table table-bordered" id="list-data">
-                    <thead>                                 
-                      <tr>
-                        <th class="text-center">No.</th>
-                        <th>Nama Penguasaan</th>
-                        <th>Alamat Sesuai KTP</th>
-                        <th>Kecamatan</th>
-                        <th>Kelurahan</th>
-                        <th>Luas Tanah</th>
-                        <th>Luas Bangunan</th>
-                        <th>NOP</th>
-                        <th>Option</th>
-                      </tr>
-                    </thead>
-                    <tbody>                                 
-                      <tr>
-                        <td class="text-center">1.</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>-</td>
-                        <td>
-                          <div class="w-100-flex" style="justify-content: center;">
-                            <ul class="list-inline mb-0">
-                              <li class="list-inline-item"><a href="/manajemen_pertanahan/edit/1" class="btn btn-warning"><i class="fas fa-edit"></i></a></li>
-                              <li class="list-inline-item"><button class=" btn btn-danger"><i class="fas fa-trash"></i></button></li>
-                            </ul> 
-                          </div>
-                        </td>
-                      </tr>
-                    </tbody>
-                  </table>
-                </div>
+    <div class="section-body">
+      <div class="row">
+        <div class="col-lg-12 col-xl-12">
+          <div class="card">
+            <div class="card-header">
+              <a href="/manajemen_pertanahan/insert" class="btn btn-primary custom-btn-card-header">
+                <i class="fas fa-plus"></i> Tambah Data
+              </a>
+            </div>
+            <div class="card-body">
+              <div class="table-responsive">
+                <table class="table table-bordered" id="list-data">
+                  <thead>                                 
+                    <tr>
+                      <th class="text-center">No.</th>
+                      <th>Nama Penguasaan</th>
+                      <th>Alamat Sesuai KTP</th>
+                      <th>Kecamatan</th>
+                      <th>Kelurahan</th>
+                      <th>Luas Tanah</th>
+                      <th>Luas Bangunan</th>
+                      <th>NOP</th>
+                      <th>Opsi</th>
+                    </tr>
+                  </thead>
+                  <tbody></tbody>
+                </table>
               </div>
             </div>
           </div>
         </div>
       </div>
-    </section>
+    </div>
+  </section>
+</div>
+
+<footer class="main-footer">
+  <div class="footer-left">
+    <% include ../../template-backoffice/copyright-left.ejs %>
   </div>
-  <footer class="main-footer">
-    <div class="footer-left">
-      <% include ../../template-backoffice/copyright-left.ejs %>
-    </div>
-    <div class="footer-right">
-      <% include ../../template-backoffice/copyright-right.ejs %>
-    </div>
-  </footer>
+  <div class="footer-right">
+    <% include ../../template-backoffice/copyright-right.ejs %>
+  </div>
+</footer>
 <% include ../../template-backoffice/footer.ejs %>
 
 <script type="text/javascript">
-    var rooturl = ''
-    let data_table  =$('#list-data').DataTable({
+  var rooturl = '';
+
+  $(document).ready(function() {
+    var data_table = $('#list-data').DataTable({
       "language": {
-          "sProcessing":   "Sedang memproses...",
-          "sLengthMenu":   "_MENU_",
-          "sZeroRecords":  "Tidak ditemukan data yang sesuai",
-          "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-          "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",
-          "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-          "sInfoPostFix":  "",
-          "sUrl":          "",
-          "oPaginate": {
-            "sFirst":    "Pertama",
-            "sPrevious": "Sebelumnya",
-            "sNext":     "Selanjutnya",
-            "sLast":     "Terakhir"
-          }
+        "sProcessing":   "Sedang memproses...",
+        "sLengthMenu":   "_MENU_",
+        "sZeroRecords":  "Tidak ditemukan data yang sesuai",
+        "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+        "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",
+        "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
+        "sInfoPostFix":  "",
+        "sUrl":          "",
+        "oPaginate": {
+          "sFirst":    "Pertama",
+          "sPrevious": "Sebelumnya",
+          "sNext":     "Selanjutnya",
+          "sLast":     "Terakhir"
+        }
       },
       "processing": true,
-      // "ajax":  `${rooturl}/api_basic/list`,
-      // "columns": [
-      //   { "data": null},
-      //   { "data": null},
-      //   { "data": null,render: function(data){
-      //     let a = ''
-      //           if (data) {
-      //             a = `
-      //             <ul class="list-inline mb-0">
-      //               <li class="list-inline-item"><a href="${rooturl}/manajemen_basic/edit/${data}" class="btn btn-warning"><i class="fas fa-edit"></i></a></li>
-      //               <li class="list-inline-item"><button onclick="hapus(${data})" class="btn btn-danger"><i class="fa fa-trash"></i></button></li>
-      //             </ul></ul>`
-      //           }
-      //           return `<td><center>${a}</center></td>`
-      //   }},
-      // ],
-      "columnDefs": [
-        { "width": "30px", "targets": 0},
-        { "width": "100px", "targets": 8}
+      "serverSide": false, // false karena kita ambil semua data sekaligus
+      "ajax": {
+        "url": rooturl + "/manajemen_pertanahan/list",
+        "dataSrc": "data"
+      },
+      "columns": [
+        { "data": null }, // nomor urut akan diisi di draw event
+        { "data": "nama_penguasaan" },
+        { "data": "alamat_ktp" },
+        { "data": "kecamatan" },
+        { "data": "kelurahan_desa" },
+        { "data": "luas_tanah" },
+        { "data": "luas_bangunan" },
+        { "data": "nop" },
+        { "data": null, render: function(data, type, row) {
+            return `<ul class="list-inline mb-0">
+              <li class="list-inline-item">
+                <a href="${rooturl}/manajemen_pertanahan/edit/${row.id}" class="btn btn-warning btn-sm">
+                  <i class="fas fa-edit"></i>
+                </a>
+              </li>
+              <li class="list-inline-item">
+                <button onclick="hapus(${row.id})" class="btn btn-danger btn-sm">
+                  <i class="fa fa-trash"></i>
+                </button>
+              </li>
+            </ul>`;
+        } }
       ],
+      "columnDefs": [
+        { "width": "30px", "targets": 0 },
+        { "width": "100px", "targets": 8 }
+      ]
     });
 
-    data_table.on( 'draw.dt', function () {
-      let PageInfo = $('#data').DataTable().page.info();
-      data_table.column(0, { page: 'current' }).nodes().each( function (cell, i) {
-        cell.innerHTML = i + 1 + PageInfo.start;
+    // Untuk memberi nomor urut pada kolom pertama
+    data_table.on('draw.dt', function() {
+      var info = data_table.page.info();
+      data_table.column(0, { page: 'current' }).nodes().each(function(cell, i) {
+        cell.innerHTML = i + 1 + info.start;
       });
     });
+  });
 
-    async function hapus(id) {
-      const willDelete = await swal({
-        title: "Hapus Data",
-        text: "Apakah anda akan menghapus data ini?",
-        icon: "warning",
-        dangerMode: true,
-        buttons: ["Tidak", "Ya"],
-      });
-            
-      if ( willDelete) {
-        $.get(rooturl+"/manajemen_basic/hapus/"+id).then(function (hsl) {
-          swal({title:text_delete.title,text:text_delete.text, icon: text_delete.icon, type:text_delete.type})
-          data_table.ajax.url(rooturl+"/manajemen_basic/list").load();
+  // Fungsi hapus dengan konfirmasi SweetAlert
+  async function hapus(id) {
+    const willDelete = await swal({
+      title: "Hapus Data",
+      text: "Apakah anda akan menghapus data ini?",
+      icon: "warning",
+      dangerMode: true,
+      buttons: ["Tidak", "Ya"],
+    });
+    if (willDelete) {
+      $.get(rooturl + "/manajemen_pertanahan/hapus/" + id)
+        .done(function(response) {
+          if (response.status === 'success') {
+            swal({
+              title: "Berhasil",
+              text: "Data berhasil dihapus",
+              icon: "success"
+            });
+            // Reload DataTable
+            $('#list-data').DataTable().ajax.reload();
+          } else {
+            swal({
+              title: "Gagal",
+              text: response.message || "Terjadi kesalahan",
+              icon: "error"
+            });
+          }
         })
-      }
+        .fail(function() {
+          swal({
+            title: "Gagal",
+            text: "Terjadi kesalahan pada server",
+            icon: "error"
+          });
+        });
     }
+  }
 </script>

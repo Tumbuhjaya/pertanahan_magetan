@@ -27,121 +27,153 @@
   </footer>
 
 <% include ../../template-backoffice/footer.ejs %>
+
 <script type="text/javascript">
-  var rooturl = ''
+  var rooturl = '';
+  var dataId = window.location.pathname.split('/').pop(); // ambil id dari URL
+
   document.addEventListener('DOMContentLoaded', function () {
     const container = document.getElementById('koordinat-container');
     const btnTambah = document.getElementById('btn-tambah');
 
     // 1. Fitur Tambah Field Koordinat
-    btnTambah.addEventListener('click', function () {
-        // Buat elemen baris baru
+    if (btnTambah) {
+      btnTambah.addEventListener('click', function () {
         const barisBaru = document.createElement('div');
         barisBaru.className = 'row mt-3 koordinat-row';
-        
-        // Isi dengan struktur HTML yang sama
         barisBaru.innerHTML = `
-            <div class="col-12 col-lg-5">
-              <input type="text" class="form-control" name="latitude[]" placeholder="Latitude" required>
-            </div>
-            <div class="col-12 col-lg-5">
-              <input type="text" class="form-control" name="longitude[]" placeholder="Longitude" required>
-            </div>
-            <div class="col-12 col-lg-2">
-              <button type="button" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i></button>
-            </div>
+          <div class="col-12 col-lg-5">
+            <input type="text" class="form-control" name="latitude[]" placeholder="Latitude" required>
+          </div>
+          <div class="col-12 col-lg-5">
+            <input type="text" class="form-control" name="longitude[]" placeholder="Longitude" required>
+          </div>
+          <div class="col-12 col-lg-2">
+            <button type="button" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i></button>
+          </div>
         `;
-        
-        // Tambahkan ke dalam container
         container.appendChild(barisBaru);
-    });
+      });
+    }
 
-    // 2. Fitur Hapus Field Koordinat (menggunakan event delegation agar berfungsi pada elemen yang baru ditambahkan)
-    container.addEventListener('click', function (e) {
-        // Cari elemen terdekat yang memiliki class 'btn-hapus'
+    // 2. Fitur Hapus Field Koordinat (event delegation)
+    if (container) {
+      container.addEventListener('click', function (e) {
         const btnHapus = e.target.closest('.btn-hapus');
-        
         if (btnHapus) {
-            // Cari elemen baris ('koordinat-row') yang membungkus tombol tersebut lalu hapus
-            const baris = btnHapus.closest('.koordinat-row');
-            if (baris) {
-                baris.remove();
-            }
+          const baris = btnHapus.closest('.koordinat-row');
+          if (baris) baris.remove();
         }
+      });
+    }
+
+    // 3. Ambil data detail dan isi form
+    $.get(rooturl + '/manajemen_pertanahan/detail/' + dataId, function(response) {
+      if (response.status === 'success') {
+        const data = response.data;
+        // Isi semua input teks / select / textarea
+        for (const key in data) {
+          if (data.hasOwnProperty(key) && key !== 'koordinat') {
+            const el = document.getElementById(key);
+            if (el) {
+              if (el.tagName === 'SELECT') {
+                el.value = data[key];
+                $(el).trigger('change'); // trigger select2
+              } else if (el.tagName === 'INPUT' || el.tagName === 'TEXTAREA') {
+                el.value = data[key];
+              }
+            }
+          }
+        }
+
+        // Isi koordinat
+        if (data.koordinat && data.koordinat.length > 0) {
+          // Hapus semua baris koordinat yang ada (kecuali mungkin template kosong)
+          const rows = container.querySelectorAll('.koordinat-row');
+          rows.forEach(row => row.remove());
+
+          // Tambahkan baris untuk setiap koordinat
+          data.koordinat.forEach(function(coord) {
+            const baris = document.createElement('div');
+            baris.className = 'row mt-3 koordinat-row';
+            baris.innerHTML = `
+              <div class="col-12 col-lg-5">
+                <input type="text" class="form-control" name="latitude[]" value="${coord.latitude}" required>
+              </div>
+              <div class="col-12 col-lg-5">
+                <input type="text" class="form-control" name="longitude[]" value="${coord.longitude}" required>
+              </div>
+              <div class="col-12 col-lg-2">
+                <button type="button" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i></button>
+              </div>
+            `;
+            container.appendChild(baris);
+          });
+        }
+      } else {
+        swal({ title: 'Gagal', text: 'Data tidak ditemukan', icon: 'error' });
+      }
+    }).fail(function() {
+      swal({ title: 'Error', text: 'Gagal mengambil data', icon: 'error' });
     });
-  });
 
-  let data_basic = {}
-  window.onload =async function (params) {
-    await $.get('/api_basic/list?data_basic_id=').then(function (data) {
-      data_basic = data.data[0]
-      for (const i in data_basic) {
-        if (Object.hasOwnProperty.call(data_basic, i)) {
-          if (i.substring(0,4)=='foto') {
-            if (data_basic[i]) {
-              $('#lihat_'+i).append(`<div style="width: 30%;border:2px dashed #6777ef;padding: 5px;margin-top: 15px;border-radius: 0.25rem;"><img src="/foto/${data_basic[i]}" alt="" class="w-100" style="border-radius: 0.25rem;"></div>`)
+    // 4. Submit form untuk update
+    const form = document.getElementById('formPertanahan');
+    if (form) {
+      form.addEventListener('submit', async function(e) {
+        e.preventDefault();
+
+        const willUpdate = await swal({
+          title: "Edit Data",
+          text: "Apakah anda akan mengupdate data ini?",
+          icon: "warning",
+          dangerMode: true,
+          buttons: ["Tidak", "Ya"],
+        });
+
+        if (!willUpdate) return;
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = 'Menyimpan...';
+        }
+
+        const formData = new FormData(form);
+        // Tambahkan ID (opsional karena sudah di URL)
+        formData.append('id', dataId);
+
+        $.ajax({
+          type: 'POST',
+          url: rooturl + '/manajemen_pertanahan/update/' + dataId,
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function(data) {
+            swal({
+              title: 'Berhasil',
+              text: 'Data berhasil diperbarui',
+              icon: 'success'
+            });
+            window.location.href = rooturl + '/manajemen_pertanahan';
+          },
+          error: function(xhr, status, error) {
+            let msg = 'Terjadi kesalahan saat update.';
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+              msg = xhr.responseJSON.message;
             }
-          }else if(i.substring(i.length-2,i.length)=='id'){
-            $('#'+i).val(data_basic[i]).select2()
+            swal({
+              title: 'Gagal',
+              text: msg,
+              icon: 'error'
+            });
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = 'Simpan';
+            }
           }
-          // else if (i.substring(0,3)=='ket'){        
-          //   CKEDITOR.instances[i].setData(data_basic[i])
-          // }
-          else{
-            $('#'+i).val(data_basic[i])
-          }
-        }
-      }
-    })
-  }
-
-  async function submit() {
-    const will_update = await swal({
-      title: "Edit Data",
-      text: "Apakah anda akan mengedit data ini?",
-      icon: "warning",
-      dangerMode: true,
-      buttons: ["Tidak", "Ya"],
-    });        
-    
-    if ( will_update) {
-      $('#button_submit').empty()
-      $('#button_submit').append('<button class="btn btn-primary btn-embossed" disabled>Simpan</button>')
-    
-      let formData = new FormData();    
-      // nama kolom db
-      let arr = ['NamaKolomDb1', 'NamaKolomDb2', 'NamaKolomDb3']
-    
-      formData.append('data_basic_id', data_basic.data_basic_id);
-
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].substring(0,4)=='foto') {
-          if ( $(`#`+arr[i])[0].files[0]){
-            formData.append(arr[i], $(`#`+arr[i])[0].files[0]);
-          } 
-        }
-        // else if (arr[i].substring(0,3)=='ket'){        
-        //   formData.append(arr[i] ,CKEDITOR.instances[arr[i]].getData())
-        // }
-        else{
-          formData.append(arr[i],$('#'+arr[i]).val())
-        }
-      }
-
-      $.ajax({
-        type: 'POST',
-        enctype: 'multipart/form-data',
-        url: rooturl+'/api_basic/edit',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-          swal({title:text_edit.title,text:text_edit.text, icon: text_edit.icon, type:text_edit.type})
-          window.location.href = rooturl+'/manajemen_basic';
-        },error: function(data) {
-          swal({title:text_error.title,text:text_error.text, icon: text_error.icon, type:text_error.type})
-        }
-      })      
-    } 
-  }
+        });
+      });
+    }
+  });
 </script>

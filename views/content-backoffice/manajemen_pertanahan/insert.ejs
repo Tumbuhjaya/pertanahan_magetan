@@ -27,95 +27,99 @@
   </footer>
 
 <% include ../../template-backoffice/footer.ejs %>
+
 <script type="text/javascript">
-  var rooturl = ''
+  var rooturl = ''; // sesuaikan jika perlu, misal '/myapp'
 
   document.addEventListener('DOMContentLoaded', function () {
+    // ----- FITUR TAMBAH & HAPUS KOORDINAT (tetap) -----
     const container = document.getElementById('koordinat-container');
     const btnTambah = document.getElementById('btn-tambah');
 
-    // 1. Fitur Tambah Field Koordinat
-    btnTambah.addEventListener('click', function () {
-        // Buat elemen baris baru
+    if (btnTambah) {
+      btnTambah.addEventListener('click', function () {
         const barisBaru = document.createElement('div');
         barisBaru.className = 'row mt-3 koordinat-row';
-        
-        // Isi dengan struktur HTML yang sama
         barisBaru.innerHTML = `
-            <div class="col-12 col-lg-5">
-              <input type="text" class="form-control" name="latitude[]" placeholder="Latitude" required>
-            </div>
-            <div class="col-12 col-lg-5">
-              <input type="text" class="form-control" name="longitude[]" placeholder="Longitude" required>
-            </div>
-            <div class="col-12 col-lg-2">
-              <button type="button" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i></button>
-            </div>
+          <div class="col-12 col-lg-5">
+            <input type="text" class="form-control" name="latitude[]" placeholder="Latitude" required>
+          </div>
+          <div class="col-12 col-lg-5">
+            <input type="text" class="form-control" name="longitude[]" placeholder="Longitude" required>
+          </div>
+          <div class="col-12 col-lg-2">
+            <button type="button" class="btn btn-danger btn-hapus"><i class="fas fa-trash"></i></button>
+          </div>
         `;
-        
-        // Tambahkan ke dalam container
         container.appendChild(barisBaru);
-    });
+      });
+    }
 
-    // 2. Fitur Hapus Field Koordinat (menggunakan event delegation agar berfungsi pada elemen yang baru ditambahkan)
-    container.addEventListener('click', function (e) {
-        // Cari elemen terdekat yang memiliki class 'btn-hapus'
+    if (container) {
+      container.addEventListener('click', function (e) {
         const btnHapus = e.target.closest('.btn-hapus');
-        
         if (btnHapus) {
-            // Cari elemen baris ('koordinat-row') yang membungkus tombol tersebut lalu hapus
-            const baris = btnHapus.closest('.koordinat-row');
-            if (baris) {
-                baris.remove();
+          const baris = btnHapus.closest('.koordinat-row');
+          if (baris) baris.remove();
+        }
+      });
+    }
+
+    // ----- SUBMIT FORM DENGAN AJAX (perbaikan id form) -----
+    const form = document.getElementById('formPertanahan'); // id sudah ditambahkan di komponen.ejs
+    if (form) {
+      form.addEventListener('submit', async function (e) {
+        e.preventDefault();
+
+        const willInsert = await swal({
+          title: "Tambah Data",
+          text: "Apakah anda akan menambahkan data ini?",
+          icon: "warning",
+          dangerMode: true,
+          buttons: ["Tidak", "Ya"],
+        });
+
+        if (!willInsert) return;
+
+        const submitBtn = form.querySelector('button[type="submit"]');
+        if (submitBtn) {
+          submitBtn.disabled = true;
+          submitBtn.innerHTML = 'Menyimpan...';
+        }
+
+        const formData = new FormData(form);
+
+        $.ajax({
+          type: 'POST',
+          url: rooturl + '/manajemen_pertanahan/insert', // pastikan sesuai route backend
+          data: formData,
+          processData: false,
+          contentType: false,
+          success: function (data) {
+            swal({
+              title: 'Berhasil',
+              text: 'Data berhasil ditambahkan',
+              icon: 'success'
+            });
+            window.location.href = rooturl + '/manajemen_pertanahan';
+          },
+          error: function (xhr, status, error) {
+            let msg = 'Terjadi kesalahan saat menyimpan data.';
+            if (xhr.responseJSON && xhr.responseJSON.message) {
+              msg = xhr.responseJSON.message;
             }
-        }
-    });
+            swal({
+              title: 'Gagal',
+              text: msg,
+              icon: 'error'
+            });
+            if (submitBtn) {
+              submitBtn.disabled = false;
+              submitBtn.innerHTML = 'Simpan';
+            }
+          }
+        });
+      });
+    }
   });
-
-  async function submit() {
-    const will_insert = await swal({
-      title: "Tambah Data",
-      text: "Apakah anda akan menambahkan data ini?",
-      icon: "warning",
-      dangerMode: true,
-      buttons: ["Tidak", "Ya"],
-    });
-
-    if ( will_insert) {
-      $('#button_submit').empty()
-      $('#button_submit').append('<button class="btn btn-primary btn-embossed" disabled>Simpan</button>')
-      
-      let formData = new FormData();    
-      // nama kolom db
-      let arr = ['NamaKolomDb1', 'NamaKolomDb2', 'NamaKolomDb3']
-      for (let i = 0; i < arr.length; i++) {
-        if (arr[i].substring(0,4)=='foto') {
-          if ( $(`#`+arr[i])[0].files[0]){
-            formData.append(arr[i], $(`#`+arr[i])[0].files[0]);
-          } 
-        }
-        // else if (arr[i].substring(0,3)=='ket'){        
-        //   formData.append(arr[i] ,CKEDITOR.instances[arr[i]].getData())
-        // }
-        else{
-          formData.append(arr[i],$('#'+arr[i]).val())
-        }
-      }
-
-      $.ajax({
-        type: 'POST',
-        enctype: 'multipart/form-data',
-        url: rooturl+'/api_basic/insert',
-        data: formData,
-        processData: false,
-        contentType: false,
-        success: function(data) {
-          swal({title:text_insert.title,text:text_insert.text, icon: text_insert.icon, type:text_insert.type})
-          window.location.href = rooturl+'/manajemen_basic';
-        },error: function(data) {
-          swal({title:text_error.title,text:text_error.text, icon: text_error.icon, type:text_error.type})
-        }
-      })      
-    } 
-  }
 </script>
