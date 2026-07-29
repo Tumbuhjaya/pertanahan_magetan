@@ -1,4 +1,4 @@
-   var root ="https://pindah.fosan.id/";
+   var root ="http://localhost:8900/";
    String.prototype.replaceAll = function(search, replacement) {
        var target = this;
        return target.split(search).join(replacement);
