@@ -1,5 +1,24 @@
+/* CSS untuk background penuh layar tanpa scroll */
+html, body {
+  margin: 0;
+  padding: 0;
+  height: 100%;
+  overflow: hidden; /* hilangkan scrollbar */
+}
+
+body {
+  background-image: url('/images/template/bg-alun-magetan.png');
+  background-size: cover;       /* memenuhi seluruh area tanpa distorsi */
+  background-position: center;  /* posisi tengah */
+  background-repeat: no-repeat; /* tidak diulang */
+  background-attachment: fixed; /* opsional, efek parallax sederhana */
+  width: 100vw;
+  height: 100vh;
+  font-family: "Inter Tight", sans-serif;
+}
+
 body{
-    font-family: "Inter Tight", sans-serif;
+    
 }
 
 
@@ -20,3 +39,4 @@ h1,h2,h3,h4,h5,h6{
 .btn:focus, .btn.focus{
 	box-shadow: none;
 }
+
