@@ -17,9 +17,17 @@
         <div class="col-lg-12 col-xl-12">
           <div class="card">
             <div class="card-header">
-              <a href="/manajemen_pertanahan/insert" class="btn btn-primary custom-btn-card-header">
-                <i class="fas fa-plus"></i> Tambah Data
-              </a>
+              <ul class="list-inline">
+                <li class="list-inline-item">
+                   <a href="/manajemen_pertanahan/insert" class="btn btn-primary custom-btn-card-header">
+                    <i class="fas fa-plus"></i> Tambah Data
+                  </a>
+                </li>
+                <li class="list-inline-item">
+                  <a href="/manajemen_pertanahan/import_shp" class="btn btn-dark custom-btn-card-header"><i class="fas fa-plus"></i> Import Data Spasial</a>
+                </li>
+              </ul>
+             
             </div>
             <div class="card-body">
               <div class="table-responsive">
@@ -97,12 +105,12 @@
         { "data": null, render: function(data, type, row) {
             return `<ul class="list-inline mb-0">
               <li class="list-inline-item">
-                <a href="${rooturl}/manajemen_pertanahan/edit/${row.id}" class="btn btn-warning btn-sm">
+                <a href="${rooturl}/manajemen_pertanahan/edit/${row.id}" class="btn btn-warning">
                   <i class="fas fa-edit"></i>
                 </a>
               </li>
               <li class="list-inline-item">
-                <button onclick="hapus(${row.id})" class="btn btn-danger btn-sm">
+                <button onclick="hapus(${row.id})" class="btn btn-danger">
                   <i class="fa fa-trash"></i>
                 </button>
               </li>

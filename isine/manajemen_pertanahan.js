@@ -314,4 +314,9 @@ router.post('/insert', upload.fields([
     res.status(500).json({ status: 'error', message: err.message || 'Terjadi kesalahan.' });
   });
 });
+
+router.get('/import_shp', cek_login_all, function(req, res) {
+  res.render('content-backoffice/manajemen_pertanahan/import_data'); 
+});
+
 module.exports = router;
