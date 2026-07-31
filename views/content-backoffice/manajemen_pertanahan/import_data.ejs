@@ -25,35 +25,38 @@
                   <div class="col-12 col-lg-3 col-xl-3">
                     <div class="form-group">
                       <label for="">Kecamatan</label>
-                      <select name="" id="" class="form-control select2">
+                      <select name="kd_kec" id="kd_kec" class="form-control select2">
                         <option value="">-- Pilih --</option>
+                              <% for(var i=0; i<kec.length; i++){ %> 
+                                <option value="<%= kec[i]['id_kec']%>"><%= kec[i]['kecamatan']%></option>
+                                 <% }%>
                       </select>
                     </div>
 
                     <div class="form-group">
                       <label for="">Desa</label>
-                      <select name="" id="" class="form-control select2">
+                      <select name="kd_kel" id="kd_kel" class="form-control select2">
                         <option value="">-- Pilih --</option>
                       </select>
                     </div>
 
                     <div class="form-group">
                       <label for="">Pilih File (.shp)</label>
-                      <input type="file" class="form-control" id="" name="file_shp">
+                      <input type="file" class="form-control" id="shp" name="shp" accept=".shp">
                     </div>
 
                     <div class="form-group">
                       <label for="">Pilih File (.shx)</label>
-                      <input type="file" class="form-control" id="" name="file_shx">
+                      <input type="file" class="form-control" id="shx" name="shx" accept=".shx">
                     </div>
 
                     <div class="form-group">
                       <label for="">Pilih File (.dbf)</label>
-                      <input type="file" class="form-control" id="" name="file_dbf">
+                      <input type="file" class="form-control" id="dbf" name="dbf" accept=".dbf">
                     </div>
 
                     <div class="form-group">
-                      <button class="btn btn-dark"><i class="fas fa-file-import"></i> Import</button>
+                      <button id="upload" class="btn btn-dark"><i class="fas fa-file-import"></i> Import</button>
                     </div>
                   </div>
                 </div>
@@ -61,7 +64,7 @@
                 <div class="row">
                   <div class="col-12">
                     <hr>
-                    <table class="table table-bordered table-striped">
+                    <table class="table table-bordered table-striped" >
                       <thead>
                         <tr>
                           <th>No.</th>
@@ -70,13 +73,8 @@
                           <th>Desa</th>
                         </tr>
                       </thead>
-                      <tbody>
-                        <tr>
-                          <td>1.</td>
-                          <td>-</td>
-                          <td>-</td>
-                          <td>-</td>
-                        </tr>
+                      <tbody id="historyTable">
+                     
                       </tbody>
                     </table>
                   </div>
@@ -230,7 +228,7 @@
                          } 
                        }; 
                     $(document).ready(function() { 
-                     
+                     loadHistory()
                         // $.ajax({ 
                         //   type : "GET", 
                         //   async : false, 
@@ -1383,4 +1381,133 @@ function loadKabmagetan(data) {
         layer.bindPopup(popupContent);
     });
 }
+  // Kecamatan change handler
+  $( "#kd_kec" ).change(function() {
+    $("#kd_kel").empty();
+    $('#kd_kel').select2();
+    if($('#kd_kec').val()!=""){
+      $.get( "/manajemen_pertanahan/get_kel/"+$('#kd_kec').val(), function( data ) {
+        console.log(data);
+        $("#kd_kel").html('<option value="">--- Pilih Kelurahan ---</option>');
+        $.each(data.data, function(i, item){
+          $("#kd_kel").append('<option value="'+item.id_desa+'">'+item.namobj+'</option>');
+        })  
+      });
+    }
+  });
+  $('#upload').on('click', function() {
+    var file_shp = $('#shp').prop('files')[0];   
+    var file_shx = $('#shx').prop('files')[0];   
+    var file_dbf = $('#dbf').prop('files')[0];   
+    
+    if (!file_shp || !file_shx || !file_dbf) {
+      swal({
+        title: 'Peringatan',
+        text: 'Harap pilih semua file (.shp, .shx, .dbf)',
+        icon: 'warning'
+      });
+      return;
+    }
+    
+    var form_data = new FormData();                  
+    form_data.append('shp', file_shp);
+    form_data.append('shx', file_shx);
+    form_data.append('dbf', file_dbf);
+            var kd_kec = $('#kd_kec').val();
+    var kd_kel = $('#kd_kel').val();
+    form_data.append('kd_kec', kd_kec);
+    form_data.append('kd_kel', kd_kel);
+    $('#uploadStatus').html('<div class="alert alert-info">Mengupload file...</div>');
+    $('#upload').prop('disabled', true);
+    
+    $.ajax({
+      url: '/upload_shp/save_shp_data', 
+      cache: false,
+      contentType: false,
+      processData: false,
+      data: form_data,                         
+      type: 'post',
+      success: function(response){
+        console.log('Response:', response);
+        $('#uploadStatus').html('<div class="alert alert-success">File berhasil diupload! Jumlah data: ' + response.totalCount + '</div>');
+        
+        uploadedData = response;
+        loadHistory()
+        // Display on map
+        if (response.geometry && response.geometry.length > 0) {
+          // Remove previous layer if exists
+          if (currentLayer) {
+            map.removeLayer(currentLayer);
+          }
+          
+          // Create a feature group for all geometries
+          var featureGroup = L.featureGroup();
+          
+          // Add each geometry to the map
+          response.geometry.forEach(function(wkt, index) {
+            try {
+              var layer = omnivore.wkt.parse(wkt);
+              layer.eachLayer(function(l) {
+                // Style the layer
+                if (l instanceof L.Polygon) {
+                  l.setStyle({
+                    color: '#ff7800',
+                    weight: 2,
+                    opacity: 0.7,
+                    fillOpacity: 0.3,
+                    fillColor: '#3388ff'
+                  });
+                }
+                featureGroup.addLayer(l);
+              });
+            } catch (e) {
+              console.error('Error adding geometry ' + index + ':', e);
+            }
+          });
+          
+          // Add to map and fit bounds
+          if (featureGroup.getLayers().length > 0) {
+            currentLayer = featureGroup;
+            map.addLayer(featureGroup);
+            map.fitBounds(featureGroup.getBounds(), { padding: [20, 20], maxZoom: 15 });
+            
+            // Show save button
+            $('#saveData').show();
+          }
+        }
+        
+        $('#upload').prop('disabled', false);
+      },
+      error: function(xhr, status, error) {
+        console.error('Upload error:', error);
+        $('#uploadStatus').html('<div class="alert alert-danger">Gagal upload: ' + (xhr.responseJSON?.message || error) + '</div>');
+        $('#upload').prop('disabled', false);
+      }
+    });
+  });
+
+  // Load history
+  function loadHistory() {
+    $.get('/upload_shp/history', function(data) {
+      console.log(data);
+      
+      var html = '';
+      if (data[0] && data[0].length > 0) {
+        $.each(data[0], function(i, item) {
+          html += '<tr>' +
+            '<td>' + (i+1) + '.</td>' +
+            '<td>' + item.tgl + '</td>' +
+            '<td>' + item.kecamatan + '</td>' +
+            '<td>' + item.namobj + '</td>' +
+            '</tr>';
+        });
+      } else {
+        html = '<tr><td colspan="5" class="text-center">Belum ada data</td></tr>';
+      }
+      $('#historyTable').html(html);
+    }).fail(function() {
+      $('#historyTable').html('<tr><td colspan="5" class="text-center">Gagal memuat data</td></tr>');
+    });
+  }
+
 </script>

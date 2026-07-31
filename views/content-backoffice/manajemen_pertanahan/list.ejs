@@ -24,7 +24,7 @@
                   </a>
                 </li>
                 <li class="list-inline-item">
-                  <a href="/manajemen_pertanahan/import_shp" class="btn btn-dark custom-btn-card-header"><i class="fas fa-plus"></i> Import Data Spasial</a>
+                  <a href="/manajemen_pertanahan/import_data" class="btn btn-dark custom-btn-card-header"><i class="fas fa-plus"></i> Import Data Spasial</a>
                 </li>
               </ul>
              
@@ -68,104 +68,112 @@
 
 <script type="text/javascript">
   var rooturl = '';
-
-  $(document).ready(function() {
-    var data_table = $('#list-data').DataTable({
-      "language": {
-        "sProcessing":   "Sedang memproses...",
-        "sLengthMenu":   "_MENU_",
-        "sZeroRecords":  "Tidak ditemukan data yang sesuai",
-        "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
-        "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",
+let data_table2 = $('#list-data').DataTable({
+    "language": {
+        "sProcessing": "Sedang memproses...",
+        "sLengthMenu": "_MENU_",
+        "sZeroRecords": "Tidak ditemukan data yang sesuai",
+        "sInfo": "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",
+        "sInfoEmpty": "Menampilkan 0 sampai 0 dari 0 entri",
         "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",
-        "sInfoPostFix":  "",
-        "sUrl":          "",
+        "sInfoPostFix": "",
+        "sUrl": "",
         "oPaginate": {
-          "sFirst":    "Pertama",
-          "sPrevious": "Sebelumnya",
-          "sNext":     "Selanjutnya",
-          "sLast":     "Terakhir"
+            "sFirst": "Pertama",
+            "sPrevious": "Sebelumnya",
+            "sNext": "Selanjutnya",
+            "sLast": "Terakhir"
         }
-      },
-      "processing": true,
-      "serverSide": false, // false karena kita ambil semua data sekaligus
-      "ajax": {
-        "url": rooturl + "/manajemen_pertanahan/list",
-        "dataSrc": "data"
-      },
-      "columns": [
-        { "data": null }, // nomor urut akan diisi di draw event
-        { "data": "nama_penguasaan" },
-        { "data": "alamat_ktp" },
+    },
+    "processing": true,
+    "serverSide": true,
+    "ajax": {
+        "url": `${rooturl}/manajemen_pertanahan/list`,
+        "type": "POST",
+        "data": function(d) {
+            // Mengirim parameter yang diperlukan untuk server-side processing
+            // DataTables sudah mengirim draw, start, length, search, order secara otomatis
+            // Tapi kita bisa menambahkan parameter tambahan jika perlu
+            d.jenis = $('#jenis_filter').val(); // Contoh tambahan parameter
+            return d;
+        },
+        "dataSrc": function(json) {
+            // Jika ada error dari server
+            if (json.error) {
+                console.error('Server error:', json.error);
+                return [];
+            }
+            return json.data;
+        }
+    },
+    "columns": [
+        { "data": null, "width": "30px" },
+        { "data": "nm_pnguasa" },
+        { "data": "almt_ktp" },
         { "data": "kecamatan" },
         { "data": "kelurahan_desa" },
-        { "data": "luas_tanah" },
-        { "data": "luas_bangunan" },
+        { "data": "l_tanah" },
+        { "data": "l_bangunan" },
         { "data": "nop" },
-        { "data": null, render: function(data, type, row) {
-            return `<ul class="list-inline mb-0">
-              <li class="list-inline-item">
-                <a href="${rooturl}/manajemen_pertanahan/edit/${row.id}" class="btn btn-warning">
-                  <i class="fas fa-edit"></i>
-                </a>
-              </li>
-              <li class="list-inline-item">
-                <button onclick="hapus(${row.id})" class="btn btn-danger">
-                  <i class="fa fa-trash"></i>
-                </button>
-              </li>
-            </ul>`;
-        } }
-      ],
-      "columnDefs": [
+        { 
+            "data": null,
+            "className": "text-center",
+            "orderable": false,
+            "render": function(data, type, row) {
+                return `<ul class="list-inline mb-0">
+                    <li class="list-inline-item">
+                        <a href="${rooturl}/manajemen_pertanahan/edit/${row.id}" class="btn btn-warning btn-sm">
+                            <i class="fas fa-edit"></i>
+                        </a>
+                    </li>
+                    <li class="list-inline-item">
+                        <button onclick="hapus(${row.id})" class="btn btn-danger btn-sm">
+                            <i class="fa fa-trash"></i>
+                        </button>
+                    </li>
+                </ul>`;
+            }
+        }
+    ],
+    "columnDefs": [
         { "width": "30px", "targets": 0 },
-        { "width": "100px", "targets": 8 }
-      ]
-    });
+        { "orderable": false, "targets": [0, 8] } // Disable sorting untuk kolom action dan nomor
+    ],
+    "order": [[1, 'asc']], // Default sorting by nm_pnguasa
+    "drawCallback": function(settings) {
+        // Update nomor urut setelah draw
+        let api = this.api();
+        let start = api.page.info().start;
+        api.column(0, { page: 'current' }).nodes().each(function(cell, i) {
+            cell.innerHTML = start + i + 1;
+        });
+    }
+});
 
-    // Untuk memberi nomor urut pada kolom pertama
-    data_table.on('draw.dt', function() {
-      var info = data_table.page.info();
-      data_table.column(0, { page: 'current' }).nodes().each(function(cell, i) {
-        cell.innerHTML = i + 1 + info.start;
-      });
-    });
-  });
+// Optional: Function untuk reload data dengan parameter tambahan
+function reloadDataTable() {
+    data_table2.ajax.reload();
+}
 
-  // Fungsi hapus dengan konfirmasi SweetAlert
-  async function hapus(id) {
-    const willDelete = await swal({
-      title: "Hapus Data",
-      text: "Apakah anda akan menghapus data ini?",
-      icon: "warning",
-      dangerMode: true,
-      buttons: ["Tidak", "Ya"],
-    });
-    if (willDelete) {
+// Optional: Function untuk filter
+function applyFilter() {
+    data_table2.ajax.reload();
+}
+ async function hapus(id) {
+
+    
+    if (confirm("Apakah anda akan menghapus data ini?")) {
       $.get(rooturl + "/manajemen_pertanahan/hapus/" + id)
         .done(function(response) {
           if (response.status === 'success') {
-            swal({
-              title: "Berhasil",
-              text: "Data berhasil dihapus",
-              icon: "success"
-            });
-            // Reload DataTable
+           alert("Data berhasil dihapus")
             $('#list-data').DataTable().ajax.reload();
           } else {
-            swal({
-              title: "Gagal",
-              text: response.message || "Terjadi kesalahan",
-              icon: "error"
-            });
+            alert("Terjadi kesalahan")
           }
         })
         .fail(function() {
-          swal({
-            title: "Gagal",
-            text: "Terjadi kesalahan pada server",
-            icon: "error"
-          });
+          alert("Terjadi kesalahan pada server")
         });
     }
   }

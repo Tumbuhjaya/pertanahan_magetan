@@ -63,31 +63,68 @@ var upload = multer({ storage: storage })
 router.get('/', cek_login_all, function(req, res) {
   res.render('content-backoffice/manajemen_pertanahan/list'); 
 });
+router.get('/import_data', cek_login_all,async function(req, res) {
+    let a = await sql_enak.raw(`select a.id ,a.id_kec ,a.kdepum ,a.kecamatan  from batas_admin_kecamatan a`)
 
-router.get('/insert', cek_login_all, function(req, res) {
-  res.render('content-backoffice/manajemen_pertanahan/insert'); 
+  res.render('content-backoffice/manajemen_pertanahan/import_data.ejs',{kec:a[0]}); 
 });
 
-router.get('/edit/:id', cek_login_all, function(req, res) {
-  res.render('content-backoffice/manajemen_pertanahan/edit'); 
+router.get('/insert', cek_login_all,async function(req, res) {
+  let a = await sql_enak.raw(`select a.id ,a.id_kec ,a.kdepum ,a.kecamatan  from batas_admin_kecamatan a`)
+  res.render('content-backoffice/manajemen_pertanahan/insert',{kec:a[0]}); 
 });
+
+router.get('/get_kel/:id_kec', cek_login_all,async function(req, res) {
+  let a = await sql_enak.raw(`select  id, namobj, id_kec, id_desa  from batas_admin_desa a where id_kec = ? `,[req.params.id_kec])
+  res.json({data:a[0]})
+})
+
+router.get('/edit/:id', cek_login_all, async function(req, res) {
+  try {
+    const id = req.params.id;
+    
+    // Ambil data pertanahan berdasarkan id
+    const dataPertanahan = await sql_enak.raw(`
+      SELECT *
+      FROM persil_magetan a 
+      WHERE a.id = ? and deleted = 0
+    `, [id]);
+    
+    // Ambil data kecamatan untuk dropdown
+    const kec = await sql_enak.raw(`SELECT a.id, a.id_kec, a.kdepum, a.kecamatan FROM batas_admin_kecamatan a`);
+    
+    // Ambil data kelurahan berdasarkan kecamatan yang dipilih
+    let kelurahan = [];
+    if (dataPertanahan[0] && dataPertanahan[0][0] && dataPertanahan[0][0].id_kec) {
+      kelurahan = await sql_enak.raw(`
+        SELECT a.id_desa, a.namobj 
+        FROM batas_admin_desa a 
+        WHERE a.id_kec = ?
+      `, [dataPertanahan[0][0].id_kec]);
+    }
+    
+    res.render('content-backoffice/manajemen_pertanahan/edit', {
+      data: dataPertanahan[0] ? dataPertanahan[0][0] : null,
+      kec: kec[0],
+      kelurahan: kelurahan[0],
+      id: id
+    });
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Terjadi kesalahan');
+  }
+});
+
 // GET /manajemen_pertanahan/detail/:id
 router.get('/detail/:id', cek_login_all, function(req, res) {
   const id = req.params.id;
-  sql_enak('penguasaan_tanah')
-    .where('id', id)
-    .first()
+  sql_enak.raw('select * from persil_magetan where id = ?',[id])
     .then(function(data) {
       if (!data) {
         return res.status(404).json({ status: 'error', message: 'Data tidak ditemukan' });
       }
-      return sql_enak('koordinat_tanah')
-        .where('penguasaan_tanah_id', id)
-        .orderBy('urutan', 'asc')
-        .then(function(koordinat) {
-          data.koordinat = koordinat;
-          res.json({ status: 'success', data: data });
-        });
+          res.json({ status: 'success', data: data[0] });
+
     })
     .catch(function(err) {
       console.error(err);
@@ -95,128 +132,123 @@ router.get('/detail/:id', cek_login_all, function(req, res) {
     });
 });
 
-// POST /manajemen_pertanahan/update/:id
-router.post('/update/:id', upload.fields([
-  { name: 'file_shp', maxCount: 1 },
-  { name: 'file_shx', maxCount: 1 },
-  { name: 'file_dbf', maxCount: 1 }
-]), function(req, res) {
-  const id = req.params.id;
-  const {
-    nama_penguasaan, nik, no_kk, alamat_ktp, alamat_rumah,
-    kecamatan, kelurahan_desa, luas_tanah, no_sertifikat,
-    jenis_hak, no_hak, tahun_kepemilikan, nib,
-    batas_utara, batas_selatan, batas_timur, batas_barat, znt,
-    nop, luas_bumi, pajak_bumi, luas_bangunan, pajak_bangunan,
-    njop, tagihan, tanggal_pembayaran_terakhir, status_bayar,
-    pemanfaatan_lahan, peruntukan_lahan, zona_ruang, kelas_bumi, kelas_bangunan,
-    latitude, longitude
-  } = req.body;
-
-  // Validasi koordinat
-  if (!latitude || !longitude || !Array.isArray(latitude) || !Array.isArray(longitude)) {
-    return res.status(400).json({ status: 'error', message: 'Koordinat harus dikirim sebagai array.' });
-  }
-  if (latitude.length < 3 || longitude.length < 3 || latitude.length !== longitude.length) {
-    return res.status(400).json({ status: 'error', message: 'Koordinat minimal 3 titik dan jumlah sama.' });
-  }
-
-  sql_enak.transaction(function(trx) {
-    return trx('penguasaan_tanah')
-      .where('id', id)
-      .update({
-        nama_penguasaan,
-        nik,
-        no_kk,
-        alamat_ktp,
-        alamat_rumah,
-        kecamatan,
-        kelurahan_desa,
-        luas_tanah: parseFloat(luas_tanah) || 0,
-        no_sertifikat,
-        jenis_hak,
-        no_hak,
-        tahun_kepemilikan,
-        nib,
-        batas_utara,
-        batas_selatan,
-        batas_timur,
-        batas_barat,
-        znt,
-        nop,
-        luas_bumi: parseFloat(luas_bumi) || 0,
-        pajak_bumi: parseFloat(pajak_bumi) || 0,
-        luas_bangunan: parseFloat(luas_bangunan) || 0,
-        pajak_bangunan: parseFloat(pajak_bangunan) || 0,
-        njop: parseFloat(njop) || 0,
-        tagihan: parseFloat(tagihan) || 0,
-        tanggal_pembayaran_terakhir,
-        status_bayar,
-        pemanfaatan_lahan,
-        peruntukan_lahan,
-        zona_ruang,
-        kelas_bumi,
-        kelas_bangunan,
-        updated_at: new Date()
-      })
-      .then(function() {
-        // Hapus koordinat lama
-        return trx('koordinat_tanah')
-          .where('penguasaan_tanah_id', id)
-          .del();
-      })
-      .then(function() {
-        // Insert koordinat baru
-        const koordinatData = latitude.map((lat, index) => ({
-          penguasaan_tanah_id: id,
-          latitude: parseFloat(lat),
-          longitude: parseFloat(longitude[index]),
-          urutan: index + 1,
-          created_at: new Date()
-        }));
-        return trx('koordinat_tanah').insert(koordinatData);
-      })
-  })
-  .then(function() {
-    res.json({ status: 'success', message: 'Data berhasil diperbarui', id: id });
-  })
-  .catch(function(err) {
-    console.error(err);
-    res.status(500).json({ status: 'error', message: err.message });
-  });
-});
 // GET /manajemen_pertanahan/list
-router.get('/list', cek_login_all, function(req, res) {
-  sql_enak('penguasaan_tanah')
-    .select('*')
-    .orderBy('id', 'desc')
-    .then(function(data) {
-      res.json({ data: data });
-    })
-    .catch(function(err) {
-      console.error(err);
-      res.status(500).json({ error: err.message });
-    });
+router.post('/list', cek_login_all, async function(req, res) {
+    try {
+        // Ambil parameter dari DataTables
+        const draw = parseInt(req.body.draw) || 1;
+        const start = parseInt(req.body.start) || 0;
+        const length = parseInt(req.body.length) || 10;
+        const searchValue = req.body.search?.value || '';
+        
+        // Handle sorting - DataTables mengirim sebagai array
+        let orderBy = 'a.id';
+        let orderDir = 'asc';
+        
+        if (req.body.order && req.body.order.length > 0) {
+            const orderColumn = parseInt(req.body.order[0].column);
+            const orderDirParam = req.body.order[0].dir || 'asc';
+            
+            // Mapping kolom
+            const columns = {
+                0: 'a.id',
+                1: 'a.nm_pnguasa',
+                2: 'a.almt_ktp',
+                3: 'c.kecamatan',
+                4: 'b.namobj',
+                5: 'a.l_tanah',
+                6: 'a.l_bangunan',
+                7: 'a.nop'
+            };
+            
+            orderBy = columns[orderColumn] || 'a.id';
+            orderDir = orderDirParam;
+        }
+        
+        console.log('Request params:', { draw, start, length, searchValue, orderBy, orderDir });
+        
+        // Query dasar
+        let baseQuery = `
+            FROM persil_magetan a 
+            LEFT JOIN batas_admin_desa b ON a.kd_kel = b.id_desa 
+            LEFT JOIN batas_admin_kecamatan c ON b.id_kec = c.id_kec 
+            WHERE a.deleted = 0
+        `;
+        
+        // Search conditions
+        let searchCondition = '';
+        const searchParams = [];
+        
+        if (searchValue) {
+            const likePattern = `%${searchValue}%`;
+            searchCondition = ` AND (
+                a.nm_pnguasa LIKE ? OR 
+                a.almt_ktp LIKE ? OR 
+                b.namobj LIKE ? OR 
+                c.kecamatan LIKE ? OR 
+                a.nop LIKE ? OR
+                a.l_tanah LIKE ? OR
+                a.l_bangunan LIKE ?
+            )`;
+            searchParams.push(
+                likePattern, likePattern, likePattern, 
+                likePattern, likePattern, likePattern, likePattern
+            );
+        }
+        
+        // Get total records
+        const totalQuery = `SELECT COUNT(*) as total ${baseQuery}`;
+        const totalResult = await sql_enak.raw(totalQuery, []);
+        const totalRecords = totalResult[0]?.[0]?.total || 0;
+        
+        // Get filtered records
+        const filteredQuery = `SELECT COUNT(*) as filtered ${baseQuery} ${searchCondition}`;
+        const filteredResult = await sql_enak.raw(filteredQuery, searchParams);
+        const filteredRecords = filteredResult[0]?.[0]?.filtered || 0;
+        
+        // Get data
+        let dataQuery = `
+            SELECT 
+                a.*, 
+                b.namobj as kelurahan_desa, 
+                c.kecamatan as kecamatan 
+            ${baseQuery} 
+            ${searchCondition}
+            ORDER BY ${orderBy} ${orderDir}
+            LIMIT ? OFFSET ?
+        `;
+        
+        const dataParams = [...searchParams, length, start];
+        const dataResult = await sql_enak.raw(dataQuery, dataParams);
+        
+        // Format response
+        const response = {
+            draw: draw,
+            recordsTotal: totalRecords,
+            recordsFiltered: filteredRecords,
+            data: dataResult[0] || []
+        };
+        
+        console.log(`Returning ${response.data.length} records`);
+        res.json(response);
+        
+    } catch (err) {
+        console.error('Error in /list endpoint:', err);
+        res.status(500).json({
+            draw: parseInt(req.body.draw) || 1,
+            recordsTotal: 0,
+            recordsFiltered: 0,
+            data: [],
+            error: err.message
+        });
+    }
 });
 
 // GET /manajemen_pertanahan/hapus/:id
 router.get('/hapus/:id', cek_login_all, function(req, res) {
   const id = req.params.id;
-  sql_enak.transaction(function(trx) {
-    return trx('koordinat_tanah')
-      .where('penguasaan_tanah_id', id)
-      .del()
-      .then(function() {
-        return trx('koordinat_tanah')
-          .where('penguasaan_tanah_id', id)
-          .del();
-      })
-      .then(function() {
-        return trx('penguasaan_tanah')
-          .where('id', id)
-          .del();
-      });
-  })
+   sql_enak("persil_magetan").where("id", req.params.id)
+  .update({deleted:1})
   .then(function() {
     res.json({ status: 'success', message: 'Data berhasil dihapus' });
   })
@@ -227,96 +259,39 @@ router.get('/hapus/:id', cek_login_all, function(req, res) {
 });
 
 
-router.post('/insert', upload.fields([
-  { name: 'file_shp', maxCount: 1 },
-  { name: 'file_shx', maxCount: 1 },
-  { name: 'file_dbf', maxCount: 1 }
-]), async (req, res) => {
-  const {
-    nama_penguasaan, nik, no_kk, alamat_ktp, alamat_rumah,
-    kecamatan, kelurahan_desa, luas_tanah, no_sertifikat,
-    jenis_hak, no_hak, tahun_kepemilikan, nib,
-    batas_utara, batas_selatan, batas_timur, batas_barat, znt,
-    nop, luas_bumi, pajak_bumi, luas_bangunan, pajak_bangunan,
-    njop, tagihan, tanggal_pembayaran_terakhir, status_bayar,
-    pemanfaatan_lahan, peruntukan_lahan, zona_ruang, kelas_bumi, kelas_bangunan,
-    latitude, longitude
-  } = req.body;
+router.post('/submit_insert', function(req, res) {
+  var idne ="";
+  var post = {}
+ post = req.body;
+ delete post['x[]']
+  delete post['y[]']
 
-  // Validasi koordinat
-  if (!latitude || !longitude || !Array.isArray(latitude) || !Array.isArray(longitude)) {
-    return res.status(400).json({ status: 'error', message: 'Koordinat harus dikirim sebagai array.' });
-  }
-  if (latitude.length < 3 || longitude.length < 3 || latitude.length !== longitude.length) {
-    return res.status(400).json({ status: 'error', message: 'Koordinat minimal 3 titik dan jumlah latitude/longitude sama.' });
-  }
+  post['SHAPE']= st.geomFromText(post['SHAPE'], 4326);
+   console.log(post,'post persil_magetan')
 
-  // Jalankan transaksi
-  sql_enak.transaction(function(trx) {
-    return trx('penguasaan_tanah')
-      .insert({
-        nama_penguasaan,
-        nik,
-        no_kk,
-        alamat_ktp,
-        alamat_rumah,
-        kecamatan,
-        kelurahan_desa,
-        luas_tanah: parseFloat(luas_tanah) || 0,
-        no_sertifikat,
-        jenis_hak,
-        no_hak,
-        tahun_kepemilikan,
-        nib,
-        batas_utara,
-        batas_selatan,
-        batas_timur,
-        batas_barat,
-        znt,
-        nop,
-        luas_bumi: parseFloat(luas_bumi) || 0,
-        pajak_bumi: parseFloat(pajak_bumi) || 0,
-        luas_bangunan: parseFloat(luas_bangunan) || 0,
-        pajak_bangunan: parseFloat(pajak_bangunan) || 0,
-        njop: parseFloat(njop) || 0,
-        tagihan: parseFloat(tagihan) || 0,
-        tanggal_pembayaran_terakhir,
-        status_bayar,
-        pemanfaatan_lahan,
-        peruntukan_lahan,
-        zona_ruang,
-        kelas_bumi,
-        kelas_bangunan,
-        created_at: new Date()
-      })
-      .then(function(result) {
-        const id = Array.isArray(result) ? result[0] : result;
-
-        const koordinatData = latitude.map(function(lat, index) {
-          return {
-            penguasaan_tanah_id: id,
-            latitude: parseFloat(lat),
-            longitude: parseFloat(longitude[index]),
-            urutan: index + 1,
-            created_at: new Date()
-          };
-        });
-
-        return trx('koordinat_tanah')
-          .insert(koordinatData)
-          .then(function() {
-            res.status(201).json({ status: 'success', id: id });
-          });
-      });
-  })
-  .catch(function(err) {
-    console.error('Error transaksi:', err);
-    res.status(500).json({ status: 'error', message: err.message || 'Terjadi kesalahan.' });
-  });
+   sql_enak.insert(post).into("persil_magetan").then(function (id) {
+  console.log(id);
+})
+.finally(function() {
+  //sql_enak.destroy();
+  res.redirect('/manajemen_pertanahan'); 
+});
 });
 
-router.get('/import_shp', cek_login_all, function(req, res) {
-  res.render('content-backoffice/manajemen_pertanahan/import_data'); 
+router.post('/submit_edit', function(req, res){
+  var post = {}
+ post = req.body;
+ delete post['x[]']
+  delete post['y[]']
+  
+  post['SHAPE']= st.geomFromText(post['SHAPE'], 4326);
+   sql_enak("persil_magetan").where("id", req.body.id)
+  .update(post).then(function (count) {
+ console.log(count);
+})
+.finally(function() {
+  //sql_enak.destroy();
+  res.redirect('/manajemen_pertanahan'); 
 });
-
+});
 module.exports = router;

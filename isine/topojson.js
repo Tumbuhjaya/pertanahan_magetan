@@ -209,7 +209,6 @@ router.get('/topojson_rdtr', function (req, res) {
         return console.log(error);
       }
       // This will log a valid GeoJSON object
-      // console.log(result)  
       res.send(JSON.stringify(result))
     });
   });
