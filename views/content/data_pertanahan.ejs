@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<% let rooturl = ''; %>
+<head>
+
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="description" content="">
+    <meta name="author" content="">
+    <link rel="shortcut icon" href="<%= rooturl %>/images/template/shortcut_icon.ico">
+    <title>DISPERKIM KABUPATEN MAGETAN</title>
+
+    <link href="<%= rooturl %>/stylesheets/template/css/bootstrap.css" rel="stylesheet">
+    <link href="<%= rooturl %>/stylesheets/template/css/style.css" rel="stylesheet">
+
+
+    <!-- Plugin This Page --> 
+    <link rel="stylesheet" href="<%= rooturl %>/plugins/fontawesome-5/css/all.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/css/select2.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@ttskch/select2-bootstrap4-theme@x.x.x/dist/select2-bootstrap4.min.css">
+    <link href="https://cdn.datatables.net/1.10.22/css/dataTables.bootstrap4.min.css" rel="stylesheet"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/sweetalert/1.1.3/sweetalert.min.css">
+    <link href="<%= rooturl %>/plugins/slick/slick.css" rel="stylesheet">
+    <link href="<%= rooturl %>/plugins/slick/slick-theme.css" rel="stylesheet">
+    
+    <script src="<%= rooturl %>/javascripts/template/jquery.min.js"></script>
+
+    <!-- End Plugins This Page -->
+
+    <!-- HTML5 Shim and Respond.js IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+        <script src="https://oss.maxcdn.com/libs/html5shiv/3.7.0/html5shiv.js"></script>
+        <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
+    <![endif]-->
+    <style type="text/css">
+       
+    </style>
+</head>
+
+<body>
+    <% include ../template/header.ejs %>
+    <section class="shadow" style="background: #6F4E37;background: linear-gradient(90deg, rgba(111, 78, 55, 1) 0%, rgba(163, 126, 98, 1) 79%);height: 100px;display: flex;align-items: center;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12 col-lg-7 col-xl-7">
+                    <div class="w-100-flex" style="height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 25px;justify-content: space-around;align-items: center;border: 3px solid #fff;">
+                        <a href="/" style="text-decoration: none;"><h6 style="color: #fff;">BERANDA</h6></a>
+                        <a href="/data_pertanahan" style="text-decoration: none;"><h6 style="color: #fff;">TANAH & LAHAN</h6></a>
+                        <a href="/peta_spasial" style="text-decoration: none;"><h6 style="color: #fff;">GEOSPASIAL</h6></a>
+                        <a href="#" style="text-decoration: none;"><h6 style="color: #fff;">STATISTIK</h6></a>
+                    </div>
+                </div>
+                <div class="col-12 col-lg-3 col-xl-3">
+                    <div class="w-100-flex" style="height: 50px;background-color: rgba(255, 255, 255, 0.2);justify-content: flex-start;align-items: center;border-radius: 25px;border: 3px solid #fff;padding-left: 30px;">
+                        <h6 style="color: #fff;">Cari .....</h6>
+                    </div>
+
+                </div>
+
+                <div class="col-12 col-lg-2 col-xl-2">
+                    <div class="w-100-flex" style="height: 50px;justify-content: space-around;align-items: center;">
+                        <div style="width: 50px;height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 100%;border: 3px solid #fff;"></div>
+                        <div style="width: 50px;height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 100%;border: 3px solid #fff;"></div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section style="padding-top: 60px;padding-bottom: 60px;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h4 style="font-weight: bold;" class="text-center">DATA TANAH DAN LAHAN</h4>
+                </div>
+            </div>
+            <div class="row mt-3">
+                <div class="col-12">
+                    <table class="table table-bordered table-striped" id="data">
+                        <thead>
+                            <tr>
+                                <th>No.</th>
+                                <th>Nama Penguasaan</th>
+                                <th>Kecamatan</th>
+                                <th>Desa</th>
+                                <th>Luas Tanah</th>
+                                <th>Luas Bangunan</th>
+                                <th>No. Objek Pajak</th>
+                                <th>Option</th>
+                            </tr>
+                        </thead>
+
+                        <tbody>
+                            <tr>
+                                <td>1.</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>-</td>
+                                <td>
+                                    <a href="#" class="btn btn-warning">Detail</a>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <footer style="background: #6F4E37;background: linear-gradient(90deg, rgba(111, 78, 55, 1) 0%, rgba(163, 126, 98, 1) 79%);padding: 15px 0;">
+        <div class="container">
+            <div class="row">
+                <div class="col-12">
+                    <h6 class="text-center" style="color: #fff;">COPYRIGHT © 2026 DINAS PERUMAHAN DAN KAWASAN PERMUKIMAN KABUPATEN MAGETAN</h6>
+                </div>
+            </div>
+        </div>
+    </footer>
+     <% include ../template/footer.ejs %>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="<%= rooturl %>/javascripts/template/bootstrap.bundle.js"></script>
+    <!-- Plugins This Page -->
+    <script src="https://cdn.canvasjs.com/canvasjs.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/select2/4.0.6-rc.0/js/select2.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/jquery.dataTables.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.22/js/dataTables.bootstrap4.min.js"></script>
+    <script src="<%= rooturl %>/plugins/slick/slick.min.js"></script>
+    <!-- End Plugins This Page -->
+    <script type="text/javascript">
+        var rooturl = ''
+        let data_table =   $('#data').DataTable({    
+        "language": {    
+            "sSearch": "Cari :", // <-- Tambahkan baris ini untuk label search
+          "sSearchPlaceholder": "Ketik kata kunci...", // (Opsional) Teks placeholder di dalam kotak input
+          "sProcessing":   "Sedang memproses...",    
+          "sLengthMenu":   "_MENU_",    
+          "sZeroRecords":  "Tidak ditemukan data yang sesuai",    
+          "sInfo":         "Menampilkan _START_ sampai _END_ dari _TOTAL_ entri",    
+          "sInfoEmpty":    "Menampilkan 0 sampai 0 dari 0 entri",    
+          "sInfoFiltered": "(disaring dari _MAX_ entri keseluruhan)",    
+          "sInfoPostFix":  "",    
+          "sUrl":          "",    
+          "oPaginate": {    
+            "sFirst":    "Pertama",    
+            "sPrevious": "Sebelumnya",    
+            "sNext":     "Selanjutnya",    
+            "sLast":     "Terakhir"    
+          }    
+        },    
+        "processing": true,
+        // "ajax":  `${rooturl}/anggota/list`,
+        // "columns": [
+        //     { "data": null},
+        //     {
+        //         "data": "nama_perusahaan",
+        //         "render": function(data, type, row) {
+        //             return '<a href="/data/anggota/' + row.id + '" style="text-decoration: none; font-weight: bold;color:#1F3163">' + data + '</a>';
+        //         }
+        //     },
+        //     { "data": "penanggung_jawab"},
+        //     { "data": "telepon"},
+        //     { "data": "kualifikasi",render:function(data){return data=='B'?'BESAR':data=='M'?'MENENGAH':'KECIL'}},
+        //     {
+        //         "data": "spesialisasi",
+        //         "render": function(data, type, row) {
+        //             // return '<span style="text-transform:uppercase">' + data + '</span>';
+        //             return data ? '<span style="text-transform:uppercase">' + data + '</span>' : '-';
+        //         }
+        //     },
+        //     { "data": "status"}
+        // ],
+        // "columnDefs": [
+        //   { "width": "35px", "targets": 0},
+        //   { "width": "100px", "targets": 2}
+        // ],
+      });
+    </script>
+</body>
+</html>

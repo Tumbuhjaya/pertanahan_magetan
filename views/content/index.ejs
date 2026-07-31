@@ -35,48 +35,170 @@
         <script src="https://oss.maxcdn.com/libs/respond.js/1.4.2/respond.min.js"></script>
     <![endif]-->
     <style type="text/css">
+        /* CSS untuk background penuh layar tanpa scroll */
+        html, body {
+        margin: 0;
+        padding: 0;
+        height: 100%;
+        overflow: hidden; /* hilangkan scrollbar */
         
+        }
+
+        body {
+        background-image: url('/images/template/bg-alun-magetan.png');
+        background-size: cover;       /* memenuhi seluruh area tanpa distorsi */
+        background-position: center;  /* posisi tengah */
+        background-repeat: no-repeat; /* tidak diulang */
+        background-attachment: fixed; /* opsional, efek parallax sederhana */
+        width: 100vw;
+        height: 100vh;
+        font-family: "Inter Tight", sans-serif;
+        }
     </style>
 </head>
 
 <body>
     <% include ../template/header.ejs %>
     <section style="position: relative;padding-top: 30px;">
-        <div class="w-100" style="height: 100vh;background: #f2f2f2;
-background: linear-gradient(0deg,rgba(242, 242, 242, 0.1) 60%, rgba(111, 78, 55, 0.9) 90%);;position: absolute;left:0;right:0;top:0;bottom:0;"></div>
+        <div class="w-100" style="height: 100vh;background: #f2f2f2;background: linear-gradient(0deg,rgba(0, 0, 0, 0.3) 60%, rgba(111, 78, 55, 0.9) 90%);position: absolute;left:0;right:0;top:0;bottom:0;"></div>
         <div class="container">
             <div class="row">
                 <div class="col-12 col-lg-7 col-xl-7">
-                    <div class="w-100-flex" style="height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 25px;justify-content: space-around;align-items: center;border: 2px solid #fff;">
-                        <h6 style="color: #fff;">DISPERKIM</h6>
-
-                        <a href="" style="text-decoration: none;"><h6 style="color: #fff;">Beranda</h6></a>
-                        <a href="" style="text-decoration: none;"><h6 style="color: #fff;">Data</h6></a>
-                        <a href="" style="text-decoration: none;"><h6 style="color: #fff;">Geospasial</h6></a>
+                    <div class="w-100-flex" style="height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 25px;justify-content: space-around;align-items: center;border: 3px solid #fff;">
+                        <a href="/" style="text-decoration: none;"><h6 style="color: #fff;">BERANDA</h6></a>
+                        <a href="/data_pertanahan" style="text-decoration: none;"><h6 style="color: #fff;">TANAH & LAHAN</h6></a>
+                        <a href="/peta_spasial" style="text-decoration: none;"><h6 style="color: #fff;">GEOSPASIAL</h6></a>
+                        <a href="#" style="text-decoration: none;"><h6 style="color: #fff;">STATISTIK</h6></a>
                     </div>
                 </div>
                 <div class="col-12 col-lg-3 col-xl-3">
-                    <div class="w-100-flex" style="height: 50px;background-color: rgba(255, 255, 255, 0.2);justify-content: center;align-items: center;border-radius: 25px;border: 2px solid #fff;">
-                        <h6 style="color: #fff;">Cari .....</h6>
+                    <div class="w-100-flex" style="height: 50px;background-color: rgba(255, 255, 255, 0.2);justify-content: flex-start;align-items: center;border-radius: 25px;border: 3px solid #fff;padding-left: 30px;">
+                        <i class="fas fa-search" style="color: #fff;"></i>&nbsp;&nbsp;<h6 style="color: #fff;">Cari .....</h6>
                     </div>
 
                 </div>
 
                 <div class="col-12 col-lg-2 col-xl-2">
                     <div class="w-100-flex" style="height: 50px;justify-content: space-around;align-items: center;">
-                        <div style="width: 50px;height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 100%;border: 2px solid #fff;"></div>
-                        <div style="width: 50px;height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 100%;border: 2px solid #fff;"></div>
+                        <div style="width: 50px;height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 100%;border: 3px solid #fff;"></div>
+                        <div style="width: 50px;height: 50px;background-color: rgba(255, 255, 255, 0.2);border-radius: 100%;border: 3px solid #fff;"></div>
                     </div>
                 </div>
             </div>
             <div class="row" style="margin-top: 30px;">
                 <div class="col-12 col-lg-8 col-xl-8 pr-0">
-                    <div class="w-100" style="width:100%;height:80vh ;background-color: rgba(255, 255, 255, 0.4);"></div>
+                    <div class="row">
+                        <div class="col-12">
+                            <h1 style="font-size: 80px;color: #fff;letter-spacing: 4px;">InGaTT Magetan</h1>
+                            <h4 style="color: #fff;">Informasi Geospasial Tanah Terintegrasi di Kabupaten Magetan</h4>
+                        </div>
+                    </div>
+
+                    <div class="row" style="margin-top: 30vh;">
+                        <div class="col-9">
+                            <h4 style="color: #fff;">Informasi geospasial adalah "ruh" dari moderenisasi pertanahan. Data ini menghubah batas tanah dari sekedar asumsi subjektif menjadi bukti spasial yang terukur, transparan</h4>
+                        </div>
+
+                         <div class="col-3">
+                           
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="w-100" style="height: 2px;background-color: #fff;"></div>
+                        </div>
+                    </div>
+
+                    <div class="row mt-3">
+                        <div class="col-12">
+                            <div class="w-100-flex" style="justify-content: space-between;">
+                                <div style="width: 45%;height: 60px;border:3px solid #fff;border-radius: 30px;background-color:rgba(255, 255, 255, 0.3);display: flex;justify-content: center;align-items: center;">
+                                    <i class="fas fa-plus-circle" style="font-size: 36px;color: #fff;"></i>
+                                    <h3 style="color: #fff;margin-left: 10px;">10 FUNGSI</h3>
+                                </div>
+                                <div style="width: 30%;height: 60px;border:3px solid #fff;border-radius: 30px;background-color:rgba(255, 255, 255, 0.3);display: flex;justify-content: center;align-items: center;padding-left: 15px;padding-right: 15px;">
+                                    
+                                    <i class="fas fa-map-marker-alt" style="font-size: 36px;color: #fff;"></i>
+                                    <div style="width: fit-content;display: flex;align-items: flex-start;flex-direction: column;justify-content: flex-start;margin-left: 15px;">
+                                        <h6 style="color: #fff;text-align: left;">DISPERKIM</h6>
+                                        <h6 style="color: #fff;text-align: left;" >KAB. MAGETAN</h6>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- <div class="w-100" style="width:100%;height:80vh ;background-color: rgba(255, 255, 255, 0.4);"></div> -->
                 </div>
 
                 <div class="col-12 col-lg-4 col-xl-4 pl-0">
                     <div class="w-100" style="height:80vh;padding-left: 15px;padding-right: 15px;position: relative;">
-                        <div class="w-100" style="height: 80vh;background-color:rgba(255, 255, 255, 0.2) ;border-radius: 25px;border: 4px solid #fff;"></div>
+                        <div class="w-100" style="height: 80vh;background-color:rgba(255, 255, 255, 0.3) ;border-radius: 25px;border: 3px solid #fff;padding: 20px;">
+                            <div class="row">
+                                <div class="col-12">
+                                    <div class="w-100" style="position: relative;">
+                                        <img src="https://placehold.co/400x260" alt="" style="width: 100%;border-radius: 25px;">
+                                        <div style="width: 50%;height:50px;background-color: #A37E62;position: absolute;left:0;right:0;bottom: -25px;margin:auto;border-radius: 25px;display: flex;justify-content: space-between;align-items: center;padding-left: 15px;padding-right: 15px;">
+                                            <h5 style="color: #fff;">Detail ....</h5> <i class="fas fa-chevron-circle-down" style="color: #fff;font-size: 30px;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+
+                            <div class="row mt-5">
+                                <div class="col-12">
+                                    <h3 class="text-center" style="color: #fff;">Status Hak Tanah</h3>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <div class="w-100-flex"  style="align-items: center;">
+                                        <div style="width: 80%;">
+                                            <h6 style="color: #fff;">Cek Lokasi Terakhir</h6>
+                                            <h4 style="color: #fff;font-weight: bold;">Dec 31, 2025</h4>
+                                        </div>
+                                        <div style="width: 20%;display: flex;justify-content: flex-end;">
+                                           <i class="fas fa-arrow-circle-right" style="font-size: 36px;color: #fff;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <div class="w-100" style="height: 2px;background-color: #fff;"></div>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <div class="w-100-flex"  style="align-items: center;">
+                                        <div style="width: 80%;">
+                                            <h6 style="color: #fff;">Cek Pembayaran Terakhir</h6>
+                                            <h4 style="color: #fff;font-weight: bold;">Jan 31, 2024</h4>
+                                        </div>
+                                        <div style="width: 20%;display: flex;justify-content: flex-end;">
+                                           <i class="fas fa-arrow-circle-left" style="font-size: 36px;color: #A37E62;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <div class="w-100" style="height: 2px;background-color: #fff;"></div>
+                                </div>
+
+                                <div class="col-12 mt-3">
+                                    <div class="w-100-flex"  style="align-items: center;">
+                                        <div style="width: 80%;">
+                                            <h6 style="color: #fff;">Potensi Pemanfaatan Ruang</h6>
+                                            <h4 style="color: #fff;font-weight: bold;">4 Potensi</h4>
+                                        </div>
+                                        <div style="width: 20%;display: flex;justify-content: flex-end;">
+                                           <i class="fas fa-arrow-circle-right" style="font-size: 36px;color: #fff;"></i>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+
+                        
+                        
                     </div>
                     
                 </div>
