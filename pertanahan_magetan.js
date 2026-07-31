@@ -31,6 +31,7 @@ var cek_login_all = require('./isine/login.js').cek_login_all;
 
 // FE
 var basic = require('./isine/basic.js');
+var data_pertanahan = require('./isine/data_pertanahan.js');
 var peta_spasial = require('./isine/peta_spasial.js');
 
 // BO
@@ -101,6 +102,7 @@ app.use('/uploadckeditor', fn);
 app.use('/upload_excel', upload_excel);
 // FE
 app.use('/basic', basic);
+app.use('/data_pertanahan', data_pertanahan);
 app.use('/peta_spasial', peta_spasial);
 
 // BO
