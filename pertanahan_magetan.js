@@ -45,6 +45,7 @@ var user = require('./isine/user.js');
 var app = express();
 var connection = require('./database/index.js').connection;
 var sql_enak = require('./database/mysql_enak.js').connection;
+var upload_shp = require('./isine/upload_shp');
 
 var router = express.Router();
 var dbgeo = require("dbgeo");
@@ -102,6 +103,7 @@ app.use('/upload_excel', upload_excel);
 // FE
 app.use('/basic', basic);
 app.use('/peta_spasial', peta_spasial);
+app.use('/upload_shp', upload_shp);
 
 // BO
 app.use('/manajemen_basic', manajemen_basic);
