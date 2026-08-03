@@ -1,4 +1,4 @@
-   var root ="http://survplus.id:8938/";
+   var root ="http://localhost:8900/";
    String.prototype.replaceAll = function(search, replacement) {
        var target = this;
        return target.split(search).join(replacement);

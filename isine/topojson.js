@@ -196,6 +196,87 @@ router.get('/topojson_kec', function (req, res) {
 
   //connection.end();
 })
+router.get('/topojson_kel', function (req, res) {
+  //connection.connect();
+  //console.log(req.query)
+      var tambahan = "where 1 ";
+
+  if (req.query.id_kec) {
+     tambahan += "and id_kec= '" + req.query.id_kec + "'";
+  }
+    if (req.query.id_kel) {
+     tambahan += "and id_desa= '" + req.query.id_kel + "'";
+
+  }
+  connection.query("SELECT asWkt(SHAPE) as geometry,namobj kecamatan FROM batas_admin_desa " + tambahan, function (err, rows, fields) {
+    if (err) throw err;
+
+    //console.log("SELECT asWkt(admin_kec.SHAPE) as geometry FROM admin_kec WHERE MBRContains(GeomFromText( 'POLYGON(("+req.query.kiri_lng+" "+req.query.kiri_lat+","+req.query.kiri_lng+" "+req.query.kanan_lat+","+req.query.kanan_lng+" "+req.query.kanan_lat+","+req.query.kanan_lng+" "+req.query.kiri_lat+","+req.query.kiri_lng+" "+req.query.kiri_lat+"))' ),admin_kec.SHAPE");
+
+    //res.end(JSON.stringify(rows))
+
+    // MySQL query...
+    //ambil geojson
+    dbgeo.parse({
+      "data": rows,
+      "outputFormat": "topojson",
+      "geometryColumn": "geometry",
+      "geometryType": "wkt"
+    }, function (error, result) {
+      if (error) {
+        return console.log(error);
+      }
+      // This will log a valid GeoJSON object
+      // console.log(result)  
+      res.send(JSON.stringify(result))
+    });
+  });
+
+  //connection.end();
+})
+router.get('/topojson_persil', function (req, res) {
+  //connection.connect();
+  //console.log(req.query)
+      var tambahan = "where 1 ";
+
+  if (req.query.id_kec) {
+     tambahan += "and kd_kec= '" + req.query.id_kec + "'";
+  }
+    if (req.query.id_kel) {
+     tambahan += "and kd_kel= '" + req.query.id_kel + "'";
+
+  }
+
+      if (req.query.nm_pnguasa) {
+     tambahan += "and nm_pnguasa= '" + req.query.nm_pnguasa + "'";
+
+  }
+  connection.query(`SELECT asWkt(SHAPE) as geometry,id, kd_kec, kd_kel, nm_pnguasa, almt_rmh, almt_ktp, nik, no_kk, no_srtfkt, l_tanah, znt, no_hak, jns_hak, nib, th_kpmlkn, bts_brt, bts_tmr, bts_sltn, bts_utr, nop, p_bumi, p_bngnan, njop, tagihan, t_pmbyran, stts_bayar, l_bangunan, pmftn_lhn, prntkn_lhn, zn_ruang, l_bumi, k_bumi, k_bangunan, deleted, created_at, updated_at FROM persil_magetan ` + tambahan, function (err, rows, fields) {
+    if (err) throw err;
+
+    //console.log("SELECT asWkt(admin_kec.SHAPE) as geometry FROM admin_kec WHERE MBRContains(GeomFromText( 'POLYGON(("+req.query.kiri_lng+" "+req.query.kiri_lat+","+req.query.kiri_lng+" "+req.query.kanan_lat+","+req.query.kanan_lng+" "+req.query.kanan_lat+","+req.query.kanan_lng+" "+req.query.kiri_lat+","+req.query.kiri_lng+" "+req.query.kiri_lat+"))' ),admin_kec.SHAPE");
+
+    //res.end(JSON.stringify(rows))
+
+    // MySQL query...
+    //ambil geojson
+    dbgeo.parse({
+      "data": rows,
+      "outputFormat": "topojson",
+      "geometryColumn": "geometry",
+      "geometryType": "wkt"
+    }, function (error, result) {
+      if (error) {
+        return console.log(error);
+      }
+      // This will log a valid GeoJSON object
+      // console.log(result)  
+      res.send(JSON.stringify(result))
+    });
+  });
+
+  //connection.end();
+})
 router.get('/topojson_rdtr', function (req, res) {
   connection.query("SELECT asWkt(SHAPE) as geometry,namobj,kode_sub_z FROM pola_ruang_rdtr_karangrejo_dms " , function (err, rows, fields) {
     if (err) throw err;
@@ -697,6 +778,35 @@ if (err) throw err;
 
   //connection.end();
 })
+router.get('/list_kecamatan',async function (req, res) {
+  let rows =  await sql_enak.raw(`SELECT id_kec, kecamatan 
+FROM batas_admin_kecamatan
+ORDER BY kecamatan `)
+ res.json({data: rows[0]})
+})
+router.get('/list_desa_by_kec/:id_kec',async function (req, res) {
+  let rows =  await sql_enak.raw(`SELECT id_desa, namobj, id_kec
+FROM batas_admin_desa
+WHERE id_kec = ?
+ORDER BY namobj`,[req.params.id_kec])
+ res.json({data: rows[0]})
+})
+
+router.get('/get_desa_center/:id_desa',async function (req, res) {
+  let rows =  await sql_enak.raw(`SELECT ST_X(ST_Centroid(SHAPE)) AS xe, 
+       ST_Y(ST_Centroid(SHAPE)) AS ye
+FROM batas_admin_desa
+WHERE id_desa = ?`,[req.params.id_desa])
+ res.json({data: rows[0]})
+})
+router.get('/get_kecamatan_center/:id_kec',async function (req, res) {
+  let rows =  await sql_enak.raw(`SELECT ST_X(ST_Centroid(SHAPE)) AS xe, 
+       ST_Y(ST_Centroid(SHAPE)) AS ye
+FROM batas_admin_kecamatan
+WHERE id_kec = ?`,[req.params.id_kec])
+ res.json({data: rows[0]})
+})
+
 router.get('/json_kecamatan',async function (req, res) {
   let str = ``
   let val = []
@@ -761,4 +871,5 @@ router.get('/json_kelurahan',async function (req, res) {
     res.send(JSON.stringify(result, null, 2));
   });
 })
+
 module.exports = router;

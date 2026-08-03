@@ -118,21 +118,21 @@
                         <div class="col-12">
                           <div class="form-group">
                             <label for="" style="color: #fff;">Kecamatan</label>
-                            <select name="" id="" class="form-control">
+                            <select name="" id="kecamatan_filter" class="form-control">
                               <option value=""></option>
                             </select>
                           </div>
                           <div class="form-group">
                             <label for="" style="color: #fff;">Desa</label>
-                            <select name="" id="" class="form-control">
+                            <select name="" id="desa_filter" class="form-control">
                               <option value=""></option>
                             </select>
                           </div>
                           <div class="form-group">
                             <label for="" style="color: #fff;">Nama Penguasaaan</label>
-                            <input type="text" class="form-control" name="" id="">
+                            <input type="text" class="form-control" name="" id="nm_pnguasa">
                           </div>
-                          <button type="submit" class="btn btn-light"><i class="fas fa-search"></i> Cari</button>
+                          <button type="button" onclick="cari()" class="btn btn-light"><i class="fas fa-search"></i> Cari</button>
                         </div>
                       </div>
                       
@@ -193,7 +193,42 @@
                          } 
                        }; 
                     $(document).ready(function() { 
-                     
+                      $.ajax({
+                          type: "GET",
+                          url: root + "peta/list_kecamatan",
+                          dataType: 'json',
+                          success: function(data) {
+                            console.log(data,root + "peta/list_kecamatan");
+                            
+                            $('#kecamatan_filter').empty();
+                            $('#kecamatan_filter').append('<option value="">-- Pilih Kecamatan --</option>');
+                            $.each(data.data, function(index, item) {
+                              $('#kecamatan_filter').append('<option value="'+item.id_kec+'">'+item.kecamatan+'</option>');
+                            });
+                          }
+                        });
+                         $('#kecamatan_filter').change(function(){
+                          var selected = $(this).val();
+                          if(selected == ""){
+                            $('#desa_filter').empty();
+                            $('#desa_filter').append('<option value="">-- Pilih Desa --</option>');
+                            return;
+                          }
+                          var id_kec = selected.split('|')[0];
+                          $.ajax({
+                            type: "GET",
+                            url: root + "peta/list_desa_by_kec/"+id_kec,
+                            dataType: 'json',
+                            success: function(data) {
+                              $('#desa_filter').empty();
+                              $('#desa_filter').append('<option value="">-- Pilih Desa --</option>');
+                              $.each(data.data, function(index, item) {
+                                $('#desa_filter').append('<option value="'+item.id_desa+'">'+item.namobj+'</option>');
+                              });
+                            }
+                          });
+                        });
+
                         // $.ajax({ 
                         //   type : "GET", 
                         //   async : false, 
@@ -410,6 +445,12 @@
                               opacity : 1,  
                               fillOpacity  : 0, 
                               dashArray : 3 
+                            }; 
+                                var style_persil = { 
+                              color : "blue",  
+                              weight : 3,  
+                              opacity : 1,  
+                              fillOpacity  : 0, 
                             }; 
                          var style_gambar = { 
                               color : "blue",  
@@ -802,6 +843,9 @@
                         var wellmaxzoom = 13;        
                       var polaruang_layer = new L.GeoJSON(); 
                       var kabupaten_layer = new L.TopoJSON(); 
+                      var persil_layer = new L.TopoJSON(); 
+
+                      
                       var desa_layer = new L.TopoJSON(); 
                                      var rdtr_layer = new L.TopoJSON(); 
                       var kabmagetan_layer = new L.TopoJSON(); 
@@ -903,7 +947,26 @@
         });
     }
 }
-                      function loadGeoJsondesa(data) { 
+                     function loadGeoJsonPersil(data) {
+    persil_layer.clearLayers();
+    persil_layer.addData(data);
+    console.log('loadGeoJsonPersil');
+
+    persil_layer.addTo(map);
+
+    var i = 0;
+    var labelnya = "";
+    persil_layer.eachLayer(function (layer) {
+        layer.setStyle(style_persil);
+        
+        i++;
+    });
+
+
+}
+                     
+
+function loadGeoJsondesa(data) { 
          
                         hapus_label_desa(); 
                         desa_layer.clearLayers(); 
@@ -1019,20 +1082,22 @@
                         var geoJsonUrl =root+"peta/topojson_kec";  
                           $.getJSON(geoJsonUrl) 
                             .done(loadGeoJsonkec); 
-                            
+                                var geoJsonUrl =root+"peta/topojson_persil";  
+                          $.getJSON(geoJsonUrl) 
+                            .done(loadGeoJsonPersil); 
 // Muat layer RDTR Karangrejo
 console.log(root + "peta/topojson_rdtr",root + "peta/topojson_kabmagetan")
 // Muat layer Pola Ruang Kab Magetan
-$.getJSON(root + "peta/topojson_kabmagetan")
-    .done(loadKabmagetan)
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        console.error('Gagal load Kab Magetan:', textStatus, errorThrown);
-    });
-$.getJSON(root + "peta/topojson_rdtr")
-    .done(loadRdtr)
-    .fail(function(jqXHR, textStatus, errorThrown) {
-        console.error('Gagal load RDTR:', textStatus, errorThrown);
-    });
+// $.getJSON(root + "peta/topojson_kabmagetan")
+//     .done(loadKabmagetan)
+//     .fail(function(jqXHR, textStatus, errorThrown) {
+//         console.error('Gagal load Kab Magetan:', textStatus, errorThrown);
+//     });
+// $.getJSON(root + "peta/topojson_rdtr")
+//     .done(loadRdtr)
+//     .fail(function(jqXHR, textStatus, errorThrown) {
+//         console.error('Gagal load RDTR:', textStatus, errorThrown);
+//     });
 
 
 
@@ -1345,6 +1410,48 @@ function loadKabmagetan(data) {
         var popupContent = '<b>Nama:</b> ' + (props.namobj || '');
         layer.bindPopup(popupContent);
     });
+}
+async function cari(params) {
+    function buildQueryString(filters) {
+        let params = new URLSearchParams();
+        for (let key in filters) {
+            if (filters[key]) {
+                params.append(key, filters[key]);
+            }
+        }
+        return params.toString() ? '?' + params.toString() : '';
+    }
+    
+    // Kumpulkan filter
+    let filters = {};
+    if ($('#kecamatan_filter').val()) {
+        filters.id_kec = $('#kecamatan_filter').val();
+    }
+    if ($('#desa_filter').val()) {
+        filters.id_kel = $('#desa_filter').val();
+    }
+    if ($('#nm_pnguasa').val()) {
+        filters.nm_pnguasa = $('#nm_pnguasa').val();
+    }
+    
+    let queryString = buildQueryString(filters);
+    
+    // Gunakan Promise.all untuk memuat semua data secara parallel
+    try {
+        const [geoJsonData, percilData] = await Promise.all([
+            $.getJSON(root + "peta/topojson_kel" + queryString),
+            $.getJSON(root + "peta/topojson_persil" + queryString),
+            // $.getJSON(root + "peta/topojson_rdtr" + queryString)
+        ]);
+        
+        // Proses semua data setelah selesai dimuat
+        loadGeoJsonkec(geoJsonData);
+        loadGeoJsonPersil(percilData);
+        // loadRdtr(rdtrData);
+        
+    } catch (error) {
+        console.error('Gagal memuat data:', error);
+    }
 }
     </script>
 </body>
